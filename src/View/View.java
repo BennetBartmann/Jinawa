@@ -1,4 +1,4 @@
-package de.bb42.jinawa;
+package View;
 
 public class View {
 
