@@ -3,9 +3,6 @@
  */
 package de.jinawa.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import android.util.SparseArray;
 
 import de.jinawa.datatypes.Staple;

@@ -1,4 +1,7 @@
 package de.jinawa.datatypes;
+
+import java.util.Date;
+
 /**
  * 
  * @author Bennet Bartmann
@@ -6,6 +9,7 @@ package de.jinawa.datatypes;
  */
 public class Page {
 	private StringBuffer content = new StringBuffer("Hallo ich bin ein Testtext\n Sogar mit Absatz!");
+	private Date lastModifiedDate;
 	
 	public Page(){
 		
@@ -30,6 +34,13 @@ public class Page {
 	 */
 	public StringBuffer getBody(){
 		return new StringBuffer ("Sogar mit Absatz");
+	}
+	/**
+	 * 
+	 * @return Date of last Modification
+	 */
+	public Date getLastModifiedDate(){
+		return lastModifiedDate;
 	}
 
 }
