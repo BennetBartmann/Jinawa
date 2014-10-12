@@ -1,4 +1,4 @@
-package de.jinawa.view;
+package de.bb42.jinawa.view;
 
 import java.util.List;
 

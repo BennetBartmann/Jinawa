@@ -1,4 +1,4 @@
-package de.jinawa.view;
+package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
 import android.app.Activity;

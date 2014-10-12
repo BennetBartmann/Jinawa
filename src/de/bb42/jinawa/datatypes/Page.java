@@ -1,4 +1,4 @@
-package de.jinawa.datatypes;
+package de.bb42.jinawa.datatypes;
 
 import java.util.Date;
 

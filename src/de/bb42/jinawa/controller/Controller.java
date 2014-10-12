@@ -1,11 +1,11 @@
 /**
  * 
  */
-package de.jinawa.controller;
+package de.bb42.jinawa.controller;
 
 import android.util.SparseArray;
 
-import de.jinawa.datatypes.Staple;
+import de.bb42.jinawa.datatypes.Staple;
 
 /**
  * @author Bennet Bartmann
