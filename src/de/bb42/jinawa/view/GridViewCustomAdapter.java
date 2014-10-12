@@ -42,7 +42,6 @@ public class GridViewCustomAdapter extends ArrayAdapter<Object> {
 
 		}
 		return row;
-
 	}
 
 }
