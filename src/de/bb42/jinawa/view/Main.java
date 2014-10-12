@@ -28,7 +28,8 @@ public class Main extends Activity {
 		final List<String> list = new ArrayList<String>();
 		list.add("Neuer Stapel");
 
-		grisViewCustomeAdapter = new GridViewCustomAdapter(this, list);
+		grisViewCustomeAdapter = new GridViewCustomAdapter(this, list,
+				R.drawable.staple);
 		// Set the Adapter to GridView
 		gridView.setAdapter(grisViewCustomeAdapter);
 

@@ -15,7 +15,7 @@ import de.bb42.jinawa.R;
 public class Staple extends Activity {
 
 	GridView gridView;
-	GridViewCustomAdapter grisViewCustomeAdapter;
+	GridViewCustomAdapter gridViewCustomeAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +27,10 @@ public class Staple extends Activity {
 		// Create the Custom Adapter Object
 		final List<String> list = new ArrayList<String>();
 		list.add("Neuer Stapel");
-		grisViewCustomeAdapter = new GridViewCustomAdapter(this, list);
+		gridViewCustomeAdapter = new GridViewCustomAdapter(this, list,
+				R.drawable.paper);
 		// Set the Adapter to GridView
-		gridView.setAdapter(grisViewCustomeAdapter);
+		gridView.setAdapter(gridViewCustomeAdapter);
 
 		// Handling touch/click Event on GridView Item
 		gridView.setOnItemClickListener(new OnItemClickListener() {
@@ -37,15 +38,15 @@ public class Staple extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
-			
-				if (grisViewCustomeAdapter.getItemId(position) == grisViewCustomeAdapter
+
+				if (gridViewCustomeAdapter.getItemId(position) == gridViewCustomeAdapter
 						.getCount() - 1) {
 					list.add("SO2");
 				} else {
 					startActivity(intent);
 
 				}
-				grisViewCustomeAdapter.notifyDataSetChanged();
+				gridViewCustomeAdapter.notifyDataSetChanged();
 			}
 		});
 

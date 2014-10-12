@@ -16,11 +16,13 @@ import de.bb42.jinawa.R;
 public class GridViewCustomAdapter extends ArrayAdapter<Object> {
 	Context context;
 	List<String> names;
+	int res;
 
-	public GridViewCustomAdapter(Context context, List<String> names) {
+	public GridViewCustomAdapter(Context context, List<String> names, int res) {
 		super(context, 0);
 		this.context = context;
 		this.names = names;
+		this.res = res;
 	}
 
 	public int getCount() {
@@ -36,9 +38,9 @@ public class GridViewCustomAdapter extends ArrayAdapter<Object> {
 			TextView textViewTitle = (TextView) row.findViewById(R.id.textView);
 			ImageView imageViewIte = (ImageView) row
 					.findViewById(R.id.imageView);
-			Log.d("MyApp","" + position);
+			Log.d("MyApp", "" + position);
 			textViewTitle.setText(names.get(0));
-			imageViewIte.setImageResource(R.drawable.paper);
+			imageViewIte.setImageResource(res);
 
 		}
 		return row;
