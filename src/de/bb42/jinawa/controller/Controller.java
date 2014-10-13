@@ -32,10 +32,18 @@ public class Controller {
 	     return instance;
 	}
 	
+	/**
+	 * 
+	 * @return Sparse Array of Staples
+	 */
 	public SparseArray<Staple> getStaples() {
 		return staples;
 	}
-	
+	/**
+	 * 
+	 * @param i number of the staple to get
+	 * @return the requested staple
+	 */
 	public Staple getStaple(int i){
 		return staples.get(i);
 	}
