@@ -26,11 +26,13 @@ public class Staple extends Activity {
 		gridView = (GridView) findViewById(R.id.gridViewCustom);
 		// Create the Custom Adapter Object
 		final List<String> list = new ArrayList<String>();
-		list.add("Neuer Stapel");
 		gridViewCustomeAdapter = new GridViewCustomAdapter(this, list,
 				R.drawable.paper);
 		// Set the Adapter to GridView
 		gridView.setAdapter(gridViewCustomeAdapter);
+
+		list.add("Neues Papier");
+		gridViewCustomeAdapter.notifyDataSetChanged();
 
 		// Handling touch/click Event on GridView Item
 		gridView.setOnItemClickListener(new OnItemClickListener() {
@@ -39,14 +41,14 @@ public class Staple extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View v, int position,
 					long arg3) {
 
-				if (gridViewCustomeAdapter.getItemId(position) == gridViewCustomeAdapter
-						.getCount() - 1) {
-					list.add("SO2");
+				if (gridViewCustomeAdapter.getItemId(position) == 0) {
+					list.add("Papier");
+					gridViewCustomeAdapter.notifyDataSetChanged();
+
 				} else {
 					startActivity(intent);
 
 				}
-				gridViewCustomeAdapter.notifyDataSetChanged();
 			}
 		});
 

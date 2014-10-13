@@ -17,6 +17,7 @@ public class GridViewCustomAdapter extends ArrayAdapter<Object> {
 	Context context;
 	List<String> names;
 	int res;
+	int i = 0;
 
 	public GridViewCustomAdapter(Context context, List<String> names, int res) {
 		super(context, 0);
@@ -38,12 +39,12 @@ public class GridViewCustomAdapter extends ArrayAdapter<Object> {
 			TextView textViewTitle = (TextView) row.findViewById(R.id.textView);
 			ImageView imageViewIte = (ImageView) row
 					.findViewById(R.id.imageView);
-			Log.d("MyApp", "" + position);
-			textViewTitle.setText(names.get(0));
+			Log.d("MyApp", "" + names);
+			textViewTitle.setText(names.get(names.size() - 1));
+
 			imageViewIte.setImageResource(res);
 
 		}
 		return row;
 	}
-
 }
