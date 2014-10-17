@@ -3,7 +3,9 @@
     package="de.bb42.jinawa"
     android:versionCode="1"
     android:versionName="1.0" >
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
@@ -14,22 +16,21 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="de.bb42.jinawa.view.Main"
-            android:label="@string/app_name" >
+            android:name="de.bb42.jinawa.view.SlideScreenStaples"
+            android:label="@string/Staples" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-   
         <activity
-            android:name=".view.Staple"
-            android:label="@string/title_activity_staple" >
+            android:name=".view.SlideScreenPapers"
+            android:label="@string/Papers" >
         </activity>
         <activity
-            android:name="de.bb42.jinawa.view.Paper"
-            android:label="@string/title_activity_paper" >
+            android:name=".view.Writer"
+            android:label="@string/Writer" >
         </activity>
     </application>
 
