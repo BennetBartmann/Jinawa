@@ -68,6 +68,10 @@ public class SlideScreenStaples extends FragmentActivity {
 	 * A pager adapter that represents ScreenSlidePapersFragment objects
 	 */
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+		/**
+		 * 
+		 * @param fm
+		 */
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
 		}

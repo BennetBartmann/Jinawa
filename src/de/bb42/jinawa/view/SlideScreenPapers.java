@@ -20,7 +20,16 @@ public class SlideScreenPapers extends FragmentActivity {
 	private static SlideScreenPapers instance = null;
 	private static final int NUM_PAGES = 3;
 	private static Context context;
+	/**
+	 * The pager widget, which handles animation and allows swiping horizontally
+	 * to access previous and next wizard steps.
+	 */
+	private ViewPager mPager;
 
+	/**
+	 * provides the pages to the ViewPager
+	 */
+	private PagerAdapter mPagerAdapter;
 	/**
 	 * Get the instance of SlideScreenStaples
 	 * 
@@ -42,16 +51,7 @@ public class SlideScreenPapers extends FragmentActivity {
 		return SlideScreenPapers.context;
 	}
 
-	/**
-	 * The pager widget, which handles animation and allows swiping horizontally
-	 * to access previous and next wizard steps.
-	 */
-	private ViewPager mPager;
 
-	/**
-	 * provides the pages to the ViewPager
-	 */
-	private PagerAdapter mPagerAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

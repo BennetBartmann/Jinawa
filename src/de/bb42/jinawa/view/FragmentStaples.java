@@ -23,7 +23,9 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 
 	/**
 	 * Create and return View
-	 * 
+	 * @param inflater ?
+	 * @param container ?
+	 * @param savedInstanceState ?
 	 * @return View
 	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +43,7 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 
 	/**
 	 * Starts new Activity
-	 * 
+	 * @param v ?
 	 */
 	@Override
 	public void onClick(View v) {

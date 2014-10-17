@@ -9,7 +9,9 @@ import android.os.Bundle;
  *
  */
 public class Writer extends Activity {
-
+	/**
+	 * @param savedInstanceState
+	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_paper);
