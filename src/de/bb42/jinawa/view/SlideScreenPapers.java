@@ -10,11 +10,22 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
+/**
+ * SlideScreen for Staples
+ * 
+ * @author Johannes Becker
+ * 
+ */
 public class SlideScreenPapers extends FragmentActivity {
 	private static SlideScreenPapers instance = null;
-
+	private static final int NUM_PAGES = 3;
 	private static Context context;
 
+	/**
+	 * Get the instance of SlideScreenStaples
+	 * 
+	 * @return SlideScreenStaples
+	 */
 	public static SlideScreenPapers getInstance() {
 		if (instance == null) {
 			instance = new SlideScreenPapers();
@@ -22,14 +33,14 @@ public class SlideScreenPapers extends FragmentActivity {
 		return instance;
 	}
 
+	/**
+	 * Get the context of SlideScreenStaples
+	 * 
+	 * @return Context of SlideScreenStaples
+	 */
 	public static Context getAppContext() {
 		return SlideScreenPapers.context;
 	}
-
-	/**
-	 * The number of pages (wizard steps) to show in this demo.
-	 */
-	private static final int NUM_PAGES = 3;
 
 	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
@@ -38,7 +49,7 @@ public class SlideScreenPapers extends FragmentActivity {
 	private ViewPager mPager;
 
 	/**
-	 * The pager adapter, which provides the pages to the view pager widget.
+	 * provides the pages to the ViewPager
 	 */
 	private PagerAdapter mPagerAdapter;
 
@@ -46,24 +57,15 @@ public class SlideScreenPapers extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_screen_slide);
-
+		SlideScreenPapers.context = getApplicationContext();
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
 	}
 
-	/*
-	 * @Override public void onBackPressed() { if (mPager.getCurrentItem() == 0)
-	 * { // If the user is currently looking at the first step, allow the system
-	 * to handle the // Back button. This calls finish() on this activity and
-	 * pops the back stack. super.onBackPressed(); } else { // Otherwise, select
-	 * the previous step. mPager.setCurrentItem(mPager.getCurrentItem() - 1); }
-	 * }
-	 */
 	/**
-	 * A simple pager adapter that represents 5 ScreenSlidePageFragment objects,
-	 * in sequence.
+	 * A pager adapter that represents ScreenSlidePageFragment objects
 	 */
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -81,7 +83,4 @@ public class SlideScreenPapers extends FragmentActivity {
 		}
 	}
 
-	public Context getContext() {
-		return this;
-	}
 }

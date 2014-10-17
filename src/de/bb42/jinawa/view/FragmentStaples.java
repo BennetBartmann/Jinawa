@@ -9,12 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+/**
+ * Fragment for Staples
+ * 
+ * @author Johannes Becker
+ * 
+ */
 public class FragmentStaples extends Fragment implements View.OnClickListener {
 	View view;
 
 	Intent intentPaper = new Intent(SlideScreenStaples.getAppContext(),
 			SlideScreenPapers.class);
 
+	/**
+	 * Create and return View
+	 * 
+	 * @return View
+	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -28,6 +39,10 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 		return view;
 	}
 
+	/**
+	 * Starts new Activity
+	 * 
+	 */
 	@Override
 	public void onClick(View v) {
 

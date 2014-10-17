@@ -9,12 +9,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+/**
+ * Fragment for Papers
+ * 
+ * @author Johannes Becker
+ * 
+ */
 public class FragmentPapers extends Fragment implements View.OnClickListener {
+
 	View view;
 
-	Intent intentWriter = new Intent(SlideScreenStaples.getAppContext(),
+	Intent intentWriter = new Intent(SlideScreenPapers.getAppContext(),
 			Writer.class);
 
+	/**
+	 * Create and return View
+	 * 
+	 * @return View
+	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -27,6 +39,10 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 		return view;
 	}
 
+	/**
+	 * Starts new Activity
+	 * 
+	 */
 	@Override
 	public void onClick(View v) {
 		startActivity(intentWriter);
