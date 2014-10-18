@@ -3,6 +3,8 @@
  */
 package de.bb42.jinawa.datatypes;
 
+import java.io.File;
+import java.io.FileFilter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,13 +15,13 @@ import java.util.List;
 public class Staple {
 	private List<Page> pages = new LinkedList<Page>();
 	private StringBuffer titel = new StringBuffer("Beispieltitel");
+	private File stapleFolder;
+	boolean loaded = false;
 	/**
 	 * Intiallizes New Staple
 	 */
-	public Staple(){
-		for(int i = 0; i < 3;i++){
-			pages.add(new Page());
-		}
+	public Staple(File stapleFolder){
+		this.stapleFolder = stapleFolder;
 	}
 	/**
 	 * @return the titel
@@ -32,19 +34,64 @@ public class Staple {
 	 * @return all Pages of the staple
 	 */
 	public List<Page> getPages(){
+		if (!loaded){
+			loadStaple();
+		}
 		return pages;
 	}
+
 	/**
 	 * Creates a new Page
 	 */
 	public void createNewPage(){
-		pages.add(new Page());
+		pages.add(new Page(null));
 	}
 	/**
-	 * 
+	 * Sets a new/changed Titel for the Staple, this operation is reflected into the file System.
 	 * @param titel new Titel for Staple
 	 */
 	public void setNewTitel(StringBuffer titel){
 		this.titel = titel;
+	}
+	/**
+	 * Setter for Titel, no Reflection into file System
+	 * @param titel titel to set.
+	 */
+	public void setTitel(StringBuffer titel){
+		this.titel = titel;	
+	}
+	private void loadStaple() {
+		File[] pages = stapleFolder.listFiles(new TxtFilter());
+		if (pages == null){
+			loaded = true;
+		}else{
+			pages = convertPages(pages);
+			loaded = true;
+		}
+		
+	}
+	
+	private File[] convertPages(File[] pages) {
+		for (int i = 0; i < pages.length; i++){
+			if(!pages[i].isDirectory()){
+				this.pages.add(createPage(pages[i]));
+			}
+		}
+		return null;
+	}
+	private Page createPage(File file) {
+		Page page = new Page(file);
+		return page;
+	}
+	/**
+	 * Filter Class for .txt Files
+	 * @author Bennet Bartmann
+	 *
+	 */
+	class TxtFilter implements FileFilter {
+		    @Override
+		    public boolean accept(File file) {
+		      return !file.isHidden() && file.getName().endsWith(".txt");
+		    }
 	}
 }

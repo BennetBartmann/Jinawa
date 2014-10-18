@@ -15,7 +15,7 @@ public class Utils {
 	/**
 	 * Checks if external storage is available for read and write
 	 */
-	public boolean isExternalStorageWritable() {
+	public static boolean isExternalStorageWritable() {
 		String state = Environment.getExternalStorageState();
 		if (Environment.MEDIA_MOUNTED.equals(state)) {
 			return true;
@@ -28,7 +28,7 @@ public class Utils {
 	 * 
 	 * @return the file Pointer
 	 */
-	@SuppressLint("NewApi") public File getAlbumStorageDir() {
+	@SuppressLint("NewApi") public static File getFoldersStorageDir() {
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 		File file;
 		if (currentapiVersion > 18) {
