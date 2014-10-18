@@ -41,6 +41,8 @@ public class Utils {
 		} else {
 			file = new File(Environment.getExternalStorageDirectory()
 					+ "Jinawa");
+			if (!file.mkdirs()) {
+			}
 		}
 		return file;
 	}

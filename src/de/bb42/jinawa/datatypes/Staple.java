@@ -5,6 +5,7 @@ package de.bb42.jinawa.datatypes;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,14 +45,26 @@ public class Staple {
 	 * Creates a new Page
 	 */
 	public void createNewPage(){
-		pages.add(new Page(null));
+		try { 
+			File file = new File(stapleFolder.getAbsoluteFile()+"/newPage.txt");
+            file.createNewFile(); 
+            pages.add(new Page(file));
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        } 
+		
 	}
 	/**
 	 * Sets a new/changed Titel for the Staple, this operation is reflected into the file System.
 	 * @param titel new Titel for Staple
 	 */
 	public void setNewTitel(StringBuffer titel){
-		this.titel = titel;
+		File newStapleFolder = new File(stapleFolder.getParent()+"/"+titel.toString());
+		if(stapleFolder.renameTo(newStapleFolder)){
+			stapleFolder = newStapleFolder;
+			this.titel = titel;
+		}
+		
 	}
 	/**
 	 * Setter for Titel, no Reflection into file System

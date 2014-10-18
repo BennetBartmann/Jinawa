@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * 
@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Page {
 	private StringBuffer content = new StringBuffer("Hallo ich bin ein Testtext\n Sogar mit Absatz!");
-	private Date lastModifiedDate;
+	//private Date lastModifiedDate;
 	/*@todo Add need functionality*/
 	private File pageFile;
 	private boolean loaded = false;
@@ -32,31 +32,48 @@ public class Page {
 		}
 		return content;
 	}
-
-
 	/**
+	 * Save Page to Data System
+	 */
+	public void save(){
+		FileWriter writer;
+		try {
+			File newName = new File(pageFile.getParent()+"/"+createName());
+			if(pageFile.renameTo(newName)){
+				pageFile = newName;
+			}
+			writer = new FileWriter(pageFile);
+			writer.write(content.toString());
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
+
+	private String createName() {
+		String name;
+		name = content.substring(0, 25);
+		name.replaceAll(" ", "");
+		return name+".txt";
+	}
+	/*
 	 * 
 	 * @return Date of last Modification
-	 */
+	 *
 	public Date getLastModifiedDate(){
 		if (!loaded){
 			loadPage();
 		}
 		return lastModifiedDate;
-	}
-	
+	}*/
 	private void loadPage() {
-		FileReader fileReader;
-		String zeile; 
+		FileReader fileReader; 
 		try {
 			fileReader = new FileReader(pageFile);
 			BufferedReader pageReader = new BufferedReader(fileReader);
-			zeile = pageReader.readLine();
-		    while (zeile != null) { 
-		    	content.append(zeile);
-		        zeile = pageReader.readLine(); 
-		    } 
-		    pageReader.close();
+			getContent(pageReader);
+			pageReader.close();
+			loaded = true;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e){
@@ -64,5 +81,13 @@ public class Page {
 		}
 	}
 	
+	private void getContent(BufferedReader pageReader) throws IOException{
+		String zeile = pageReader.readLine();
+		 while (zeile != null) { 
+			content.append(zeile);
+			zeile = pageReader.readLine(); 
+		}
+		
+	}
 
 }

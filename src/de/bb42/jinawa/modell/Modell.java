@@ -35,7 +35,7 @@ public class Modell {
 	}
 
 	private StapleOfStaples convertStaple(File[] stapleFiles) {
-		StapleOfStaples staples = new StapleOfStaples();
+		StapleOfStaples staples = new StapleOfStaples(baseDir);
 		for (int i = 0; i < stapleFiles.length; i++){
 			if(stapleFiles[i].isDirectory()){
 				staples.getStaples().add(createStaple(stapleFiles[i]));
