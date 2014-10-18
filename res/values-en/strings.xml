@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Jinawa</string>
+    <string name="action_settings">Settings</string>
+    <string name="Writer">Writer</string>
+    <string name="Papers">Papers</string>
+    <string name="Staples">Stapels</string>
+
+</resources>
