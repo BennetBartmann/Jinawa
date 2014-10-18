@@ -3,9 +3,8 @@
  */
 package de.bb42.jinawa.controller;
 
-import android.util.SparseArray;
-
-import de.bb42.jinawa.datatypes.Staple;
+import de.bb42.jinawa.datatypes.StapleOfStaples;
+import de.bb42.jinawa.modell.Modell;
 
 /**
  * @author Bennet Bartmann
@@ -13,13 +12,15 @@ import de.bb42.jinawa.datatypes.Staple;
  * This class is a singleton so View has easier access to it
  */
 public class Controller {
-	private SparseArray<Staple> staples= new SparseArray<Staple>();
+	private StapleOfStaples staples;
 	private static Controller instance = null;
+	
 	/**
 	 * Prevent others from instanciating the Modell
 	 */
 	private Controller() {
-	     // Exists only to defeat instantiation.
+	     Modell modell = new Modell();
+	     this.staples = modell.getAllStaples();
 	}
 	/**
 	 * 
@@ -36,16 +37,7 @@ public class Controller {
 	 * 
 	 * @return Sparse Array of Staples
 	 */
-	public SparseArray<Staple> getStaples() {
+	public StapleOfStaples getStaples() {
 		return staples;
 	}
-	/**
-	 * 
-	 * @param i number of the staple to get
-	 * @return the requested staple
-	 */
-	public Staple getStaple(int i){
-		return staples.get(i);
-	}
-	
 }
