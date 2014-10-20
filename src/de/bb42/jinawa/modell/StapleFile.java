@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.bb42.jinawa.datatypes.Page;
+import de.bb42.jinawa.controller.datatypes.Page;
 
 public class StapleFile {
 	private File stapleFolder;

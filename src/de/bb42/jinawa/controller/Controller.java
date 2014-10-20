@@ -3,7 +3,7 @@
  */
 package de.bb42.jinawa.controller;
 
-import de.bb42.jinawa.datatypes.StapleOfStaples;
+import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 import de.bb42.jinawa.modell.Modell;
 
 /**

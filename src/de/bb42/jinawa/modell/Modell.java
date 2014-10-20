@@ -2,8 +2,8 @@ package de.bb42.jinawa.modell;
 
 import java.io.File;
 
-import de.bb42.jinawa.datatypes.Staple;
-import de.bb42.jinawa.datatypes.StapleOfStaples;
+import de.bb42.jinawa.controller.datatypes.Staple;
+import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 
 /**
  * 

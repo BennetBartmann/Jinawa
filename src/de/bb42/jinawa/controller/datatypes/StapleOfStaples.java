@@ -1,4 +1,4 @@
-package de.bb42.jinawa.datatypes;
+package de.bb42.jinawa.controller.datatypes;
 
 import java.io.File;
 import java.util.List;

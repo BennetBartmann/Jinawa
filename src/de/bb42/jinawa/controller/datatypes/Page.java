@@ -1,4 +1,4 @@
-package de.bb42.jinawa.datatypes;
+package de.bb42.jinawa.controller.datatypes;
 
 
 import de.bb42.jinawa.modell.PageFile;

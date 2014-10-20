@@ -1,7 +1,7 @@
 /**
  * 
  */
-package de.bb42.jinawa.datatypes;
+package de.bb42.jinawa.controller.datatypes;
 
 import java.util.LinkedList;
 import java.util.List;
