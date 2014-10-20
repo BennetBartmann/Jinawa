@@ -3,11 +3,10 @@
  */
 package de.bb42.jinawa.datatypes;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
+import de.bb42.jinawa.modell.StapleFile;
 
 /**
  * @author Bennet Bartmann
@@ -16,12 +15,12 @@ import java.util.List;
 public class Staple {
 	private List<Page> pages = new LinkedList<Page>();
 	private StringBuffer titel = new StringBuffer("Beispieltitel");
-	private File stapleFolder;
+	private StapleFile stapleFolder;
 	boolean loaded = false;
 	/**
 	 * Intiallizes New Staple
 	 */
-	public Staple(File stapleFolder){
+	public Staple(StapleFile stapleFolder){
 		this.stapleFolder = stapleFolder;
 	}
 	/**
@@ -45,23 +44,14 @@ public class Staple {
 	 * Creates a new Page
 	 */
 	public void createNewPage(){
-		try { 
-			File file = new File(stapleFolder.getAbsoluteFile()+"/newPage.txt");
-            file.createNewFile(); 
-            pages.add(new Page(file));
-        } catch (IOException e) { 
-            e.printStackTrace(); 
-        } 
-		
+		pages.add(new Page(stapleFolder.createNewPageFile()));
 	}
 	/**
 	 * Sets a new/changed Titel for the Staple, this operation is reflected into the file System.
 	 * @param titel new Titel for Staple
 	 */
 	public void setNewTitel(StringBuffer titel){
-		File newStapleFolder = new File(stapleFolder.getParent()+"/"+titel.toString());
-		if(stapleFolder.renameTo(newStapleFolder)){
-			stapleFolder = newStapleFolder;
+		if(stapleFolder.rename(titel.toString())){
 			this.titel = titel;
 		}
 		
@@ -74,37 +64,11 @@ public class Staple {
 		this.titel = titel;	
 	}
 	private void loadStaple() {
-		File[] pages = stapleFolder.listFiles(new TxtFilter());
-		if (pages == null){
-			loaded = true;
-		}else{
-			pages = convertPages(pages);
-			loaded = true;
+		pages = stapleFolder.loadStaple();
+		if (pages.size() == 0){
+			createNewPage();
 		}
-		
+		loaded = true;
 	}
 	
-	private File[] convertPages(File[] pages) {
-		for (int i = 0; i < pages.length; i++){
-			if(!pages[i].isDirectory()){
-				this.pages.add(createPage(pages[i]));
-			}
-		}
-		return null;
-	}
-	private Page createPage(File file) {
-		Page page = new Page(file);
-		return page;
-	}
-	/**
-	 * Filter Class for .txt Files
-	 * @author Bennet Bartmann
-	 *
-	 */
-	class TxtFilter implements FileFilter {
-		    @Override
-		    public boolean accept(File file) {
-		      return !file.isHidden() && file.getName().endsWith(".txt");
-		    }
-	}
 }

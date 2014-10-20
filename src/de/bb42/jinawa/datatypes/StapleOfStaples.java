@@ -2,6 +2,8 @@ package de.bb42.jinawa.datatypes;
 
 import java.io.File;
 import java.util.List;
+
+import de.bb42.jinawa.modell.StapleFile;
 /**
  * 
  * @author Bennet Bartmann
@@ -31,7 +33,7 @@ public class StapleOfStaples {
 	public void createNewStaple(){
 		File newDir = new File(baseDir.getAbsolutePath()+"newFolder");
 		if(newDir.mkdir()){
-			staples.add(new Staple(newDir));
+			staples.add(new Staple(new StapleFile(newDir)));
 		}
 		
 	}

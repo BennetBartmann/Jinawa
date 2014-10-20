@@ -45,7 +45,7 @@ public class Modell {
 	}
 
 	private Staple createStaple(File file) {
-		Staple staple = new Staple(file);
+		Staple staple = new Staple(new StapleFile(file));
 		staple.setTitel(new StringBuffer(file.getName()));
 		return staple;
 	}
