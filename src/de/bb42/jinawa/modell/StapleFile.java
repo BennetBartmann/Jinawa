@@ -56,7 +56,7 @@ public class StapleFile {
 				pages.add(createPage(pagesFiles[i]));
 			}
 		}
-		return null;
+		return pages;
 	}
 	private Page createPage(File file) {
 		Page page = new Page(new PageFile(file));
