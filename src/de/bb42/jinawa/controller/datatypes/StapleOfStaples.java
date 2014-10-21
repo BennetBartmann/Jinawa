@@ -13,7 +13,7 @@ import de.bb42.jinawa.modell.StapleFile;
 public class StapleOfStaples {
 	private List<Staple> staples = new LinkedList<Staple>();
 	private File baseDir;
-	/**(
+	/**
 	 * Constructor for StapleOfStaples
 	 * @param baseDir
 	 */
