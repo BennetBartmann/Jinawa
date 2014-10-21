@@ -31,7 +31,7 @@ public class StapleOfStaples {
 	 * Create new Staple
 	 */
 	public void createNewStaple(){
-		File newDir = new File(baseDir.getAbsolutePath()+"newFolder");
+		File newDir = new File(baseDir.getAbsolutePath()+"/newFolder");
 		if(newDir.mkdir()){
 			staples.add(new Staple(new StapleFile(newDir)));
 		}
