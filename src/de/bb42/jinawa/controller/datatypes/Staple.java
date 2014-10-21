@@ -65,7 +65,10 @@ public class Staple {
 	}
 	private void loadStaple() {
 		pages = stapleFolder.loadStaple();
-		if (pages.size() == 0){
+		if (pages == null){
+			pages = new LinkedList<Page>();
+		}
+		if (pages != null && pages.size() == 0){
 			createNewPage();
 		}
 		loaded = true;
