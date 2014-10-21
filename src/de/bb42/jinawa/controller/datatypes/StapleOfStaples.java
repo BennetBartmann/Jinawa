@@ -1,6 +1,7 @@
 package de.bb42.jinawa.controller.datatypes;
 
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 
 import de.bb42.jinawa.modell.StapleFile;
@@ -10,9 +11,9 @@ import de.bb42.jinawa.modell.StapleFile;
  *
  */
 public class StapleOfStaples {
-	private List<Staple> staples;
+	private List<Staple> staples = new LinkedList<Staple>();
 	private File baseDir;
-	/**
+	/**(
 	 * Constructor for StapleOfStaples
 	 * @param baseDir
 	 */
