@@ -38,4 +38,13 @@ public class StapleOfStaples {
 		}
 		
 	}
+	
+	public void createNewStaple(StringBuffer Name){
+		File newDir = new File(baseDir.getAbsolutePath()+"/newFolder");
+		if(newDir.mkdir()){
+			Staple newStaple = new Staple(new StapleFile(newDir));
+			staples.add(newStaple);
+			newStaple.setNewTitel(Name);
+		}
+	}
 }
