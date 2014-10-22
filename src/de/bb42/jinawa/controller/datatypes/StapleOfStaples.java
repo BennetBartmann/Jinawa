@@ -44,11 +44,11 @@ public class StapleOfStaples {
 	 * @param Name Name for String
 	 */
 	public void createNewStaple(StringBuffer Name){
-		File newDir = new File(baseDir.getAbsolutePath()+"/newFolder");
+		File newDir = new File(baseDir.getAbsolutePath()+"/"+Name.toString());
 		if(newDir.mkdir()){
 			Staple newStaple = new Staple(new StapleFile(newDir));
 			staples.add(newStaple);
-			newStaple.setNewTitel(Name);
+			newStaple.setTitel(Name);
 		}
 	}
 }
