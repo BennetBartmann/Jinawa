@@ -38,7 +38,7 @@ public class PageFile {
 
 	private String createName(String content) {
 		String name;
-		name = content.substring(0, 25);
+		name = content.substring(0, (content.length()>25?25:content.length()));
 		name.replaceAll(" ", "");
 		return name + ".txt";
 	}
