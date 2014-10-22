@@ -30,8 +30,11 @@ public class Modell {
 		File[] stapleFiles = baseDir.listFiles();
 		if (stapleFiles != null){
 			return convertStaple(stapleFiles);
+		}else{
+			StapleOfStaples staples = new StapleOfStaples(Utils.getFoldersStorageDir());
+			staples.createNewStaple();
+			return staples;
 		}
-		return null;
 	}
 
 	private StapleOfStaples convertStaple(File[] stapleFiles) {
