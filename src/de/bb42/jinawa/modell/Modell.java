@@ -12,26 +12,30 @@ import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
  */
 public class Modell {
 	private File baseDir;
+
 	/**
 	 * Constructor just because you could need it.
 	 */
-	public Modell(){
-		if (Utils.isExternalStorageWritable()){
+	public Modell() {
+		if (Utils.isExternalStorageWritable()) {
 			baseDir = Utils.getFoldersStorageDir();
-		}else{
-			//@todo some error code here
+		} else {
+			// @todo some error code here
 		}
 	}
+
 	/**
 	 * returns all staples
+	 * 
 	 * @return
 	 */
-	public StapleOfStaples getAllStaples(){
+	public StapleOfStaples getAllStaples() {
 		File[] stapleFiles = baseDir.listFiles();
-		if (stapleFiles != null){
+		if (stapleFiles != null) {
 			return convertStaple(stapleFiles);
-		}else{
-			StapleOfStaples staples = new StapleOfStaples(Utils.getFoldersStorageDir());
+		} else {
+			StapleOfStaples staples = new StapleOfStaples(
+					Utils.getFoldersStorageDir());
 			staples.createNewStaple();
 			return staples;
 		}
@@ -39,8 +43,8 @@ public class Modell {
 
 	private StapleOfStaples convertStaple(File[] stapleFiles) {
 		StapleOfStaples staples = new StapleOfStaples(baseDir);
-		for (int i = 0; i < stapleFiles.length; i++){
-			if(stapleFiles[i].isDirectory()){
+		for (int i = 0; i < stapleFiles.length; i++) {
+			if (stapleFiles[i].isDirectory()) {
 				staples.getStaples().add(createStaple(stapleFiles[i]));
 			}
 		}
@@ -52,6 +56,5 @@ public class Modell {
 		staple.setTitel(new StringBuffer(file.getName()));
 		return staple;
 	}
-	
 
 }

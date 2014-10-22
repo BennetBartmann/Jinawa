@@ -20,11 +20,15 @@ public class PageFile {
 
 	/**
 	 * Save Page to Data System
+	 * 
+	 * @param content
+	 *            Content to be saved
 	 */
 	public void save(String content) {
 		FileWriter writer;
 		try {
-			File newName = new File(file.getParent() + "/" + createName(content));
+			File newName = new File(file.getParent() + "/"
+					+ createName(content));
 			if (file.renameTo(newName)) {
 				file = newName;
 			}
@@ -38,14 +42,20 @@ public class PageFile {
 
 	private String createName(String content) {
 		String name;
-		name = content.substring(0, (content.length()>25?25:content.length()));
-		name.replaceAll(" ", "");
+		name = content.substring(0,
+				(content.length() > 25 ? 25 : content.length()));
+		name = name.replaceAll("[^a-zA-Z]", "");
 		return name + ".txt";
 	}
-	
+
+	/**
+	 * loads Content of the Page
+	 * 
+	 * @return
+	 */
 	public StringBuffer loadPage() {
 		StringBuffer ret = new StringBuffer("");
-		FileReader fileReader; 
+		FileReader fileReader;
 		try {
 			fileReader = new FileReader(file);
 			BufferedReader pageReader = new BufferedReader(fileReader);
@@ -53,19 +63,28 @@ public class PageFile {
 			pageReader.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return ret;
 	}
-	private StringBuffer getContent(BufferedReader pageReader) throws IOException{
+
+	private StringBuffer getContent(BufferedReader pageReader)
+			throws IOException {
 		StringBuffer content = new StringBuffer("");
 		String zeile = pageReader.readLine();
-		 while (zeile != null) { 
+		while (zeile != null) {
 			content.append(zeile);
-			zeile = pageReader.readLine(); 
+			zeile = pageReader.readLine();
 		}
 		return content;
-		
+
+	}
+
+	/**
+	 * Deletes the Page from File system
+	 */
+	public void delete() {
+		file.delete();
 	}
 }

@@ -28,7 +28,8 @@ public class Utils {
 	 * 
 	 * @return the file Pointer
 	 */
-	@SuppressLint("NewApi") public static File getFoldersStorageDir() {
+	@SuppressLint("NewApi")
+	public static File getFoldersStorageDir() {
 		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
 		File file;
 		if (currentapiVersion > 18) {

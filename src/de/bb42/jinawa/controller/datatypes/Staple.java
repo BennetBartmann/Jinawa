@@ -17,24 +17,26 @@ public class Staple {
 	private StringBuffer titel = new StringBuffer("Beispieltitel");
 	private StapleFile stapleFolder;
 	boolean loaded = false;
+
 	/**
 	 * Intiallizes New Staple
 	 */
-	public Staple(StapleFile stapleFolder){
+	public Staple(StapleFile stapleFolder) {
 		this.stapleFolder = stapleFolder;
 	}
+
 	/**
 	 * @return the titel
 	 */
-	public StringBuffer getTitel(){
+	public StringBuffer getTitel() {
 		return titel;
 	}
-	
+
 	/**
 	 * @return all Pages of the staple
 	 */
-	public List<Page> getPages(){
-		if (!loaded){
+	public List<Page> getPages() {
+		if (!loaded) {
 			loadStaple();
 		}
 		return pages;
@@ -43,35 +45,60 @@ public class Staple {
 	/**
 	 * Creates a new Page
 	 */
-	public void createNewPage(){
+	public void createNewPage() {
 		pages.add(new Page(stapleFolder.createNewPageFile()));
 	}
+
 	/**
-	 * Sets a new/changed Titel for the Staple, this operation is reflected into the file System.
-	 * @param titel new Titel for Staple
+	 * Sets a new/changed Titel for the Staple, this operation is reflected into
+	 * the file System.
+	 * 
+	 * @param titel
+	 *            new Titel for Staple
 	 */
-	public void setNewTitel(StringBuffer titel){
-		if(stapleFolder.rename(titel.toString())){
+	public void setNewTitel(StringBuffer titel) {
+		if (stapleFolder.rename(titel.toString())) {
 			this.titel = titel;
 		}
-		
+
 	}
+
 	/**
 	 * Setter for Titel, no Reflection into file System
-	 * @param titel titel to set.
+	 * 
+	 * @param titel
+	 *            titel to set.
 	 */
-	public void setTitel(StringBuffer titel){
-		this.titel = titel;	
+	public void setTitel(StringBuffer titel) {
+		this.titel = titel;
 	}
+
 	private void loadStaple() {
 		pages = stapleFolder.loadStaple();
-		if (pages == null){
-			pages = new LinkedList<Page>();	
+		if (pages == null) {
+			pages = new LinkedList<Page>();
 		}
-		if (pages != null && pages.size() == 0){
+		if (pages != null && pages.size() == 0) {
 			createNewPage();
 		}
 		loaded = true;
 	}
-	
+
+	/**
+	 * Deletes the Paper
+	 * 
+	 * @param location
+	 *            Location of Paper to Delete
+	 */
+	public void deletePaper(int location) {
+		pages.get(location).delete();
+		pages.remove(location);
+	}
+
+	/**
+	 * deletes Staple from file System
+	 */
+	public void delete() {
+		stapleFolder.delete();
+	}
 }
