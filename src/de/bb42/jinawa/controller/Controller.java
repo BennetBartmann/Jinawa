@@ -37,7 +37,7 @@ public class Controller {
 	 * 
 	 * @return Sparse Array of Staples
 	 */
-	public StapleOfStaples getStaples() {
+	public StapleOfStaples getStapleOfStaples() {
 		return staples;
 	}
 }
