@@ -34,7 +34,16 @@ public class Page {
 	public void save(){
 		pageFile.save(content.toString());
 	}
-
+	
+	/**
+	 * Save Page to Data System
+	 * @param content Content to save
+	 */
+	public void save(StringBuffer content){
+		this.content = content;
+		pageFile.save(content.toString());
+	}
+	
 	
 	/*
 	 * 
