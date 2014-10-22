@@ -1,7 +1,7 @@
 package de.bb42.jinawa.view;
 
-import de.bb42.jinawa.R;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +9,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import de.bb42.jinawa.R;
+import de.bb42.jinawa.controller.Controller;
+import de.bb42.jinawa.controller.datatypes.Staple;
 
 /**
  * SlideScreen for Staples
@@ -18,8 +21,11 @@ import android.support.v4.view.ViewPager;
  */
 public class SlideScreenPapers extends FragmentActivity {
 	private static SlideScreenPapers instance = null;
-	private static final int NUM_PAGES = 3;
 	private static Context context;
+	private static Controller controller = Controller.getInstance();
+	private int positionStaples;
+	private Staple staple;
+	private int stapleSize;
 	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
 	 * to access previous and next wizard steps.
@@ -30,6 +36,7 @@ public class SlideScreenPapers extends FragmentActivity {
 	 * provides the pages to the ViewPager
 	 */
 	private PagerAdapter mPagerAdapter;
+
 	/**
 	 * Get the instance of SlideScreenStaples
 	 * 
@@ -51,12 +58,20 @@ public class SlideScreenPapers extends FragmentActivity {
 		return SlideScreenPapers.context;
 	}
 
-
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_screen_slide);
+		Intent IntentStaples = getIntent();
+		Bundle b = IntentStaples.getExtras();
+		if (b != null) {
+			positionStaples = (Integer) b.get("positionStaple");
+			staple = controller.getStapleOfStaples().getStaples().get(positionStaples);
+			stapleSize = staple.getPages().size();
+		}
+		staple.createNewPage();
+
 		SlideScreenPapers.context = getApplicationContext();
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
@@ -74,12 +89,13 @@ public class SlideScreenPapers extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			return new FragmentPapers();
+			return new FragmentPapers(staple.getPages().get(position),
+					position, positionStaples);
 		}
 
 		@Override
 		public int getCount() {
-			return NUM_PAGES;
+			return stapleSize;
 		}
 	}
 

@@ -1,6 +1,7 @@
 package de.bb42.jinawa.view;
 
-import de.bb42.jinawa.R;
+import java.util.List;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import de.bb42.jinawa.R;
+import de.bb42.jinawa.controller.Controller;
+import de.bb42.jinawa.controller.datatypes.Staple;
+import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 
 /**
  * SlideScreen for Papers
@@ -18,8 +23,16 @@ import android.support.v4.view.ViewPager;
  */
 public class SlideScreenStaples extends FragmentActivity {
 	private static SlideScreenStaples instance = null;
-	private static final int NUM_PAGES = 5;
+
 	private static Context context;
+	private static Controller controller = Controller.getInstance();
+	private static StapleOfStaples controllerStaple = Controller.getInstance()
+			.getStapleOfStaples();
+
+	private static List<Staple> staples = controller.getStapleOfStaples()
+			.getStaples();
+
+	private static int stapleSize;
 
 	/**
 	 * Get the instance of SlideScreenStaples
@@ -58,6 +71,11 @@ public class SlideScreenStaples extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_screen_slide);
 		SlideScreenStaples.context = getApplicationContext();
+
+		controllerStaple.createNewStaple(new StringBuffer("New"));
+		if (staples != null) {
+			stapleSize = staples.size();
+		}
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -79,12 +97,12 @@ public class SlideScreenStaples extends FragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 
-			return new FragmentStaples();
+			return new FragmentStaples(staples.get(position), position);
 		}
 
 		@Override
 		public int getCount() {
-			return NUM_PAGES;
+			return stapleSize;
 		}
 	}
 
