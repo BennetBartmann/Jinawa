@@ -6,11 +6,11 @@
         android:id="@+id/editText"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:gravity="top|left"
+        android:scrollHorizontally="false"
+        android:scrollbars="vertical"
         android:ems="10"
         android:inputType="textMultiLine" >
-
         <requestFocus />
     </EditText>
 
