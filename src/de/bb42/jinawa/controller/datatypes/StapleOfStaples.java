@@ -39,6 +39,10 @@ public class StapleOfStaples {
 		
 	}
 	
+	/**
+	 * Create new Staple with given Name
+	 * @param Name Name for String
+	 */
 	public void createNewStaple(StringBuffer Name){
 		File newDir = new File(baseDir.getAbsolutePath()+"/newFolder");
 		if(newDir.mkdir()){
