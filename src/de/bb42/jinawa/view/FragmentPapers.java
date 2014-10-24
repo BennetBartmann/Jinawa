@@ -1,6 +1,7 @@
 package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
+import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Page;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,14 +20,14 @@ import android.widget.Button;
  */
 public class FragmentPapers extends Fragment implements View.OnClickListener {
 
-	View view;
+	private View view;
 
 	private int position;
-	private int positionStaples;
+	private int positionStaple;
 	private Page page;
 
-	public FragmentPapers(Page page, int position, int positionStaples) {
-		this.positionStaples = positionStaples;
+	public FragmentPapers(Page page, int position, int positionStaple) {
+		this.positionStaple = positionStaple;
 		this.position = position;
 		this.page = page;
 	}
@@ -73,13 +74,17 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 	 */
 	@Override
 	public void onClick(View v) {
-		Log.d("MyApp", "PositionStapleThree" + v.getId());
 
 		int id = ((Button) v).getId();
-		intentWriter.putExtra("positionPaper", id);
-		intentWriter.putExtra("positionStaples", positionStaples);
+		if (id == 0) {
+			Controller.getInstance().getStapleOfStaples().getStaples()
+					.get(positionStaple).createNewPage();
+//			SlideScreenPapers.getInstance().upDateView();
+		} else {
+			intentWriter.putExtra("positionPaper", id);
+			intentWriter.putExtra("positionStaples", positionStaple);
 
-		startActivity(intentWriter);
-
+			startActivity(intentWriter);
+		}
 	}
 }

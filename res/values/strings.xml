@@ -6,5 +6,8 @@
     <string name="Writer">Writer</string>
     <string name="Papers">Papers</string>
     <string name="Staples">Stapels</string>
+     <string name="Ok">OK</string>
+    <string name="Cancel">Cancel</string>
+    <string name="inputText">Bitte Titel eingeben</string>
 
 </resources>

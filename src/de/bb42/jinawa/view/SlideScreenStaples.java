@@ -70,7 +70,7 @@ public class SlideScreenStaples extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_screen_slide);
-		SlideScreenStaples.context = getApplicationContext();
+		SlideScreenStaples.context = this;
 
 		controllerStaple.createNewStaple(new StringBuffer("New"));
 		if (staples != null) {
@@ -79,6 +79,7 @@ public class SlideScreenStaples extends FragmentActivity {
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+		Output.sendToast(this, mPagerAdapter.toString());
 		mPager.setAdapter(mPagerAdapter);
 	}
 
@@ -104,6 +105,28 @@ public class SlideScreenStaples extends FragmentActivity {
 		public int getCount() {
 			return stapleSize;
 		}
+	}
+
+	public void upDateData() {
+		staples = controller.getStapleOfStaples().getStaples();
+		if (staples != null) {
+			stapleSize = staples.size();
+		} else {
+			// error
+		}
+
+	}
+
+	public void upDateView() {
+		Output.sendToast(this, mPagerAdapter.toString());
+
+		upDateData();
+		//mPagerAdapter.notifyDataSetChanged();
+
+	}
+
+	public static Context getContext() {
+		return context;
 	}
 
 }

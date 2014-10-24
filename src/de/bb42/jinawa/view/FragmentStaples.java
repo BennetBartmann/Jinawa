@@ -2,6 +2,7 @@ package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.datatypes.Staple;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,7 @@ import android.widget.Button;
  * 
  */
 public class FragmentStaples extends Fragment implements View.OnClickListener {
-	View view;
+	private View view;
 	private Staple stapleData;
 	private int position;
 
@@ -27,7 +28,7 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 
 	}
 
-	Intent intentPaper = new Intent(SlideScreenStaples.getAppContext(),
+	Intent intentPaper = new Intent(SlideScreenStaples.getContext(),
 			SlideScreenPapers.class);
 
 	/**
@@ -49,7 +50,7 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 
 		mButton.setText(stapleData.getTitel());
 		mButton.setId(position);
-		mButton.setBackgroundResource(R.drawable.staple);
+		mButton.setBackgroundResource(R.drawable.staple2);
 		mButton.setOnClickListener(this);
 		return view;
 	}
@@ -63,8 +64,17 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		int id = ((Button) v).getId();
-		intentPaper.putExtra("positionStaple", id);
+		if (id == 0) {
 
-		startActivity(intentPaper);
+			InputDialog dialog = new InputDialog();
+			dialog.show(getChildFragmentManager(), getTag());
+
+		} else {
+			intentPaper.putExtra("positionStaple", id);
+			startActivity(intentPaper);
+
+		}
+
 	}
+
 }
