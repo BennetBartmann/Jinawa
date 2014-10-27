@@ -111,8 +111,6 @@ public class SlideScreenPapers extends FragmentActivity {
 	}
 
 	public void upDateView() {
-		upDateData();
-		mPagerAdapter.notifyDataSetChanged();
 
 	}
 

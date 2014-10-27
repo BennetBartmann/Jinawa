@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
@@ -52,6 +53,15 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 		mButton.setId(position);
 		mButton.setBackgroundResource(R.drawable.staple2);
 		mButton.setOnClickListener(this);
+		mButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				InputDialog dialog = new InputDialog();
+				dialog.show(getChildFragmentManager(), getTag());
+
+				return true;
+			}
+		});
 		return view;
 	}
 

@@ -72,7 +72,6 @@ public class SlideScreenStaples extends FragmentActivity {
 		setContentView(R.layout.activity_screen_slide);
 		SlideScreenStaples.context = this;
 
-		controllerStaple.createNewStaple(new StringBuffer("New"));
 		if (staples != null) {
 			stapleSize = staples.size();
 		}
@@ -118,10 +117,6 @@ public class SlideScreenStaples extends FragmentActivity {
 	}
 
 	public void upDateView() {
-		Output.sendToast(this, mPagerAdapter.toString());
-
-		upDateData();
-		//mPagerAdapter.notifyDataSetChanged();
 
 	}
 
