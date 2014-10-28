@@ -27,7 +27,7 @@ public class Modell {
 	/**
 	 * returns all staples
 	 * 
-	 * @return
+	 * @return all Staples
 	 */
 	public StapleOfStaples getAllStaples() {
 		File[] stapleFiles = baseDir.listFiles();
@@ -47,6 +47,9 @@ public class Modell {
 			if (stapleFiles[i].isDirectory()) {
 				staples.getStaples().add(createStaple(stapleFiles[i]));
 			}
+		}
+		if (staples.getStaples().size() == 0){
+			staples.createNewStaple(new StringBuffer("New Staple"));
 		}
 		return staples;
 	}
