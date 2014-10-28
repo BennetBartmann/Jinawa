@@ -61,11 +61,7 @@ public class SlideScreenStaples extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
-		try {
-			ViewDataHolder.getInstance().setSlideScreenStaples(this);
-		} catch (Exception e) {
-			Output.sendToast(context, "Second Initialization");
-		}
+		ViewDataHolder.getInstance().setSlideScreenStaples(this);
 	}
 
 	public void upDateData() {

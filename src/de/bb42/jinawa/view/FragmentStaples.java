@@ -1,7 +1,9 @@
 package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
+import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
+import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -73,7 +75,8 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		int id = ((Button) v).getId();
-		if (id == 0) {
+		StapleOfStaples actualStaple = Controller.getInstance().getStapleOfStaples();
+		if (id == actualStaple.getStaples().size()-1) {
 			InputDialog dialog = new InputDialog();
 			dialog.show(getChildFragmentManager(), getTag());
 		} else {

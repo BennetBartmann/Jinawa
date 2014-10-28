@@ -76,17 +76,15 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 	public void onClick(View v) {
 		Staple latestStaple = Controller.getInstance().getStapleOfStaples().getStaples().get(positionStaple);
 		int id = ((Button) v).getId();
-		if (id == 0) {
+		if (id == latestStaple.getPages().size()-1) {
 			latestStaple.createNewPage();
 			ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
-			intentWriter.putExtra("positionPaper", latestStaple.getPages().size()-1);
+			intentWriter.putExtra("positionPaper", latestStaple.getPages().size()-2);
 			intentWriter.putExtra("positionStaples", positionStaple);
 			startActivity(intentWriter);
-
 		} else {
 			intentWriter.putExtra("positionPaper", id);
 			intentWriter.putExtra("positionStaples", positionStaple);
-
 			startActivity(intentWriter);
 		}
 	}

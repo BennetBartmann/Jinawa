@@ -28,7 +28,7 @@ public class ViewDataHolder {
 		return slideScreenStaples;
 	}
 
-	public void setSlideScreenStaples(SlideScreenStaples slideScreenStaples) throws Exception {
+	public void setSlideScreenStaples(SlideScreenStaples slideScreenStaples){
 		this.slideScreenStaples = slideScreenStaples;
 	}
 
@@ -36,7 +36,7 @@ public class ViewDataHolder {
 		return slideScreenPapers;
 	}
 
-	public void setSlideScreenPapers(SlideScreenPapers slideScreenPapers) throws Exception {
+	public void setSlideScreenPapers(SlideScreenPapers slideScreenPapers){
 		this.slideScreenPapers = slideScreenPapers;
 	}
 	

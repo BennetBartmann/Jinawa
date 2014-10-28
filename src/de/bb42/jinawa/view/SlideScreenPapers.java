@@ -64,11 +64,7 @@ public class SlideScreenPapers extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
-		try {
-			ViewDataHolder.getInstance().setSlideScreenPapers(this);
-		} catch (Exception e) {
-			Output.sendToast(context, "Second Initialization");
-		}
+		ViewDataHolder.getInstance().setSlideScreenPapers(this);
 	}
 
 	/**
