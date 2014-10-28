@@ -1,5 +1,6 @@
 package de.bb42.jinawa.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -23,8 +24,7 @@ import de.bb42.jinawa.controller.datatypes.Staple;
 public class SlideScreenStaples extends FragmentActivity {
 	private static Context context;
 	private Controller controller = Controller.getInstance();
-	private List<Staple> staples = controller.getStapleOfStaples()
-			.getStaples();
+	private List<Staple> staples = controller.getStapleOfStaples().getStaples();
 
 	private int stapleSize;
 	/**
@@ -38,7 +38,6 @@ public class SlideScreenStaples extends FragmentActivity {
 	 */
 	private PagerAdapter mPagerAdapter;
 
-	
 	/**
 	 * Get the context of SlideScreenStaples
 	 * 
@@ -55,7 +54,7 @@ public class SlideScreenStaples extends FragmentActivity {
 		SlideScreenStaples.context = this;
 
 		if (staples != null) {
-			stapleSize = staples.size();
+			stapleSize = staples.size() + 1;
 		}
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
@@ -68,6 +67,7 @@ public class SlideScreenStaples extends FragmentActivity {
 		staples = controller.getStapleOfStaples().getStaples();
 		if (staples != null) {
 			stapleSize = staples.size();
+			stapleSize++;
 		} else {
 			// error
 		}
@@ -77,6 +77,7 @@ public class SlideScreenStaples extends FragmentActivity {
 	public void upDateView() {
 		upDateData();
 		mPager.getAdapter().notifyDataSetChanged();
+		mPager.destroyDrawingCache();
 	}
 
 	public static Context getContext() {
@@ -94,16 +95,22 @@ public class SlideScreenStaples extends FragmentActivity {
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
-	
+
 		@Override
 		public Fragment getItem(int position) {
-			return new FragmentStaples(staples.get(position), position);
+			if (position + 1 == stapleSize) {
+				return new FragmentSettings();
+
+			} else {
+				return new FragmentStaples(staples.get(position), position);
+			}
 		}
-	
+
 		@Override
 		public int getCount() {
 			return stapleSize;
 		}
+
 	}
 
 }

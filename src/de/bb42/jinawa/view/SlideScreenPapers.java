@@ -103,4 +103,10 @@ public class SlideScreenPapers extends FragmentActivity {
 		mPager.getAdapter().notifyDataSetChanged();
 	}
 
+	@Override
+	public void onBackPressed() {
+		ViewDataHolder.getInstance().getSlideScreenStaples().upDateView();
+		super.onBackPressed();
+
+	}
 }

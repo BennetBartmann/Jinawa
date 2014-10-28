@@ -9,5 +9,6 @@
      <string name="Ok">OK</string>
     <string name="Cancel">Cancel</string>
     <string name="inputText">Bitte Titel eingeben</string>
+    <string name="newStaple">New Staple</string>
 
 </resources>

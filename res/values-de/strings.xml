@@ -6,5 +6,6 @@
     <string name="Writer">Schreibansicht</string>
     <string name="Papers">Papiere</string>
     <string name="Staples">Stapel</string>
-
+    <string name="newStaple">Neuer Stapel</string>
+    
 </resources>

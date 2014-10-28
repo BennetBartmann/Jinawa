@@ -65,4 +65,5 @@ public class StapleOfStaples {
 			newStaple.setTitel(Name);
 		}
 	}
+
 }

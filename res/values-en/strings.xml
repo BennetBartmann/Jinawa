@@ -6,5 +6,6 @@
     <string name="Writer">Writer</string>
     <string name="Papers">Papers</string>
     <string name="Staples">Stapels</string>
-
+    <string name="newStaple">New Staple</string>
+    
 </resources>
