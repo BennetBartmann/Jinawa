@@ -63,7 +63,7 @@ public class Page {
 	/**
 	 * Deletes the Page
 	 */
-	public void delete() {
+	void delete() {
 		pageFile.delete();
 	}
 

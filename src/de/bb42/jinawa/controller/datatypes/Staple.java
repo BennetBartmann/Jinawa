@@ -97,7 +97,7 @@ public class Staple {
 	/**
 	 * deletes Staple from file System
 	 */
-	public void delete() {
+	void delete() {
 		stapleFolder.delete();
 	}
 }
