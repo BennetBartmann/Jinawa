@@ -46,6 +46,7 @@ public class Writer extends Activity {
 	@Override
 	public void onBackPressed() {
 		page.save();
+		ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
 		super.onBackPressed();
 	}
 	private class ContentChangedListener implements TextWatcher{
@@ -56,6 +57,7 @@ public class Writer extends Activity {
 		@Override
 		public void afterTextChanged(Editable s) {
 			page.save(new StringBuffer(editText.getText()));
+			ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
 		}
 
 		@Override

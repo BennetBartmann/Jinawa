@@ -8,6 +8,7 @@ package de.bb42.jinawa.view;
 public class ViewDataHolder {
 	private static ViewDataHolder vdh = null;
 	private SlideScreenStaples slideScreenStaples = null;
+	private SlideScreenPapers slideScreenPapers = null;
 	/**
 	 * get Instance
 	 * @return the Instance
@@ -28,10 +29,21 @@ public class ViewDataHolder {
 	}
 
 	public void setSlideScreenStaples(SlideScreenStaples slideScreenStaples) throws Exception {
-		if (slideScreenStaples == null){
+		if (slideScreenStaples != null){
 			throw (new Exception());
 		}
 		this.slideScreenStaples = slideScreenStaples;
+	}
+
+	public SlideScreenPapers getSlideScreenPapers() {
+		return slideScreenPapers;
+	}
+
+	public void setSlideScreenPapers(SlideScreenPapers slideScreenPapers) throws Exception {
+		if (slideScreenStaples != null){
+			throw (new Exception());
+		}
+		this.slideScreenPapers = slideScreenPapers;
 	}
 	
 }

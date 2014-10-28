@@ -74,14 +74,11 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 	public void onClick(View v) {
 		int id = ((Button) v).getId();
 		if (id == 0) {
-
 			InputDialog dialog = new InputDialog();
 			dialog.show(getChildFragmentManager(), getTag());
-
 		} else {
 			intentPaper.putExtra("positionStaple", id);
 			startActivity(intentPaper);
-
 		}
 
 	}

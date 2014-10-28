@@ -20,9 +20,8 @@ import de.bb42.jinawa.controller.datatypes.Staple;
  * 
  */
 public class SlideScreenPapers extends FragmentActivity {
-	private static SlideScreenPapers instance = null;
 	private static Context context;
-	private static Controller controller = Controller.getInstance();
+	private Controller controller = Controller.getInstance();
 	private int positionStaples;
 	private Staple staple;
 	private int stapleSize;
@@ -36,18 +35,6 @@ public class SlideScreenPapers extends FragmentActivity {
 	 * provides the pages to the ViewPager
 	 */
 	private PagerAdapter mPagerAdapter;
-
-	/**
-	 * Get the instance of SlideScreenStaples
-	 * 
-	 * @return SlideScreenStaples
-	 */
-	public static SlideScreenPapers getInstance() {
-		if (instance == null) {
-			instance = new SlideScreenPapers();
-		}
-		return instance;
-	}
 
 	/**
 	 * Get the context of SlideScreenStaples
@@ -77,6 +64,11 @@ public class SlideScreenPapers extends FragmentActivity {
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
+		try {
+			ViewDataHolder.getInstance().setSlideScreenPapers(this);
+		} catch (Exception e) {
+			Output.sendToast(context, "Second Initialization");
+		}
 	}
 
 	/**
@@ -111,7 +103,8 @@ public class SlideScreenPapers extends FragmentActivity {
 	}
 
 	public void upDateView() {
-
+		upDateData();
+		mPager.getAdapter().notifyDataSetChanged();
 	}
 
 }
