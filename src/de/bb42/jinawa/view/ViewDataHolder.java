@@ -29,9 +29,6 @@ public class ViewDataHolder {
 	}
 
 	public void setSlideScreenStaples(SlideScreenStaples slideScreenStaples) throws Exception {
-		if (slideScreenStaples != null){
-			throw (new Exception());
-		}
 		this.slideScreenStaples = slideScreenStaples;
 	}
 
@@ -40,9 +37,6 @@ public class ViewDataHolder {
 	}
 
 	public void setSlideScreenPapers(SlideScreenPapers slideScreenPapers) throws Exception {
-		if (slideScreenStaples != null){
-			throw (new Exception());
-		}
 		this.slideScreenPapers = slideScreenPapers;
 	}
 	
