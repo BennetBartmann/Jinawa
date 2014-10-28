@@ -2,7 +2,6 @@ package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.datatypes.Staple;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -13,7 +13,6 @@ import android.support.v4.view.ViewPager;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
-import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 
 /**
  * SlideScreen for Papers
@@ -22,39 +21,12 @@ import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
  * 
  */
 public class SlideScreenStaples extends FragmentActivity {
-	private static SlideScreenStaples instance = null;
-
 	private static Context context;
-	private static Controller controller = Controller.getInstance();
-	private static StapleOfStaples controllerStaple = Controller.getInstance()
-			.getStapleOfStaples();
-
-	private static List<Staple> staples = controller.getStapleOfStaples()
+	private Controller controller = Controller.getInstance();
+	private List<Staple> staples = controller.getStapleOfStaples()
 			.getStaples();
 
-	private static int stapleSize;
-
-	/**
-	 * Get the instance of SlideScreenStaples
-	 * 
-	 * @return SlideScreenStaples
-	 */
-	public static SlideScreenStaples getInstance() {
-		if (instance == null) {
-			instance = new SlideScreenStaples();
-		}
-		return instance;
-	}
-
-	/**
-	 * Get the context of SlideScreenStaples
-	 * 
-	 * @return Context of SlideScreenStaples
-	 */
-	public static Context getAppContext() {
-		return SlideScreenStaples.context;
-	}
-
+	private int stapleSize;
 	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
 	 * to access previous and next wizard steps.
@@ -65,6 +37,16 @@ public class SlideScreenStaples extends FragmentActivity {
 	 * provides the pages to the ViewPager
 	 */
 	private PagerAdapter mPagerAdapter;
+
+	
+	/**
+	 * Get the context of SlideScreenStaples
+	 * 
+	 * @return Context of SlideScreenStaples
+	 */
+	public static Context getAppContext() {
+		return SlideScreenStaples.getContext();
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,29 +62,10 @@ public class SlideScreenStaples extends FragmentActivity {
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		Output.sendToast(this, mPagerAdapter.toString());
 		mPager.setAdapter(mPagerAdapter);
-	}
-
-	/**
-	 * A pager adapter that represents ScreenSlidePapersFragment objects
-	 */
-	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		/**
-		 * 
-		 * @param fm
-		 */
-		public ScreenSlidePagerAdapter(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-
-			return new FragmentStaples(staples.get(position), position);
-		}
-
-		@Override
-		public int getCount() {
-			return stapleSize;
+		try {
+			ViewDataHolder.getInstance().setSlideScreenStaples(this);
+		} catch (Exception e) {
+					e.printStackTrace();
 		}
 	}
 
@@ -117,11 +80,36 @@ public class SlideScreenStaples extends FragmentActivity {
 	}
 
 	public void upDateView() {
-
+		upDateData();
+		mPager.getAdapter().notifyDataSetChanged();
 	}
 
 	public static Context getContext() {
 		return context;
+	}
+
+	/**
+	 * A pager adapter that represents ScreenSlidePapersFragment objects
+	 */
+	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+		/**
+		 * 
+		 * @param fm
+		 */
+		public ScreenSlidePagerAdapter(FragmentManager fm) {
+			super(fm);
+		}
+	
+		@Override
+		public Fragment getItem(int position) {
+	
+			return new FragmentStaples(staples.get(position), position);
+		}
+	
+		@Override
+		public int getCount() {
+			return stapleSize;
+		}
 	}
 
 }

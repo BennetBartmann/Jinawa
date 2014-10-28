@@ -30,7 +30,7 @@ public class InputDialog extends DialogFragment {
 													new StringBuffer(text));
 									//SlideScreenStaples.getInstance()			.upDateData();
 
-									SlideScreenStaples.getInstance()							.upDateView();
+									ViewDataHolder.getInstance().getSlideScreenStaples().upDateView();
 								}
 							}
 						})
