@@ -79,7 +79,6 @@ public class Staple {
 			pages = new LinkedList<Page>();
 		}
 		if (pages != null && pages.size() == 0) {
-			createNewPage();
 		}
 		loaded = true;
 	}

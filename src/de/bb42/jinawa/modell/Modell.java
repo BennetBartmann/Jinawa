@@ -48,9 +48,6 @@ public class Modell {
 				staples.getStaples().add(createStaple(stapleFiles[i]));
 			}
 		}
-		if (staples.getStaples().size() == 0){
-			staples.createNewStaple(new StringBuffer("New Staple"));
-		}
 		return staples;
 	}
 
