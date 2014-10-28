@@ -31,7 +31,6 @@ public class Writer extends Activity {
 		setContentView(R.layout.activity_paper);
 		Intent IntentStaples = getIntent();
 		Bundle b = IntentStaples.getExtras();
-
 		if (b != null) {
 			positionPaper = (Integer) b.get("positionPaper");
 			positionStaples = (Integer) b.get("positionStaples");
@@ -40,19 +39,7 @@ public class Writer extends Activity {
 			final EditText editText = (EditText) findViewById(R.id.editText);
 			String text = page.getContent().toString();
 			editText.setText(text);
-			editText.addTextChangedListener(new TextWatcher() {
-				public void afterTextChanged(Editable s) {
-					page.save(new StringBuffer(editText.getText()));
-				}
-
-				public void beforeTextChanged(CharSequence s, int start,
-						int count, int after) {
-				}
-
-				public void onTextChanged(CharSequence s, int start,
-						int before, int count) {
-				}
-			});
+			editText.addTextChangedListener(new ContentChangedListener(editText));
 		}
 	}
 
@@ -60,5 +47,30 @@ public class Writer extends Activity {
 	public void onBackPressed() {
 		page.save();
 		super.onBackPressed();
+	}
+	private class ContentChangedListener implements TextWatcher{
+		final EditText editText;
+		ContentChangedListener(EditText editText){
+			this.editText = editText;
+		}
+		@Override
+		public void afterTextChanged(Editable s) {
+			page.save(new StringBuffer(editText.getText()));
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			//Does Nothing
+			
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+			// Does Nothing
+			
+		}
+		
 	}
 }
