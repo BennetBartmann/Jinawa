@@ -54,18 +54,31 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 		view.setId(position);
 		Button mButton = (Button) view.findViewById(R.id.button1);
 		mButton.setId(position);
-		int length = page.getContent().length();
-		if (length >= 200) {
-			mButton.setText(page.getContent().subSequence(0, 200));
-		} else {
-			mButton.setText(page.getContent().subSequence(0, length));
-		}
+		setButtonText(mButton);
 		mButton.setBackgroundResource(R.drawable.paper);
 		mButton.setOnClickListener(this);
 
 		return view;
 	}
-
+	private void setButtonText(Button Paper){
+		if (position < Controller.getInstance().getStapleOfStaples().getStaples().get(positionStaple).getPages().size() - 1){
+			setButtonTextContent(Paper);
+		}else{
+			//last Paper is always empty, so call it "New Paper"
+			Paper.setText("(New Paper)");
+			
+		}
+		
+	}
+	
+	private void setButtonTextContent(Button Paper){
+		int length = page.getContent().length();
+		if (length >= 200) {
+			Paper.setText(page.getContent().subSequence(0, 200));
+		} else {
+			Paper.setText(page.getContent().subSequence(0, length));
+		}
+	}
 	/**
 	 * Starts new Activity
 	 * 
