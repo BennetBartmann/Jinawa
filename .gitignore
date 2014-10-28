@@ -8,7 +8,9 @@
 *.so
 *.apk
 *.dex
-*._ap 
+*._ap
+*.ap_
+*.class
  
 # Packages #
 ############
@@ -38,3 +40,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+bin/classes/de/bb42/jinawa/modell/Modell.class
+bin/classes/de/bb42/jinawa/modell/Modell.class
+*.cache
+*.ap_
+*.class
+*.dex
