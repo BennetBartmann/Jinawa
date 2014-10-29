@@ -14,7 +14,7 @@ import android.widget.Button;
  * @author Johannes Becker
  * 
  */
-public class FragmentSettings extends Fragment implements View.OnClickListener {
+public class FragmentNewStaple extends Fragment implements View.OnClickListener {
 
 	private View view;
 
@@ -34,7 +34,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
 
 	@Override
 	public void onClick(View arg0) {
-		InputDialog dialog = new InputDialog();
+		DialogInput dialog = new DialogInput();
 		dialog.show(getChildFragmentManager(), getTag());
 	}
 

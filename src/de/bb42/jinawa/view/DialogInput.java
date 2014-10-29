@@ -11,7 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.EditText;
 
-public class InputDialog extends DialogFragment {
+public class DialogInput extends DialogFragment {
 	EditText input = null;
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {

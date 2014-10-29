@@ -1,24 +1,17 @@
 package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
-import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
-import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
 
 /**
  * Fragment for Staples
@@ -66,93 +59,39 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 			@Override
 			public boolean onLongClick(View v) {
 				dialog = new Dialog(SlideScreenStaples.getContext());
-				dialog.setContentView(R.layout.dialogdelete);
+				dialog.setContentView(R.layout.longclickdialog);
 				dialog.setTitle("StaplesOptionen");
 				dialog.setCancelable(true);
 				// there are a lot of settings, for dialog, check them all out!
 				// set up radiobutton
 
-				Button rd1 = (Button) dialog.findViewById(R.id.rd1);
-				rd1.setOnClickListener(new OnClickListener() {
+				Button deleteButton = (Button) dialog
+						.findViewById(R.id.deleteStapleButton);
+				deleteButton.setOnClickListener(new OnClickListener() {
 
 					public void onClick(View arg0) {
-						new AlertDialog.Builder(SlideScreenStaples.getContext())
-								.setTitle("Rly delete?")
-								.setMessage("Delet?")
-								.setPositiveButton("Ok",
-										new DialogInterface.OnClickListener() {
-											public void onClick(
-													DialogInterface dialog,
-													int whichButton) {
-												Controller.getInstance()
-														.getStapleOfStaples()
-														.delete(position);
-												ViewDataHolder
-														.getInstance()
-														.getSlideScreenStaples()
-														.upDateView();
-
-											}
-										})
-								.setNegativeButton("Cancel",
-										new DialogInterface.OnClickListener() {
-											public void onClick(
-													DialogInterface dialog,
-													int whichButton) {
-												// Do nothing.
-											}
-										}).show();
+						DialogDelete dialogDelete = new DialogDelete(position);
+						dialogDelete.show(getChildFragmentManager(), getTag());
 						dialog.dismiss();
 
 					}
 				});
-				Button rd3 = (Button) dialog.findViewById(R.id.cancle);
-				rd3.setOnClickListener(new OnClickListener() {
+				Button cancleButton = (Button) dialog
+						.findViewById(R.id.cancleButtonStaple);
+				cancleButton.setOnClickListener(new OnClickListener() {
 
 					public void onClick(View arg0) {
+
 						dialog.dismiss();
 					}
 				});
-				Button rd2 = (Button) dialog.findViewById(R.id.rd2);
-				rd2.setOnClickListener(new OnClickListener() {
-					final EditText input = new EditText(SlideScreenStaples
-							.getContext());
+				Button renameButton = (Button) dialog
+						.findViewById(R.id.renameStapleButton);
+				renameButton.setOnClickListener(new OnClickListener() {
 
 					public void onClick(View arg0) {
-						new AlertDialog.Builder(SlideScreenStaples.getContext())
-								.setTitle("Update Status")
-								.setMessage("Rename")
-								.setView(input)
-								.setPositiveButton("Ok",
-										new DialogInterface.OnClickListener() {
-											public void onClick(
-													DialogInterface dialog,
-													int whichButton) {
-												Editable value = input
-														.getText();
-												Controller
-														.getInstance()
-														.getStapleOfStaples()
-														.getStaples()
-														.get(position)
-														.setNewTitel(
-																new StringBuffer(
-																		value));
-												ViewDataHolder
-														.getInstance()
-														.getSlideScreenStaples()
-														.upDateView();
-
-											}
-										})
-								.setNegativeButton("Cancel",
-										new DialogInterface.OnClickListener() {
-											public void onClick(
-													DialogInterface dialog,
-													int whichButton) {
-												// Do nothing.
-											}
-										}).show();
+						DialogRename dialogRename = new DialogRename(position);
+						dialogRename.show(getChildFragmentManager(), getTag());
 						dialog.dismiss();
 
 					}

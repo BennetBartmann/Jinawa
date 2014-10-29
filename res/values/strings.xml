@@ -6,9 +6,16 @@
     <string name="Writer">Writer</string>
     <string name="Papers">Papers</string>
     <string name="Staples">Stapels</string>
-     <string name="Ok">OK</string>
+    <string name="Ok">OK</string>
     <string name="Cancel">Cancel</string>
-    <string name="inputText">Bitte Titel eingeben</string>
+    <string name="inputText">Please enter a title</string>
     <string name="newStaple">New Staple</string>
+    <string name="deleteStaple">Delete Staple</string>
+    <string name="deleteStapleText">Do you really want to delete this Staple?</string>
+    <string name="deletePaper">Delete Paper</string>
+    <string name="deletePaperText">Do you really want to delete this Paper?</string>
+    <string name="renameStaple">Rename Staple</string>
+    <string name="renameStapleText">Do you really want to rename this Staple?</string>
+    <string name="optionsStaple">Options Staple</string>
 
 </resources>

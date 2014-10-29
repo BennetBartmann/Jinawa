@@ -1,6 +1,5 @@
 package de.bb42.jinawa.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -99,7 +98,7 @@ public class SlideScreenStaples extends FragmentActivity {
 		@Override
 		public Fragment getItem(int position) {
 			if (position + 1 == stapleSize) {
-				return new FragmentSettings();
+				return new FragmentNewStaple();
 
 			} else {
 				return new FragmentStaples(staples.get(position), position);
