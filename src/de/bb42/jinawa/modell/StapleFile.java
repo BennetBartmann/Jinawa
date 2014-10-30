@@ -100,6 +100,7 @@ public class StapleFile {
 			File file = listFiles[i];
 			file.delete();
 		}
+		stapleFolder.delete();
 
 	}
 }
