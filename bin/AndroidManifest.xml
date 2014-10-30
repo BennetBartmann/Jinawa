@@ -33,6 +33,10 @@
             android:name=".view.Writer"
             android:label="@string/Writer" >
         </activity>
+         <activity
+            android:name=".view.Settings"
+            android:label="@string/Settings" >
+        </activity>
     </application>
 
 </manifest>

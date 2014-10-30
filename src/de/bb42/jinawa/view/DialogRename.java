@@ -26,13 +26,13 @@ public class DialogRename extends DialogFragment {
 		builder.setView(input);
 		builder.setMessage(R.string.renameStaple);
 		builder.setPositiveButton(R.string.Ok,
-				new NewStapleNameDialogListener());
+				new RenameButtonListener());
 		builder.setNegativeButton(R.string.Cancel, new DoNothingListener());
 		// Create the AlertDialog object and return it
 		return builder.create();
 	}
 
-	private class NewStapleNameDialogListener implements
+	private class RenameButtonListener implements
 			DialogInterface.OnClickListener {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {

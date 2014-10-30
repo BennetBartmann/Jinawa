@@ -60,18 +60,20 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 
 		return view;
 	}
-	private void setButtonText(Button Paper){
-		if (position < Controller.getInstance().getStapleOfStaples().getStaples().get(positionStaple).getPages().size() - 1){
+
+	private void setButtonText(Button Paper) {
+		if (position < Controller.getInstance().getStapleOfStaples()
+				.getStaples().get(positionStaple).getPages().size() - 1) {
 			setButtonTextContent(Paper);
-		}else{
-			//last Paper is always empty, so call it "New Paper"
+		} else {
+			// last Paper is always empty, so call it "New Paper"
 			Paper.setText("(New Paper)");
-			
+
 		}
-		
+
 	}
-	
-	private void setButtonTextContent(Button Paper){
+
+	private void setButtonTextContent(Button Paper) {
 		int length = page.getContent().length();
 		if (length >= 200) {
 			Paper.setText(page.getContent().subSequence(0, 200));
@@ -79,6 +81,7 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 			Paper.setText(page.getContent().subSequence(0, length));
 		}
 	}
+
 	/**
 	 * Starts new Activity
 	 * 
@@ -103,6 +106,5 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 			startActivity(intentWriter);
 		}
 	}
-
 
 }

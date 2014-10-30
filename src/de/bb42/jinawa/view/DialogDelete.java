@@ -23,13 +23,13 @@ public class DialogDelete extends DialogFragment {
 		builder.setTitle(R.string.deleteStaple);
 		builder.setMessage(R.string.deleteStapleText);
 		builder.setPositiveButton(R.string.Ok,
-				new NewStapleNameDialogListener());
+				new DeleteButtonListener());
 		builder.setNegativeButton(R.string.Cancel, new DoNothingListener());
 		// Create the AlertDialog object and return it
 		return builder.create();
 	}
 
-	private class NewStapleNameDialogListener implements
+	private class DeleteButtonListener implements
 			DialogInterface.OnClickListener {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {

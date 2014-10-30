@@ -53,7 +53,7 @@ public class SlideScreenStaples extends FragmentActivity {
 		SlideScreenStaples.context = this;
 
 		if (staples != null) {
-			stapleSize = staples.size() + 1;
+			stapleSize = staples.size() + 2;
 		}
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
@@ -65,8 +65,7 @@ public class SlideScreenStaples extends FragmentActivity {
 	public void upDateData() {
 		staples = controller.getStapleOfStaples().getStaples();
 		if (staples != null) {
-			stapleSize = staples.size();
-			stapleSize++;
+			stapleSize = staples.size() + 2;
 		} else {
 			// error
 		}
@@ -97,8 +96,11 @@ public class SlideScreenStaples extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			if (position + 1 == stapleSize) {
+			if (position == stapleSize - 2) {
 				return new FragmentNewStaple();
+
+			} else if (position == stapleSize - 1) {
+				return new FragmentSettings(position);
 
 			} else {
 				return new FragmentStaples(staples.get(position), position);
