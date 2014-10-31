@@ -52,14 +52,14 @@ public class StapleFile {
 	 * @return the Page File
 	 * @throws PaperExisted 
 	 */
-	public PageFile createNewPageFile() throws PaperExisted {
+	public PageFile createNewPageFile() {
 		try {
 			File file = new File(stapleFolder.getAbsoluteFile()
 					+ "/newPage.txt");
 			if(file.createNewFile()){
 				return new PageFile(file);
 			}else{
-				throw new PaperExisted();
+				return null;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

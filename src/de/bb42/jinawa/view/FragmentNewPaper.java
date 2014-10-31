@@ -48,7 +48,7 @@ public class FragmentNewPaper extends Fragment implements View.OnClickListener {
 				.getStaples().get(positionStaple);
 		latestStaple.createNewPage();
 		ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
-		intentWriter.putExtra("positionPaper",(latestStaple.getPages().size()==0?0:latestStaple.getPages().size() - 1));
+		intentWriter.putExtra("positionPaper",(latestStaple.getPages().size() < 1 ? 0 : latestStaple.getPages().size() - 1));
 		intentWriter.putExtra("positionStaples", positionStaple);
 		startActivity(intentWriter);
 	}

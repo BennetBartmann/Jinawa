@@ -1,7 +1,6 @@
 package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
-import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Page;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,22 +61,19 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 	}
 
 	private void setButtonText(Button Paper) {
-		if (position < Controller.getInstance().getStapleOfStaples()
-				.getStaples().get(positionStaple).getPages().size() - 1) {
 			setButtonTextContent(Paper);
-		} else {
-			// last Paper is always empty, so call it "New Paper"
-			Paper.setText("(New Paper)");
-
-		}
-
 	}
+
 
 	private void setButtonTextContent(Button Paper) {
 		int length = page.getContent().length();
-		if (length >= 200) {
-			Paper.setText(page.getContent().subSequence(0, 200));
-		} else {
+		if (length >= 20) {
+			Paper.setText(page.getContent().subSequence(0, 20));
+		}else if (length == 0){
+			Paper.setText("Leeres Papier");
+		}
+		
+		else {
 			Paper.setText(page.getContent().subSequence(0, length));
 		}
 	}
