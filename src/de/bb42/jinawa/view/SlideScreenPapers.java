@@ -83,7 +83,7 @@ public class SlideScreenPapers extends FragmentActivity {
 		public Fragment getItem(int position) {
 
 			if (position == stapleSize - 1) {
-				FragmentNewPaper fragment = new FragmentNewPaper(position);
+				FragmentNewPaper fragment = new FragmentNewPaper(positionStaples);
 				return fragment;
 
 			} else {

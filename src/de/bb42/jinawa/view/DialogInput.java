@@ -40,7 +40,7 @@ public class DialogInput extends DialogFragment {
 				staple.createNewStaple(new StringBuffer(name));
 				slideScreen.upDateView();
 				Intent intentPaper = new Intent(SlideScreenStaples.getContext(), SlideScreenPapers.class);
-				intentPaper.putExtra("positionStaple", staple.getStaples().size()-2);
+				intentPaper.putExtra("positionStaple", (staple.getStaples().size()==0?0:staple.getStaples().size()-1));
 				startActivity(intentPaper);
 			}
 		}

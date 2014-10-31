@@ -3,7 +3,6 @@ package de.bb42.jinawa.view;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Page;
-import de.bb42.jinawa.controller.datatypes.Staple;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -91,21 +90,10 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 	 */
 	@Override
 	public void onClick(View v) {
-		Staple latestStaple = Controller.getInstance().getStapleOfStaples()
-				.getStaples().get(positionStaple);
 		int id = ((Button) v).getId();
-		if (id == latestStaple.getPages().size() - 1) {
-			latestStaple.createNewPage();
-			ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
-			intentWriter.putExtra("positionPaper", latestStaple.getPages()
-					.size() - 2);
-			intentWriter.putExtra("positionStaples", positionStaple);
-			startActivity(intentWriter);
-		} else {
-			intentWriter.putExtra("positionPaper", id);
-			intentWriter.putExtra("positionStaples", positionStaple);
-			startActivity(intentWriter);
-		}
+		intentWriter.putExtra("positionPaper", id);
+		intentWriter.putExtra("positionStaples", positionStaple);
+		startActivity(intentWriter);
 	}
 
 }

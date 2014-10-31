@@ -6,6 +6,7 @@ package de.bb42.jinawa.controller.datatypes;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.bb42.jinawa.modell.PaperExisted;
 import de.bb42.jinawa.modell.StapleFile;
 
 /**
@@ -44,9 +45,16 @@ public class Staple {
 
 	/**
 	 * Creates a new Page
+	 * @throws PaperExisted 
 	 */
-	public void createNewPage() {
-		pages.add(new Page(stapleFolder.createNewPageFile()));
+	public void createNewPage(){
+		Page p;
+		try{
+			p = new Page(stapleFolder.createNewPageFile());
+			pages.add(p);
+		}catch(PaperExisted e){
+			return;
+		}
 	}
 
 	/**
