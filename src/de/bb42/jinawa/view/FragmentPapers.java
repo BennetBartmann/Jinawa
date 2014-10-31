@@ -20,11 +20,13 @@ import android.widget.Button;
  */
 public class FragmentPapers extends Fragment implements View.OnClickListener {
 
-	private View view;
+	private ViewGroup view;
 
 	private int position;
 	private int positionStaple;
 	private Page page;
+	private Intent intentWriter = new Intent(SlideScreenPapers.getAppContext(),
+			Writer.class);
 
 	public FragmentPapers(Page page, int position, int positionStaple) {
 		this.positionStaple = positionStaple;
@@ -32,8 +34,7 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 		this.page = page;
 	}
 
-	Intent intentWriter = new Intent(SlideScreenPapers.getAppContext(),
-			Writer.class);
+
 
 	/**
 	 * Create and return View
@@ -49,8 +50,8 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		view = inflater.inflate(R.layout.fragment_screen_slide_page, container,
-				false);
+		view = (ViewGroup) inflater.inflate(
+				R.layout.fragment_screen_slide_page, container, false);
 		view.setId(position);
 		Button mButton = (Button) view.findViewById(R.id.button1);
 		mButton.setId(position);

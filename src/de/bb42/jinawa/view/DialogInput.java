@@ -9,15 +9,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.EditText;
 
 public class DialogInput extends DialogFragment {
 	EditText input = null;
+	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
 		// Use the Builder class for convenient dialog construction
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		Log.v("ff", getActivity()+"");
 		this.input = new EditText(SlideScreenStaples.getAppContext());
 		builder.setView(input);
 		builder.setMessage(R.string.inputText);
@@ -32,6 +35,7 @@ public class DialogInput extends DialogFragment {
 			String name = input.getText().toString();
 			StapleOfStaples staple = Controller.getInstance().getStapleOfStaples();
 			SlideScreenStaples slideScreen = ViewDataHolder.getInstance().getSlideScreenStaples();
+		
 			if (!name.equals("")) {
 				staple.createNewStaple(new StringBuffer(name));
 				slideScreen.upDateView();

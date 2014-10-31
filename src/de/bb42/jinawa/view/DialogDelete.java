@@ -22,8 +22,7 @@ public class DialogDelete extends DialogFragment {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle(R.string.deleteStaple);
 		builder.setMessage(R.string.deleteStapleText);
-		builder.setPositiveButton(R.string.Ok,
-				new DeleteButtonListener());
+		builder.setPositiveButton(R.string.Ok, new DeleteButtonListener());
 		builder.setNegativeButton(R.string.Cancel, new DoNothingListener());
 		// Create the AlertDialog object and return it
 		return builder.create();

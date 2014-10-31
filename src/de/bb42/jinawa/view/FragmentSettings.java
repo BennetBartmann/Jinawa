@@ -8,24 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import de.bb42.jinawa.R;
-import de.bb42.jinawa.controller.datatypes.Staple;
 
 public class FragmentSettings extends Fragment implements View.OnClickListener {
-	private View view;
+	private ViewGroup view;
 	private int position;
+	private Intent intentPaper = new Intent(SlideScreenStaples.getContext(),
+			Settings.class);
 
 	public FragmentSettings(int position) {
 		this.position = position;
 
 	}
 
-	Intent intentPaper = new Intent(SlideScreenStaples.getContext(),
-			Settings.class);
-
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.fragment_screen_slide_page, container,
-				false);
+		view = (ViewGroup) inflater.inflate(
+				R.layout.fragment_screen_slide_page, container, false);
 		view.setId(position);
 		Button mButton = (Button) view.findViewById(R.id.button1);
 		mButton.setId(position);
@@ -47,4 +45,5 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
 		startActivity(intentPaper);
 
 	}
+
 }

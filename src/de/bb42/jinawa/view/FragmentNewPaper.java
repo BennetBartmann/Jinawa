@@ -3,6 +3,7 @@ package de.bb42.jinawa.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ public class FragmentNewPaper extends Fragment implements View.OnClickListener {
 	private int positionStaple;
 	Intent intentWriter = new Intent(SlideScreenPapers.getAppContext(),
 			Writer.class);
-	private View view;
+	private ViewGroup view;
 
 	public FragmentNewPaper(int positionStaple) {
 		this.positionStaple = positionStaple;
@@ -31,8 +32,8 @@ public class FragmentNewPaper extends Fragment implements View.OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		view = inflater.inflate(R.layout.fragment_screen_slide_page, container,
-				false);
+		view = (ViewGroup) inflater.inflate(
+				R.layout.fragment_screen_slide_page, container, false);
 
 		Button mButton = (Button) view.findViewById(R.id.button1);
 		mButton.setText(R.string.newPaper);
@@ -49,8 +50,10 @@ public class FragmentNewPaper extends Fragment implements View.OnClickListener {
 				.getStaples().get(positionStaple);
 		latestStaple.createNewPage();
 		ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
+		
+
 		intentWriter.putExtra("positionPaper",
-				latestStaple.getPages().size() - 2);
+				latestStaple.getPages().size() - 1);
 		intentWriter.putExtra("positionStaples", positionStaple);
 		startActivity(intentWriter);
 

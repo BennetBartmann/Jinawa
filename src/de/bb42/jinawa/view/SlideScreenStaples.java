@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
@@ -24,7 +25,7 @@ public class SlideScreenStaples extends FragmentActivity {
 	private static Context context;
 	private Controller controller = Controller.getInstance();
 	private List<Staple> staples = controller.getStapleOfStaples().getStaples();
-
+	private FragmentManager fmanager;
 	private int stapleSize;
 	/**
 	 * The pager widget, which handles animation and allows swiping horizontally
@@ -55,6 +56,7 @@ public class SlideScreenStaples extends FragmentActivity {
 		if (staples != null) {
 			stapleSize = staples.size() + 2;
 		}
+
 		// Instantiate a ViewPager and a PagerAdapter.
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
@@ -75,12 +77,14 @@ public class SlideScreenStaples extends FragmentActivity {
 	public void upDateView() {
 		upDateData();
 		mPager.getAdapter().notifyDataSetChanged();
-		mPager.destroyDrawingCache();
+		mPager.invalidate();
 	}
 
 	public static Context getContext() {
 		return context;
 	}
+
+	
 
 	/**
 	 * A pager adapter that represents ScreenSlidePapersFragment objects
@@ -92,19 +96,26 @@ public class SlideScreenStaples extends FragmentActivity {
 		 */
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
+			fmanager = fm;
+
 		}
 
 		@Override
 		public Fragment getItem(int position) {
 			if (position == stapleSize - 2) {
-				return new FragmentNewStaple();
+				FragmentNewStaple fragment = new FragmentNewStaple();
+				return fragment;
 
 			} else if (position == stapleSize - 1) {
-				return new FragmentSettings(position);
+				FragmentSettings fragment = new FragmentSettings(position);
+				return fragment;
 
 			} else {
-				return new FragmentStaples(staples.get(position), position);
+				FragmentStaples fragment = new FragmentStaples(
+						staples.get(position), position);
+				return fragment;
 			}
+
 		}
 
 		@Override
@@ -112,6 +123,39 @@ public class SlideScreenStaples extends FragmentActivity {
 			return stapleSize;
 		}
 
-	}
+		@Override
+		public int getItemPosition(Object object) {
 
+			Log.v(STORAGE_SERVICE, object.getClass() + "");
+			if (object instanceof FragmentSettings) {
+				FragmentSettings fragment = (FragmentSettings) object;
+				if (fmanager.getFragments().contains(fragment)) {
+					return POSITION_NONE;
+				} else {
+					return POSITION_UNCHANGED;
+				}
+
+			}
+			if (object instanceof FragmentNewStaple) {
+				FragmentNewStaple fragment = (FragmentNewStaple) object;
+				if (fmanager.getFragments().contains(fragment)) {
+					return POSITION_NONE;
+				} else {
+					return POSITION_UNCHANGED;
+				}
+
+			}
+			if (object instanceof FragmentStaples) {
+
+				FragmentStaples fragment = (FragmentStaples) object;
+				if (fmanager.getFragments().contains(fragment)) {
+					return POSITION_NONE;
+				} else {
+					return POSITION_UNCHANGED;
+				}
+
+			}
+			return -1;
+		}
+	}
 }

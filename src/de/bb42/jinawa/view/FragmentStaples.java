@@ -18,7 +18,7 @@ import de.bb42.jinawa.controller.datatypes.Staple;
  * 
  */
 public class FragmentStaples extends Fragment implements View.OnClickListener {
-	private View view;
+	private ViewGroup view;
 	private Staple stapleData;
 	private int position;
 
@@ -30,6 +30,7 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 
 	Intent intentPaper = new Intent(SlideScreenStaples.getContext(),
 			SlideScreenPapers.class);
+	private String title;
 
 	/**
 	 * Create and return View
@@ -44,8 +45,8 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.fragment_screen_slide_page, container,
-				false);
+		view = (ViewGroup) inflater.inflate(
+				R.layout.fragment_screen_slide_page, container, false);
 		Button mButton = (Button) view.findViewById(R.id.button1);
 
 		mButton.setText(stapleData.getTitel());
@@ -76,6 +77,15 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 		int id = ((Button) v).getId();
 		intentPaper.putExtra("positionStaple", id);
 		startActivity(intentPaper);
+
+	}
+	public void setTitle(String title) {
+		this.title = title;
+
+	}
+
+	public String getTitle() {
+		return title;
 
 	}
 

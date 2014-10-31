@@ -10,7 +10,7 @@
     <string name="Cancel">Cancel</string>
     <string name="inputText">Please enter a title</string>
     <string name="newStaple">New Staple</string>
-        <string name="newPaper">New Staple</string>
+        <string name="newPaper">New Paper</string>
     
     <string name="deleteStaple">Delete Staple</string>
     <string name="deleteStapleText">Do you really want to delete this Staple?</string>

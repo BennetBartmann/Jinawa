@@ -16,13 +16,13 @@ import android.widget.Button;
  */
 public class FragmentNewStaple extends Fragment implements View.OnClickListener {
 
-	private View view;
+	private ViewGroup view;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		view = inflater.inflate(R.layout.fragment_screen_slide_page, container,
-				false);
+		view = (ViewGroup) inflater.inflate(
+				R.layout.fragment_screen_slide_page, container, false);
 
 		Button mButton = (Button) view.findViewById(R.id.button1);
 		mButton.setText(R.string.newStaple);
@@ -35,7 +35,7 @@ public class FragmentNewStaple extends Fragment implements View.OnClickListener 
 	@Override
 	public void onClick(View arg0) {
 		DialogInput dialog = new DialogInput();
-		dialog.show(getChildFragmentManager(), getTag());
+		dialog.show(getFragmentManager(), getTag());
 	}
 
 }
