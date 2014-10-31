@@ -19,8 +19,6 @@ import de.bb42.jinawa.controller.datatypes.Staple;
  */
 public class FragmentNewPaper extends Fragment implements View.OnClickListener {
 	private int positionStaple;
-	Intent intentWriter = new Intent(SlideScreenPapers.getAppContext(),
-			Writer.class);
 	private ViewGroup view;
 
 	public FragmentNewPaper(int positionStaple) {
@@ -47,9 +45,6 @@ public class FragmentNewPaper extends Fragment implements View.OnClickListener {
 		Staple latestStaple = Controller.getInstance().getStapleOfStaples()
 				.getStaples().get(positionStaple);
 		latestStaple.createNewPage();
-		ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
-		intentWriter.putExtra("positionPaper",(latestStaple.getPages().size() < 1 ? 0 : latestStaple.getPages().size() - 1));
-		intentWriter.putExtra("positionStaples", positionStaple);
-		startActivity(intentWriter);
+		ViewDataHolder.getInstance().getSlideScreenPapers().upDateViewAndSendIntent();
 	}
 }

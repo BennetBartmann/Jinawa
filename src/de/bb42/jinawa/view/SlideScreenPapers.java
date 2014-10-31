@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.IntentCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -146,5 +147,17 @@ public class SlideScreenPapers extends FragmentActivity {
 		ViewDataHolder.getInstance().getSlideScreenStaples().upDateView();
 		super.onBackPressed();
 
+	}
+
+	public void upDateViewAndSendIntent() {
+		Staple latestStaple = Controller.getInstance().getStapleOfStaples()
+				.getStaples().get(positionStaples);
+		upDateView();
+		Intent intentWriter = new Intent(context,
+				Writer.class);
+		intentWriter.putExtra("positionPaper",(latestStaple.getPages().size() < 1 ? 0 : latestStaple.getPages().size() - 1));
+		intentWriter.putExtra("positionStaples", positionStaples);
+		startActivity(intentWriter);
+		
 	}
 }
