@@ -74,7 +74,7 @@ public class PageFile {
 		StringBuffer content = new StringBuffer("");
 		String zeile = pageReader.readLine();
 		while (zeile != null) {
-			content.append(zeile);
+			content.append(zeile+"\n");
 			zeile = pageReader.readLine();
 		}
 		return content;
