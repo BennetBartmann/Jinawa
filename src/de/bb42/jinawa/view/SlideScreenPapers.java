@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.IntentCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -45,14 +44,13 @@ public class SlideScreenPapers extends FragmentActivity {
 	 * 
 	 * @return Context of SlideScreenStaples
 	 */
-	public static Context getAppContext() {
-		return SlideScreenPapers.context;
+	public static Context getContext() {
+		return context;
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_screen_slide);
 		Intent IntentStaples = getIntent();
 		Bundle b = IntentStaples.getExtras();
@@ -84,7 +82,8 @@ public class SlideScreenPapers extends FragmentActivity {
 		public Fragment getItem(int position) {
 
 			if (position == stapleSize - 1) {
-				FragmentNewPaper fragment = new FragmentNewPaper(positionStaples);
+				FragmentNewPaper fragment = new FragmentNewPaper(
+						positionStaples);
 				return fragment;
 
 			} else {
@@ -152,12 +151,14 @@ public class SlideScreenPapers extends FragmentActivity {
 	public void upDateViewAndSendIntent() {
 		Staple latestStaple = Controller.getInstance().getStapleOfStaples()
 				.getStaples().get(positionStaples);
-		upDateView();
-		Intent intentWriter = new Intent(context,
-				Writer.class);
-		intentWriter.putExtra("positionPaper",(latestStaple.getPages().size() < 1 ? 0 : latestStaple.getPages().size() - 1));
+
+		Intent intentWriter = new Intent(context, Writer.class);
+		intentWriter.putExtra("positionPaper",
+				(latestStaple.getPages().size() < 1 ? 0 : latestStaple
+						.getPages().size() - 1));
 		intentWriter.putExtra("positionStaples", positionStaples);
+		upDateView();
 		startActivity(intentWriter);
-		
+
 	}
 }

@@ -27,7 +27,7 @@ public class FragmentSettings extends Fragment implements View.OnClickListener {
 		view.setId(position);
 		Button mButton = (Button) view.findViewById(R.id.button1);
 		mButton.setId(position);
-		mButton.setText("Settings");
+		mButton.setText(R.string.Settings);
 		mButton.setBackgroundResource(R.drawable.staple2);
 		mButton.setOnClickListener(this);
 

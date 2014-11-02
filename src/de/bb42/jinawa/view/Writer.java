@@ -20,6 +20,7 @@ public class Writer extends Activity {
 	private static Controller controller = Controller.getInstance();
 	private int positionPaper;
 	private int positionStaples;
+	private String noinput = "";
 
 	private Page page;
 
@@ -45,17 +46,28 @@ public class Writer extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		page.save();
+		if (page.getContent().toString().trim().equals(noinput)) {
+			Controller.getInstance().getStapleOfStaples().getStaples()
+					.get(positionStaples).deletePaper(positionPaper);
+		} else {
+			page.getContent().toString().trim();
+			page.save();
+		}
 		ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
+
 		super.onBackPressed();
 	}
-	private class ContentChangedListener implements TextWatcher{
+
+	private class ContentChangedListener implements TextWatcher {
 		final EditText editText;
-		ContentChangedListener(EditText editText){
+
+		ContentChangedListener(EditText editText) {
 			this.editText = editText;
 		}
+
 		@Override
 		public void afterTextChanged(Editable s) {
+
 			page.save(new StringBuffer(editText.getText()));
 			ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
 		}
@@ -63,16 +75,16 @@ public class Writer extends Activity {
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {
-			//Does Nothing
-			
+			// Does Nothing
+
 		}
 
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before,
 				int count) {
 			// Does Nothing
-			
+
 		}
-		
+
 	}
 }

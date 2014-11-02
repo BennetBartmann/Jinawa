@@ -8,10 +8,9 @@
     <string name="Staples">Stapels</string>
     <string name="Ok">OK</string>
     <string name="Cancel">Cancel</string>
-    <string name="inputText">Please enter a title</string>
+    <string name="inputText">Please enter a title:</string>
     <string name="newStaple">New Staple</string>
-        <string name="newPaper">New Paper</string>
-    
+    <string name="newPaper">New Paper</string>
     <string name="deleteStaple">Delete Staple</string>
     <string name="deleteStapleText">Do you really want to delete this Staple?</string>
     <string name="deletePaper">Delete Paper</string>
@@ -19,6 +18,19 @@
     <string name="renameStaple">Rename Staple</string>
     <string name="renameStapleText">Do you really want to rename this Staple?</string>
     <string name="optionsStaple">Options Staple</string>
+    <string name="optionsPaper">Options Paper</string>
     <string name="Settings">Settings</string>
-    
+    <string name="emptyPaper">Emtpy Paper</string>
+    <string name="about"><b>Wie Entstand Jinawa?</b>\n\nJinawa, kurz für Jinawa is not another Writing App, wurde als Projekt an der Dualen Hochschule Baden Württemberg von 2 Informatik Studenten geboren. Das Ziel des Projekts ist das erstellen einer einfach zu bedienenden Android Text App. Jinawa selbst ist Open Source und steht unter der GPL - jeder kann mitmachen.\n\n <b>Was Unterscheidet Jinawa von anderen Apps?</b>\n\n
+Es gibt einige Schreib Apps unter Android, doch nicht jede eignet sich für den Kreativen Geist, oftmals muss man Ordner anlegen, sich um Speicherorte kümmern und vieles mehr, Jinawa soll einfach ermöglichen zu schreiben, ohne sich Gedanken zu machen.
+\n\n<b>Wer steckt dahinter?</b>\n\n
+Das Projekt wird von 2 dualen Studenten im 3. Studienjahr betreut. (An die Headhunter: Wir suchen beide ab Oktober nächstes Jahr einen Job;)). Diese sind:\n
+- Bennet Bartmann (https://www.xing.com/profile/Bennet_Bartmann?sc_o=mxb_p) \n
+- Johannes Becker (DEINXING)\n\n <b>Ich habe eine Anmerkung/Anregung, wohin damit?</b>\n\n
+Anmerkungen und Anregungen sind immer gerne gesehen Sie erreichen uns unter der Email Adresse it12142@lehre.dhbw-stuttgart.de
+\n\n<b>Wurden Fremde Materialien/Codes anderer Projekte verwendet?</b>\n\n
+Das Logo der App stammt von NTJuan (https://de.fiverr.com/ntstuan)\n
+Die Bilder für die Stapel und Blätter stammen von Nemo (http://pixabay.com/de/users/Nemo/)\n\n <b>Wo gibt es eure Sourcen?</b>\n
+Hier: https://github.com/BennetBartmann/JinawaWie Entstand Jinawa?\n</string>
+
 </resources>

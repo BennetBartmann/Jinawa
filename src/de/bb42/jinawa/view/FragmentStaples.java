@@ -30,7 +30,6 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 
 	Intent intentPaper = new Intent(SlideScreenStaples.getContext(),
 			SlideScreenPapers.class);
-	private String title;
 
 	/**
 	 * Create and return View
@@ -77,15 +76,6 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 		int id = ((Button) v).getId();
 		intentPaper.putExtra("positionStaple", id);
 		startActivity(intentPaper);
-
-	}
-	public void setTitle(String title) {
-		this.title = title;
-
-	}
-
-	public String getTitle() {
-		return title;
 
 	}
 

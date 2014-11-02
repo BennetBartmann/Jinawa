@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnLongClickListener;
 import android.widget.Button;
 
 /**
@@ -23,8 +24,9 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 	private int position;
 	private int positionStaple;
 	private Page page;
-	private Intent intentWriter = new Intent(SlideScreenPapers.getAppContext(),
+	private Intent intentWriter = new Intent(SlideScreenPapers.getContext(),
 			Writer.class);
+	private int paperTitleLenght = 20;
 
 	public FragmentPapers(Page page, int position, int positionStaple) {
 		this.positionStaple = positionStaple;
@@ -56,7 +58,16 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 		setButtonText(mButton);
 		mButton.setBackgroundResource(R.drawable.paper);
 		mButton.setOnClickListener(this);
+		mButton.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				DialogLongClickPaper dialogLongClick = new DialogLongClickPaper(positionStaple,
+						position);
+				dialogLongClick.show(getFragmentManager(), getTag());
 
+				return true;
+			}
+		});
 		return view;
 	}
 
@@ -67,10 +78,10 @@ public class FragmentPapers extends Fragment implements View.OnClickListener {
 
 	private void setButtonTextContent(Button Paper) {
 		int length = page.getContent().length();
-		if (length >= 20) {
-			Paper.setText(page.getContent().subSequence(0, 20));
+		if (length >= paperTitleLenght) {
+			Paper.setText(page.getContent().subSequence(0, paperTitleLenght));
 		}else if (length == 0){
-			Paper.setText("Leeres Papier");
+			Paper.setText(R.string.emptyPaper);
 		}
 		
 		else {

@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
@@ -84,8 +83,6 @@ public class SlideScreenStaples extends FragmentActivity {
 		return context;
 	}
 
-	
-
 	/**
 	 * A pager adapter that represents ScreenSlidePapersFragment objects
 	 */
@@ -126,7 +123,6 @@ public class SlideScreenStaples extends FragmentActivity {
 		@Override
 		public int getItemPosition(Object object) {
 
-			Log.v(STORAGE_SERVICE, object.getClass() + "");
 			if (object instanceof FragmentSettings) {
 				FragmentSettings fragment = (FragmentSettings) object;
 				if (fmanager.getFragments().contains(fragment)) {

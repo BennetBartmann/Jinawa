@@ -12,6 +12,7 @@ import android.widget.EditText;
 public class DialogRename extends DialogFragment {
 	private int position;
 	private EditText input = null;
+	private String noinput = "";
 
 	public DialogRename(int position) {
 		this.position = position;
@@ -37,7 +38,7 @@ public class DialogRename extends DialogFragment {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
 			String name = input.getText().toString();
-			if (!name.equals("")) {
+			if (!name.trim().equals(noinput)) {
 				Controller.getInstance().getStapleOfStaples().getStaples()
 						.get(position).setNewTitel(new StringBuffer(name));
 				ViewDataHolder.getInstance().getSlideScreenStaples()

@@ -7,5 +7,19 @@
     <string name="Papers">Papiere</string>
     <string name="Staples">Stapel</string>
     <string name="newStaple">Neuer Stapel</string>
-    
+    <string name="Ok">OK</string>
+    <string name="Cancel">Zurück</string>
+    <string name="inputText">Bitte Namen eingeben:</string>
+    <string name="newPaper">Neues Papier</string>
+    <string name="deleteStaple">Stapel löschen</string>
+    <string name="deleteStapleText">Wollen Sie das Papier wirklich löschen?</string>
+    <string name="deletePaper">Papier löschen</string>
+    <string name="deletePaperText">Wollen Sie den Stapel wirklich löschen?</string>
+    <string name="renameStaple">Staplel umbenennen</string>
+    <string name="renameStapleText">Wollen Sie den Stapel wirklich umbenennen?</string>
+    <string name="optionsStaple">Stapel Optionen</string>
+    <string name="optionsPaper">Papier Optionen</string>
+    <string name="Settings">Einstellungen</string>
+    <string name="emptyPaper">Leeres Papier</string>
+
 </resources>
