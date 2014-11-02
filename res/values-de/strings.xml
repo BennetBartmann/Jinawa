@@ -21,7 +21,7 @@
     <string name="optionsPaper">Papier Optionen</string>
     <string name="Settings">Einstellungen</string>
     <string name="emptyPaper">Leeres Papier</string>
-    <string name="about"><b>Wie Entstand Jinawa?</b><br /> <br /> 
+    <string name="about"><![CDATA[<b>Wie Entstand Jinawa?</b><br /> <br /> 
         
         
 Jinawa, kurz für Jinawa is not another Writing App, wurde als Projekt an der Dualen Hochschule Baden Württemberg von 2 Informatik Studenten geboren. Das Ziel des Projekts ist das erstellen einer einfach zu bedienenden Android Text App. Jinawa selbst ist Open Source und steht unter der GPL - jeder kann mitmachen.<br /> <br />  <b>Was Unterscheidet Jinawa von anderen Apps?</b><br /> <br /> 
@@ -29,10 +29,14 @@ Jinawa, kurz für Jinawa is not another Writing App, wurde als Projekt an der Du
 Es gibt einige Schreib Apps unter Android, doch nicht jede eignet sich für den Kreativen Geist, oftmals muss man Ordner anlegen, sich um Speicherorte kümmern und vieles mehr, Jinawa soll einfach ermöglichen zu schreiben, ohne sich Gedanken zu machen. <br /> <br /> <b>Wer steckt dahinter?</b><br /> <br /> 
 
 Das Projekt wird von 2 dualen Studenten im 3. Studienjahr betreut. Diese sind:<br /> 
-- <![CDATA[<a href="https://www.xing.com/profile/Bennet_Bartmann?sc_o=mxb_p">Bennet Bartmann</a>]]><br /> <br /> 
-- <![CDATA[<a href="https://www.xing.com/profile/Johannes_Becker74?sc_o=mxb_p">Johannes Becker</a>]]><br />  <b>Ich habe eine Anmerkung/Anregung, wohin damit?</b><br /> <br /> 
-Anmerkungen und Anregungen sind immer gerne gesehen Sie erreichen uns unter der Email Adresse:<![CDATA[<a href="mailto:it12142@lehre.dhbw-stuttgart.de?subject=Anmerkungen&Anregungen">Email</a>]]><br /> <br /> <b>Wurden Fremde Materialien/Codes anderer Projekte verwendet?</b><br /> <br /> 
-Das Logo der App stammt von<![CDATA[<a href=https://de.fiverr.com/ntstuan">NTJuan</a>]]><br /> 
-Die Bilder für die Stapel und Blätter stammen von<![CDATA[<a href="http://pixabay.com/de/users/Nemo/">Nemo</a>]]><br /> <br />  <b>Wo gibt es eure Sourcen?</b><br /> <![CDATA[<a href="https://github.com/BennetBartmann/Jinawa?">Hier: Klick</a>]]><br /> <br /> <br /></string>
+*<a href="https://www.xing.com/profile/Bennet_Bartmann?sc_o=mxb_p">Bennet Bartmann</a> <br/>
+*<a href="https://www.xing.com/profile/Johannes_Becker74?sc_o=mxb_p">Johannes Becker</a> <br/><br/>
+<br/>
+ <b>Ich habe eine Anmerkung/Anregung, wohin damit?</b><br /> <br /> 
+Anmerkungen und Anregungen sind immer gerne gesehen Sie erreichen uns unter der Email Adresse:<a href="mailto:it12142@lehre.dhbw-stuttgart.de?subject=Anmerkungen&Anregungen">it12142@lehre.dhbw-stuttgart.de</a>
+
+<br /> <br /> <b>Wurden Fremde Materialien/Codes anderer Projekte verwendet?</b><br /> <br /> 
+Das Logo der App stammt von <a href=https://de.fiverr.com/ntstuan">NTJuan</a><br /> 
+Die Bilder für die Stapel und Blätter stammen von <a href="http://pixabay.com/de/users/Nemo/">Nemo</a><br /> <br />  <b>Wo gibt es eure Sourcen?</b><br /> <a href="https://github.com/BennetBartmann/Jinawa?">Hier: Klick</a><br /> <br /> <br />]]></string>
 
 </resources>
