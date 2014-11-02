@@ -50,7 +50,7 @@ public class FragmentStaples extends Fragment implements View.OnClickListener {
 
 		mButton.setText(stapleData.getTitel());
 		mButton.setId(position);
-		mButton.setBackgroundResource(R.drawable.staple2);
+		mButton.setBackgroundResource(R.drawable.staple);
 		mButton.setOnClickListener(this);
 		mButton.setOnLongClickListener(new OnLongClickListener() {
 			@Override

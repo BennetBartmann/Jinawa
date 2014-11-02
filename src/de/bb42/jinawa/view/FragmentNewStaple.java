@@ -26,7 +26,7 @@ public class FragmentNewStaple extends Fragment implements View.OnClickListener 
 
 		Button mButton = (Button) view.findViewById(R.id.button1);
 		mButton.setText(R.string.newStaple);
-		mButton.setBackgroundResource(R.drawable.staple2);
+		mButton.setBackgroundResource(R.drawable.staple);
 		mButton.setOnClickListener(this);
 
 		return view;
