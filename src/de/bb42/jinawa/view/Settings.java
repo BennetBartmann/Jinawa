@@ -2,6 +2,9 @@ package de.bb42.jinawa.view;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.widget.TextView;
 import de.bb42.jinawa.R;
 
 public class Settings extends Activity {
@@ -9,5 +12,9 @@ public class Settings extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.settings);
+		TextView tv = (TextView) findViewById(R.id.settingsAbout);
+		tv.setText(Html.fromHtml(getString(R.string.about)));
+		tv.setMovementMethod(LinkMovementMethod.getInstance());
+
 	}
 }

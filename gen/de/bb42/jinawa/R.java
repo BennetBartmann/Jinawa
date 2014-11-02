@@ -34,7 +34,7 @@ public final class R {
         public static final int editText=0x7f080000;
         public static final int pager=0x7f080001;
         public static final int renameStapleButton=0x7f080004;
-        public static final int textView1=0x7f080005;
+        public static final int settingsAbout=0x7f080005;
     }
     public static final class layout {
         public static final int activity_paper=0x7f030000;
