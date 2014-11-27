@@ -66,5 +66,18 @@ public class Page {
 	void delete() {
 		pageFile.delete();
 	}
-
+	/**
+	 * 
+	 * @return number of total characters including whitespaces
+	 */
+	public int countCharacters(){
+		return content.toString().length();
+	}
+	/**
+	 * 
+	 * @return number of total characters excluding whitespaces
+	 */
+	public int countCharactersWithOutWhitespace(){
+		return content.toString().replaceAll(" ", "").length();
+	}
 }
