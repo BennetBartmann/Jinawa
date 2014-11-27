@@ -34,7 +34,6 @@ public class DialogDelete extends DialogFragment {
 		public void onClick(DialogInterface dialog, int which) {
 
 			Controller.getInstance().getStapleOfStaples().delete(position);
-			ViewDataHolder.getInstance().getSlideScreenStaples().upDateView();
 
 		}
 	}

@@ -24,7 +24,7 @@ public class DialogLongClickPaper extends DialogFragment {
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 
 		// Use the Builder class for convenient dialog construction
-		dialog = new Dialog(SlideScreenPapers.getContext());
+		//dialog = new Dialog(SlideScreenPapers.getContext());
 		dialog.setContentView(R.layout.longclickdialogpaper);
 		dialog.setTitle(R.string.optionsPaper);
 

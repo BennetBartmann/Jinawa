@@ -2,13 +2,14 @@ package de.bb42.jinawa.view;
 
 import de.bb42.jinawa.R;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class DialogLongClickStaples extends DialogFragment {
+public class DialogLongClickStaples extends Dialog {
 	private int position;
 	private Dialog dialog;
 
@@ -53,4 +54,5 @@ public class DialogLongClickStaples extends DialogFragment {
 
 		return dialog;
 	}
+
 }

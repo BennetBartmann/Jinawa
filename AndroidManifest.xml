@@ -20,8 +20,8 @@
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="de.bb42.jinawa.view.SlideScreenStaples"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+          
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,157 +1,85 @@
 package de.bb42.jinawa.view;
 
-import java.util.List;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import de.bb42.jinawa.R;
-import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-/**
- * SlideScreen for Papers
- * 
- * @author Johannes Becker
- * 
- */
-public class SlideScreenStaples extends FragmentActivity {
+public class SlideScreenStaples extends Activity implements OnClickListener {
 	private static Context context;
-	private Controller controller = Controller.getInstance();
-	private List<Staple> staples = controller.getStapleOfStaples().getStaples();
-	private FragmentManager fmanager;
-	private int stapleSize;
-	/**
-	 * The pager widget, which handles animation and allows swiping horizontally
-	 * to access previous and next wizard steps.
-	 */
-	private ViewPager mPager;
 
-	/**
-	 * provides the pages to the ViewPager
-	 */
-	private PagerAdapter mPagerAdapter;
-
-	/**
-	 * Get the context of SlideScreenStaples
-	 * 
-	 * @return Context of SlideScreenStaples
-	 */
-	public static Context getAppContext() {
-		return SlideScreenStaples.getContext();
-	}
+	RelativeLayout rl1;
+	LinearLayout rl2;
+	HorizontalScrollView sv;
+	Button[] b;
+	int sum = 30;
+	Intent intentPaper = new Intent();
+	private Staple stapleData;
+	private int position;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_screen_slide);
-		SlideScreenStaples.context = this;
+		setContentView(R.layout.activity_main);
 
-		if (staples != null) {
-			stapleSize = staples.size() + 2;
+		rl1 = (RelativeLayout) findViewById(R.id.rl);
+		sv = new HorizontalScrollView(SlideScreenStaples.this);
+		rl2 = new LinearLayout(SlideScreenStaples.this);
+		b = new Button[20];
+
+		for (int i = 1; i < 15; i++) {
+			b[i] = new Button(this);
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+					(int) LayoutParams.WRAP_CONTENT,
+					(int) LayoutParams.MATCH_PARENT);
+			params.height = 600;
+			params.width = 300;
+			b[i].setText(stapleData.getTitel());
+			b[i].setId(i);
+			b[i].setBackgroundResource(R.drawable.staple);
+			b[i].setOnClickListener(this);
+			b[i].setOnLongClickListener(new OnLongClickListener() {
+				public boolean onLongClick(View v) {
+					DialogLongClickStaples dialogLongClick = new DialogLongClickStaples(
+							i);
+					dialogLongClick.show(getFragmentManager(), "buik");
+
+					return true;
+				}
+			});
+			b[i].setText("Button " + i);
+			b[i].setLayoutParams(params);
+			rl2.addView(b[i]);
+			sum = sum + 300;
 		}
 
-		// Instantiate a ViewPager and a PagerAdapter.
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-		mPager.setAdapter(mPagerAdapter);
-		ViewDataHolder.getInstance().setSlideScreenStaples(this);
+		sv.addView(rl2);
+		rl1.addView(sv);
 	}
 
-	public void upDateData() {
-		staples = controller.getStapleOfStaples().getStaples();
-		if (staples != null) {
-			stapleSize = staples.size() + 2;
-		} else {
-			// error
-		}
-
-	}
-
-	public void upDateView() {
-		upDateData();
-		mPager.getAdapter().notifyDataSetChanged();
-		mPager.invalidate();
+	public static Context getAppContext() {
+		return SlideScreenStaples.getContext();
 	}
 
 	public static Context getContext() {
 		return context;
 	}
 
-	/**
-	 * A pager adapter that represents ScreenSlidePapersFragment objects
-	 */
-	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		/**
-		 * 
-		 * @param fm
-		 */
-		public ScreenSlidePagerAdapter(FragmentManager fm) {
-			super(fm);
-			fmanager = fm;
+	@Override
+	public void onClick(View v) {
+		int id = ((Button) v).getId();
+		intentPaper.putExtra("positionStaple", id);
+		startActivity(intentPaper);
 
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			if (position == stapleSize - 2) {
-				FragmentNewStaple fragment = new FragmentNewStaple();
-				return fragment;
-
-			} else if (position == stapleSize - 1) {
-				FragmentSettings fragment = new FragmentSettings(position);
-				return fragment;
-
-			} else {
-				FragmentStaples fragment = new FragmentStaples(
-						staples.get(position), position);
-				return fragment;
-			}
-
-		}
-
-		@Override
-		public int getCount() {
-			return stapleSize;
-		}
-
-		@Override
-		public int getItemPosition(Object object) {
-
-			if (object instanceof FragmentSettings) {
-				FragmentSettings fragment = (FragmentSettings) object;
-				if (fmanager.getFragments().contains(fragment)) {
-					return POSITION_NONE;
-				} else {
-					return POSITION_UNCHANGED;
-				}
-
-			}
-			if (object instanceof FragmentNewStaple) {
-				FragmentNewStaple fragment = (FragmentNewStaple) object;
-				if (fmanager.getFragments().contains(fragment)) {
-					return POSITION_NONE;
-				} else {
-					return POSITION_UNCHANGED;
-				}
-
-			}
-			if (object instanceof FragmentStaples) {
-
-				FragmentStaples fragment = (FragmentStaples) object;
-				if (fmanager.getFragments().contains(fragment)) {
-					return POSITION_NONE;
-				} else {
-					return POSITION_UNCHANGED;
-				}
-
-			}
-			return -1;
-		}
 	}
 }

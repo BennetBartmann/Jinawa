@@ -20,7 +20,7 @@ public class DialogInput extends DialogFragment {
 
 		// Use the Builder class for convenient dialog construction
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		this.input = new EditText(SlideScreenStaples.getAppContext());
+		// this.input = new EditText(SlideScreenStaples.getAppContext());
 		builder.setView(input);
 		builder.setMessage(R.string.inputText);
 		builder.setPositiveButton(R.string.Ok,
@@ -37,18 +37,16 @@ public class DialogInput extends DialogFragment {
 			String name = input.getText().toString();
 			StapleOfStaples staple = Controller.getInstance()
 					.getStapleOfStaples();
-			SlideScreenStaples slideScreen = ViewDataHolder.getInstance()
-					.getSlideScreenStaples();
+			// SlideScreenStaples slideScreen = ViewDataHolder.getInstance()
+			// .getSlideScreenStaples();
 
 			if (!name.trim().equals(noinput)) {
 				staple.createNewStaple(new StringBuffer(name));
-				slideScreen.upDateView();
-				Intent intentPaper = new Intent(
-						SlideScreenStaples.getContext(),
-						SlideScreenPapers.class);
-				intentPaper.putExtra("positionStaple", (staple.getStaples()
-						.size() == 0 ? 0 : staple.getStaples().size() - 1));
-				startActivity(intentPaper);
+				// slideScreen.upDateView(); Intent intentPaper = new Intent(
+				// SlideScreenStaples.getContext(), SlideScreenPapers.class);
+				// intentPaper.putExtra("positionStaple", (staple.getStaples()
+				// .size() == 0 ? 0 : staple.getStaples().size() - 1));
+				// startActivity(intentPaper);
 			}
 		}
 	}

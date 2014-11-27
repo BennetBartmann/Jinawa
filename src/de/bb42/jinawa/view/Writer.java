@@ -53,7 +53,6 @@ public class Writer extends Activity {
 			page.getContent().toString().trim();
 			page.save();
 		}
-		ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
 
 		super.onBackPressed();
 	}
@@ -69,7 +68,6 @@ public class Writer extends Activity {
 		public void afterTextChanged(Editable s) {
 
 			page.save(new StringBuffer(editText.getText()));
-			ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
 		}
 
 		@Override
