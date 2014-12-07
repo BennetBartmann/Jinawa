@@ -49,9 +49,12 @@ public class Writer extends Activity {
 		if (page.getContent().toString().trim().equals(noinput)) {
 			Controller.getInstance().getStapleOfStaples().getStaples()
 					.get(positionStaples).deletePaper(positionPaper);
+			ViewDataHolder.getInstance().getSlideScreenPapers().update();
+
 		} else {
 			page.getContent().toString().trim();
 			page.save();
+			ViewDataHolder.getInstance().getSlideScreenPapers().update();
 		}
 
 		super.onBackPressed();

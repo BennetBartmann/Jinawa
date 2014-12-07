@@ -3,40 +3,34 @@ package de.bb42.jinawa.view;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
-import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 
 public class SlideScreenStaples extends Activity {
 
+	protected static final int THRESHOLD = 15;
 	private static Context context;
-	private String noinput = "";
-
-	LinearLayout rl2;
-	Button[] b = new Button[200];
-	int stapleSize;
-	HorizontalScrollView sv;
-	int sum = 30;
-	Dialog dialog;
+	private LinearLayout linearLayoutinScrollView;
+	private Button[] buttonsStaple = new Button[200];
+	private int stapleSize;
+	private HorizontalScrollView scrollView;
+	private Dialog dialog;
+	private int divTimes = 1;
 	private Controller controller = Controller.getInstance();
 	private List<Staple> staples = controller.getStapleOfStaples().getStaples();
-	private StapleOfStaples staple = Controller.getInstance()
-			.getStapleOfStaples();
 	private Intent intentSettings;
 
 	@Override
@@ -47,9 +41,8 @@ public class SlideScreenStaples extends Activity {
 		SlideScreenStaples.context = this;
 		intentSettings = new Intent(SlideScreenStaples.getContext(),
 				Settings.class);
-		sv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
-
-		sv.addView(getLinLayout());
+		scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
+		scrollView.addView(getLinLayout());
 	}
 
 	public static Context getAppContext() {
@@ -79,70 +72,37 @@ public class SlideScreenStaples extends Activity {
 	}
 
 	public void update() {
-		sv.removeAllViews();
-		sv.addView(getLinLayout());
+		scrollView.removeAllViews();
+		scrollView.addView(getLinLayout());
 
 	}
 
 	private LinearLayout getLinLayout() {
 		stapleSize = getStapleSize();
-		rl2 = new LinearLayout(SlideScreenStaples.this);
+		linearLayoutinScrollView = new LinearLayout(SlideScreenStaples.this);
 		for (int i = 0; i < stapleSize; i++) {
-			b[i] = new Button(this);
-			b[i].setId(i);
-			b[i].setBackgroundResource(R.drawable.staple);
+			buttonsStaple[i] = new Button(this);
+			buttonsStaple[i].setId(i);
+			buttonsStaple[i].setBackgroundResource(R.drawable.staple);
 			if (i == stapleSize - 2) {
-				b[i].setText(R.string.newStaple);
-				b[i].setOnClickListener(onClickNewStaple);
+				buttonsStaple[i].setText(R.string.newStaple);
+				buttonsStaple[i].setOnClickListener(onClickNewStaple);
 			} else if (i == stapleSize - 1) {
-				b[i].setText(R.string.Settings);
-				b[i].setOnClickListener(onClickSettings);
+				buttonsStaple[i].setText(R.string.Settings);
+				buttonsStaple[i].setOnClickListener(onClickSettings);
 
 			} else {
-				b[i].setText(staples.get(i).getTitel());
-				b[i].setOnClickListener(onClickGoToStaple);
-				b[i].setOnLongClickListener(onLongClickStaple);
+				buttonsStaple[i].setText(staples.get(i).getTitel());
+				buttonsStaple[i].setOnClickListener(onClickGoToStaple);
+				buttonsStaple[i].setOnLongClickListener(onLongClickStaple);
 			}
 
-			b[i].setLayoutParams(new LinearLayout.LayoutParams(
-					getScreenWidth(), (int) LayoutParams.MATCH_PARENT));
-			rl2.addView(b[i]);
+			buttonsStaple[i].setLayoutParams(new LinearLayout.LayoutParams(
+					getScreenWidth() / divTimes,
+					(int) LayoutParams.MATCH_PARENT));
+			linearLayoutinScrollView.addView(buttonsStaple[i]);
 		}
-		return rl2;
-	}
-
-	private void dialog() {
-		final EditText input = new EditText(this);
-
-		new AlertDialog.Builder(SlideScreenStaples.this)
-				.setTitle(R.string.newStaple)
-				.setMessage(R.string.inputText)
-				.setView(input)
-				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						String name = input.getText().toString();
-						if (!name.trim().equals(noinput)) {
-							staple.createNewStaple(new StringBuffer(name));
-							Intent intentPaper = new Intent(SlideScreenStaples
-									.getContext(), SlideScreenPapers.class);
-							intentPaper.putExtra("positionStaple", (staple
-									.getStaples().size() == 0 ? 0 : staple
-									.getStaples().size() - 1));
-							update();
-							startActivity(intentPaper);
-						} else {
-
-							// Fehlermeldung
-						}
-					}
-				})
-				.setNegativeButton("Cancel",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								// Do nothing.
-							}
-						}).show();
+		return linearLayoutinScrollView;
 	}
 
 	View.OnClickListener onClickSettings = new View.OnClickListener() {
@@ -152,14 +112,16 @@ public class SlideScreenStaples extends Activity {
 	};
 	View.OnClickListener onClickNewStaple = new View.OnClickListener() {
 		public void onClick(View v) {
-			dialog();
+			DialogDelete DIaDel = new DialogDelete(0, 0,
+					SlideScreenStaples.context);
+			DIaDel.getNameStaple();
 		}
 	};
 	View.OnLongClickListener onLongClickStaple = new View.OnLongClickListener() {
 		public boolean onLongClick(View v) {
 			int id = ((Button) v).getId();
 
-			displayAlert(id);
+			onLongClickDialog(id);
 			return true;
 		}
 	};
@@ -167,10 +129,17 @@ public class SlideScreenStaples extends Activity {
 	private int getScreenWidth() {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		return metrics.widthPixels;
+		if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90
+				|| getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270) {
+			return metrics.widthPixels / 3;
+
+		} else {
+
+			return metrics.widthPixels;
+		}
 	}
 
-	private void displayAlert(final int id) {
+	private void onLongClickDialog(final int id) {
 		dialog = new Dialog(SlideScreenStaples.getContext());
 		dialog.setContentView(R.layout.longclickdialogstaple);
 		dialog.setTitle(R.string.optionsStaple);
@@ -181,7 +150,7 @@ public class SlideScreenStaples extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				DialogDelete DIaDel = new DialogDelete(id,
+				DialogDelete DIaDel = new DialogDelete(id, 0,
 						SlideScreenStaples.context);
 				DIaDel.getDeletDialog();
 			}
@@ -192,7 +161,7 @@ public class SlideScreenStaples extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				DialogDelete DIaDel = new DialogDelete(id,
+				DialogDelete DIaDel = new DialogDelete(id, 0,
 						SlideScreenStaples.context);
 				DIaDel.getRenameDialog();
 
@@ -201,4 +170,9 @@ public class SlideScreenStaples extends Activity {
 		dialog.show();
 
 	}
+
+	public void startPaper(Intent intentPaper) {
+		startActivity(intentPaper);
+	}
+
 }
