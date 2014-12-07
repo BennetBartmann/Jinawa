@@ -38,7 +38,6 @@ public class DialogDeletePaper extends DialogFragment {
 
 			Controller.getInstance().getStapleOfStaples().getStaples()
 					.get(positionStaple).deletePaper(positionPaper);
-			ViewDataHolder.getInstance().getSlideScreenPapers().upDateView();
 
 		}
 	}

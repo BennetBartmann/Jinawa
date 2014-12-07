@@ -3,12 +3,11 @@ package de.bb42.jinawa.view;
 import de.bb42.jinawa.R;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class DialogLongClickStaples extends DialogFragment {
+public class DialogLongClickStaples extends android.app.DialogFragment {
 	private int position;
 	private Dialog dialog;
 
@@ -29,9 +28,7 @@ public class DialogLongClickStaples extends DialogFragment {
 		deleteButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				DialogDelete dialogDelete = new DialogDelete(position);
-
-				dialogDelete.show(getFragmentManager(), getTag());
+				// DialogDelete dialogDelete = new DialogDelete(position);
 
 				dialog.hide();
 
@@ -44,7 +41,6 @@ public class DialogLongClickStaples extends DialogFragment {
 
 			public void onClick(View arg0) {
 				DialogRename dialogRename = new DialogRename(position);
-				dialogRename.show(getFragmentManager(), getTag());
 				dialog.hide();
 
 			}
@@ -53,4 +49,5 @@ public class DialogLongClickStaples extends DialogFragment {
 
 		return dialog;
 	}
+
 }

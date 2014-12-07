@@ -1,164 +1,131 @@
 package de.bb42.jinawa.view;
 
+import java.util.List;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.HorizontalScrollView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
+import de.bb42.jinawa.controller.datatypes.Page;
 import de.bb42.jinawa.controller.datatypes.Staple;
 
-/**
- * SlideScreen for Staples
- * 
- * @author Johannes Becker
- * 
- */
-public class SlideScreenPapers extends FragmentActivity {
+public class SlideScreenPapers extends Activity {
 	private static Context context;
-	private Controller controller = Controller.getInstance();
+	RelativeLayout rl1;
+	LinearLayout rl2;
+	HorizontalScrollView sv;
+	Button[] b = new Button[200];
 	private int positionStaples;
-	private Staple staple;
-	private int stapleSize;
-	private FragmentManager fmanager;
+	private int paperTitleLenght = 20;
+	private int pageSize;
+	private Controller controller = Controller.getInstance();
+	private List<Page> pages;
+	private Bundle bundle;
+	private Intent intentWriter;
 
-	/**
-	 * The pager widget, which handles animation and allows swiping horizontally
-	 * to access previous and next wizard steps.
-	 */
-	private ViewPager mPager;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		SlideScreenPapers.context = this;
+		intentWriter = new Intent(SlideScreenPapers.getContext(), Writer.class);
+		Intent IntentStaples = getIntent();
+		bundle = IntentStaples.getExtras();
+		if (bundle != null) {
+			positionStaples = (Integer) bundle.get("positionStaple");
+			pages = controller.getStapleOfStaples().getStaples()
+					.get(positionStaples).getPages();
+			pageSize = pages.size() + 1;
+		}
+		rl1 = (RelativeLayout) findViewById(R.id.rl);
+		sv = new HorizontalScrollView(SlideScreenPapers.this);
+		rl2 = new LinearLayout(SlideScreenPapers.this);
 
-	/**
-	 * provides the pages to the ViewPager
-	 */
-	private PagerAdapter mPagerAdapter;
+		for (int i = 0; i < pageSize; i++) {
+			b[i] = new Button(this);
+			b[i].setId(i);
+			b[i].setBackgroundResource(R.drawable.paper);
+			if (i == pageSize - 1) {
+				b[i].setText(R.string.newPaper);
+				b[i].setOnClickListener(onClickNewPaper);
+			} else {
+				b[i].setOnClickListener(onClickGoToPaper);
+				Page page = pages.get(i);
+				int length = page.getContent().length();
+				if (length >= paperTitleLenght) {
+					b[i].setText(page.getContent().subSequence(0,
+							paperTitleLenght));
+				} else if (length == 0) {
+					b[i].setText(R.string.emptyPaper);
+				} else {
+					b[i].setText(page.getContent().subSequence(0, length));
+				}
+				b[i].setOnLongClickListener(new OnLongClickListener() {
+					public boolean onLongClick(View v) {
 
-	/**
-	 * Get the context of SlideScreenStaples
-	 * 
-	 * @return Context of SlideScreenStaples
-	 */
+						return true;
+					}
+				});
+			}
+			DisplayMetrics metrics = new DisplayMetrics();
+			getWindowManager().getDefaultDisplay().getMetrics(metrics);
+			int width = metrics.widthPixels;
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+					width / 2, (int) LayoutParams.MATCH_PARENT);
+
+			b[i].setLayoutParams(params);
+			rl2.addView(b[i]);
+			
+		}
+
+		sv.addView(rl2);
+		rl1.addView(sv);
+	}
+
+	public static Context getAppContext() {
+		return SlideScreenPapers.getContext();
+	}
+
 	public static Context getContext() {
 		return context;
 	}
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_screen_slide);
-		Intent IntentStaples = getIntent();
-		Bundle b = IntentStaples.getExtras();
-		if (b != null) {
-			positionStaples = (Integer) b.get("positionStaple");
-			staple = controller.getStapleOfStaples().getStaples()
-					.get(positionStaples);
-			stapleSize = staple.getPages().size() + 1;
-		}
-
-		SlideScreenPapers.context = this;
-		// Instantiate a ViewPager and a PagerAdapter.
-		mPager = (ViewPager) findViewById(R.id.pager);
-		mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-		mPager.setAdapter(mPagerAdapter);
-		ViewDataHolder.getInstance().setSlideScreenPapers(this);
+	public void update() {
+		
 	}
 
-	/**
-	 * A pager adapter that represents ScreenSlidePageFragment objects
-	 */
-	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		public ScreenSlidePagerAdapter(FragmentManager fm) {
-			super(fm);
-			fmanager = fm;
+	View.OnClickListener onClickNewPaper = new View.OnClickListener() {
+		public void onClick(View v) {
+			Staple latestStaple = Controller.getInstance().getStapleOfStaples()
+					.getStaples().get(positionStaples);
+			latestStaple.createNewPage();
+
+			Intent intentWriter = new Intent(context, Writer.class);
+			intentWriter.putExtra("positionPaper", (latestStaple.getPages()
+					.size() < 1 ? 0 : latestStaple.getPages().size() - 1));
+			intentWriter.putExtra("positionStaples", positionStaples);
+			startActivity(intentWriter);
 		}
-
-		@Override
-		public Fragment getItem(int position) {
-
-			if (position == stapleSize - 1) {
-				FragmentNewPaper fragment = new FragmentNewPaper(
-						positionStaples);
-				return fragment;
-
-			} else {
-				FragmentPapers fragment = new FragmentPapers(staple.getPages()
-						.get(position), position, positionStaples);
-				return fragment;
-			}
+	};
+	View.OnClickListener onClickGoToPaper = new View.OnClickListener() {
+		public void onClick(View v) {
+			int id = ((Button) v).getId();
+			intentWriter.putExtra("positionPaper", id);
+			intentWriter.putExtra("positionStaples", positionStaples);
+			startActivity(intentWriter);
 		}
-
-		@Override
-		public int getCount() {
-			return stapleSize;
-		}
-
-		@Override
-		public int getItemPosition(Object object) {
-
-			Log.v(STORAGE_SERVICE, object.getClass() + "");
-			if (object instanceof FragmentNewPaper) {
-				FragmentNewPaper fragment = (FragmentNewPaper) object;
-				if (fmanager.getFragments().contains(fragment)) {
-					return POSITION_NONE;
-				} else {
-					return POSITION_UNCHANGED;
-				}
-
-			}
-			if (object instanceof FragmentPapers) {
-				FragmentPapers fragment = (FragmentPapers) object;
-				if (fmanager.getFragments().contains(fragment)) {
-					return POSITION_NONE;
-				} else {
-					return POSITION_UNCHANGED;
-				}
-
-			}
-
-			return -1;
-		}
-	}
-
-	public void upDateData() {
-		staple = controller.getStapleOfStaples().getStaples()
-				.get(positionStaples);
-		if (staple != null) {
-			stapleSize = staple.getPages().size() + 1;
-		} else {
-			// error
-		}
-
-	}
-
-	public void upDateView() {
-		upDateData();
-		mPager.getAdapter().notifyDataSetChanged();
-	}
-
-	@Override
-	public void onBackPressed() {
-		ViewDataHolder.getInstance().getSlideScreenStaples().upDateView();
-		super.onBackPressed();
-
-	}
-
-	public void upDateViewAndSendIntent() {
-		Staple latestStaple = Controller.getInstance().getStapleOfStaples()
-				.getStaples().get(positionStaples);
-
-		Intent intentWriter = new Intent(context, Writer.class);
-		intentWriter.putExtra("positionPaper",
-				(latestStaple.getPages().size() < 1 ? 0 : latestStaple
-						.getPages().size() - 1));
-		intentWriter.putExtra("positionStaples", positionStaples);
-		upDateView();
-		startActivity(intentWriter);
-
-	}
+	};
 }

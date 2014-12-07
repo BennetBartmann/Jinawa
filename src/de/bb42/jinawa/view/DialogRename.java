@@ -23,7 +23,7 @@ public class DialogRename extends DialogFragment {
 
 		// Use the Builder class for convenient dialog construction
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		this.input = new EditText(SlideScreenStaples.getAppContext());
+		//this.input = new EditText(SlideScreenStaples.getAppContext());
 		builder.setView(input);
 		builder.setMessage(R.string.renameStaple);
 		builder.setPositiveButton(R.string.Ok,
@@ -41,8 +41,7 @@ public class DialogRename extends DialogFragment {
 			if (!name.trim().equals(noinput)) {
 				Controller.getInstance().getStapleOfStaples().getStaples()
 						.get(position).setNewTitel(new StringBuffer(name));
-				ViewDataHolder.getInstance().getSlideScreenStaples()
-						.upDateView();
+				
 
 			}
 		}
