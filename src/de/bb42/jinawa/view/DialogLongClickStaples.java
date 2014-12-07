@@ -28,8 +28,7 @@ public class DialogLongClickStaples extends android.app.DialogFragment {
 		deleteButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
-				DialogDelete dialogDelete = new DialogDelete(position);
-
+				// DialogDelete dialogDelete = new DialogDelete(position);
 
 				dialog.hide();
 

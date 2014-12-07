@@ -3,35 +3,18 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="fill_parent"
-        android:layout_height="25sp" >
+        android:layout_height="fill_parent"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:scrollHorizontally="false"
+        android:scrollbars="vertical"
+        android:textIsSelectable="true" >
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:ems="10"
-            android:gravity="top|left"
-            android:inputType="textMultiLine"
-            android:scrollHorizontally="false"
-            android:scrollbars="vertical"
-            android:textIsSelectable="true" >
-
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
+        <requestFocus />
+    </EditText>
 
 </LinearLayout>
