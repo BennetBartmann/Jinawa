@@ -52,6 +52,7 @@ public class Writer extends Activity {
 		} else {
 			page.getContent().toString().trim();
 			page.save();
+			ViewDataHolder.getInstance().getSlideScreenPapers().update();
 		}
 
 		super.onBackPressed();

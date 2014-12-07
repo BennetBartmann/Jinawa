@@ -9,6 +9,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
@@ -24,8 +25,7 @@ import de.bb42.jinawa.controller.datatypes.Staple;
 
 public class SlideScreenPapers extends Activity {
 	private static Context context;
-	RelativeLayout rl1;
-	LinearLayout rl2;
+	LinearLayout linearLayoutinScrollView;
 	HorizontalScrollView sv;
 	Button[] b = new Button[200];
 	private int positionStaples;
@@ -39,7 +39,8 @@ public class SlideScreenPapers extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_screen_slide);
+		ViewDataHolder.getInstance().setSlideScreenPapers(this);
 		SlideScreenPapers.context = this;
 		intentWriter = new Intent(SlideScreenPapers.getContext(), Writer.class);
 		Intent IntentStaples = getIntent();
@@ -50,10 +51,52 @@ public class SlideScreenPapers extends Activity {
 					.get(positionStaples).getPages();
 			pageSize = pages.size() + 1;
 		}
-		rl1 = (RelativeLayout) findViewById(R.id.rl);
-		sv = new HorizontalScrollView(SlideScreenPapers.this);
-		rl2 = new LinearLayout(SlideScreenPapers.this);
+		sv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
 
+		sv.addView(getLinLayout());
+	}
+
+	public static Context getAppContext() {
+		return SlideScreenPapers.getContext();
+	}
+
+	public static Context getContext() {
+		return context;
+	}
+
+	public void update() {
+		sv.removeAllViews();
+		sv.addView(getLinLayout());
+
+	}
+
+	private int getScreenWidth() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90
+				|| getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270) {
+			return metrics.widthPixels / 3;
+
+		} else {
+
+			return metrics.widthPixels;
+		}
+	}
+
+	private int getStapleSize() {
+		List<Page> pages = controller.getStapleOfStaples().getStaples()
+				.get(positionStaples).getPages();
+
+		if (pages != null) {
+			return pages.size() + 1;
+		} else {
+			return 0;
+		}
+	}
+
+	private LinearLayout getLinLayout() {
+		pageSize = getStapleSize();
+		linearLayoutinScrollView = new LinearLayout(SlideScreenPapers.this);
 		for (int i = 0; i < pageSize; i++) {
 			b[i] = new Button(this);
 			b[i].setId(i);
@@ -80,31 +123,11 @@ public class SlideScreenPapers extends Activity {
 					}
 				});
 			}
-			DisplayMetrics metrics = new DisplayMetrics();
-			getWindowManager().getDefaultDisplay().getMetrics(metrics);
-			int width = metrics.widthPixels;
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-					width / 2, (int) LayoutParams.MATCH_PARENT);
-
-			b[i].setLayoutParams(params);
-			rl2.addView(b[i]);
-			
+			b[i].setLayoutParams(new LinearLayout.LayoutParams(
+					getScreenWidth(), (int) LayoutParams.MATCH_PARENT));
+			linearLayoutinScrollView.addView(b[i]);
 		}
-
-		sv.addView(rl2);
-		rl1.addView(sv);
-	}
-
-	public static Context getAppContext() {
-		return SlideScreenPapers.getContext();
-	}
-
-	public static Context getContext() {
-		return context;
-	}
-
-	public void update() {
-		
+		return linearLayoutinScrollView;
 	}
 
 	View.OnClickListener onClickNewPaper = new View.OnClickListener() {
@@ -117,7 +140,9 @@ public class SlideScreenPapers extends Activity {
 			intentWriter.putExtra("positionPaper", (latestStaple.getPages()
 					.size() < 1 ? 0 : latestStaple.getPages().size() - 1));
 			intentWriter.putExtra("positionStaples", positionStaples);
+			update();
 			startActivity(intentWriter);
+
 		}
 	};
 	View.OnClickListener onClickGoToPaper = new View.OnClickListener() {
