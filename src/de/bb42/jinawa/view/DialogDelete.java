@@ -1,20 +1,14 @@
 package de.bb42.jinawa.view;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.EditText;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
-import de.bb42.jinawa.controller.datatypes.Staple;
 import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 
 public class DialogDelete extends Activity {
