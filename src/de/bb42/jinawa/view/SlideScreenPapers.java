@@ -3,6 +3,7 @@ package de.bb42.jinawa.view;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -34,6 +35,7 @@ public class SlideScreenPapers extends Activity {
 	private Controller controller = Controller.getInstance();
 	private List<Page> pages;
 	private Bundle bundle;
+	private Dialog dialog;
 	private Intent intentWriter;
 
 	@Override
@@ -116,12 +118,8 @@ public class SlideScreenPapers extends Activity {
 				} else {
 					b[i].setText(page.getContent().subSequence(0, length));
 				}
-				b[i].setOnLongClickListener(new OnLongClickListener() {
-					public boolean onLongClick(View v) {
+				b[i].setOnLongClickListener(onLongClickPaper);
 
-						return true;
-					}
-				});
 			}
 			b[i].setLayoutParams(new LinearLayout.LayoutParams(
 					getScreenWidth(), (int) LayoutParams.MATCH_PARENT));
@@ -140,17 +138,45 @@ public class SlideScreenPapers extends Activity {
 			intentWriter.putExtra("positionPaper", (latestStaple.getPages()
 					.size() < 1 ? 0 : latestStaple.getPages().size() - 1));
 			intentWriter.putExtra("positionStaples", positionStaples);
-			update();
 			startActivity(intentWriter);
 
 		}
 	};
 	View.OnClickListener onClickGoToPaper = new View.OnClickListener() {
 		public void onClick(View v) {
-			int id = ((Button) v).getId();
-			intentWriter.putExtra("positionPaper", id);
+			int positionPaper = ((Button) v).getId();
+			intentWriter.putExtra("positionPaper", positionPaper);
 			intentWriter.putExtra("positionStaples", positionStaples);
 			startActivity(intentWriter);
 		}
 	};
+	View.OnLongClickListener onLongClickPaper = new View.OnLongClickListener() {
+		public boolean onLongClick(View v) {
+			int positionPaper = ((Button) v).getId();
+
+			onLongClickDialog(positionPaper);
+			return true;
+		}
+	};
+
+	private void onLongClickDialog(final int positionPaper) {
+		dialog = new Dialog(SlideScreenPapers.getContext());
+		dialog.setContentView(R.layout.longclickdialogpaper);
+		dialog.setTitle(R.string.optionsStaple);
+
+		Button deleteButton = (Button) dialog
+				.findViewById(R.id.deletePaperButton);
+		deleteButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				dialog.dismiss();
+				DialogDelete DIaDel = new DialogDelete(positionStaples,
+						positionPaper, SlideScreenPapers.context);
+				DIaDel.getDeletDialog2();
+			}
+		});
+
+		dialog.show();
+
+	}
 }

@@ -116,7 +116,7 @@ public class SlideScreenStaples extends Activity {
 	};
 	View.OnClickListener onClickNewStaple = new View.OnClickListener() {
 		public void onClick(View v) {
-			DialogDelete DIaDel = new DialogDelete(0,
+			DialogDelete DIaDel = new DialogDelete(0, 0,
 					SlideScreenStaples.context);
 			DIaDel.getNameStaple();
 		}
@@ -154,7 +154,7 @@ public class SlideScreenStaples extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				DialogDelete DIaDel = new DialogDelete(id,
+				DialogDelete DIaDel = new DialogDelete(id, 0,
 						SlideScreenStaples.context);
 				DIaDel.getDeletDialog();
 			}
@@ -165,7 +165,7 @@ public class SlideScreenStaples extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				DialogDelete DIaDel = new DialogDelete(id,
+				DialogDelete DIaDel = new DialogDelete(id, 0,
 						SlideScreenStaples.context);
 				DIaDel.getRenameDialog();
 
