@@ -65,5 +65,15 @@ public class StapleOfStaples {
 			newStaple.setTitel(Name);
 		}
 	}
+	/**
+	 * Do Never use this in a productiv version! 
+	 * This is for Testing Purpose only, deletes ALL Staples!!
+	 */
+	public void deleteAll(){
+		for(Staple s: staples){
+			s.delete();
+		}
+		System.exit(1);
+	}
 
 }
