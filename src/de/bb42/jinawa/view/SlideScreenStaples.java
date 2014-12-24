@@ -1,6 +1,8 @@
 package de.bb42.jinawa.view;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,6 +14,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -21,17 +24,18 @@ import de.bb42.jinawa.controller.datatypes.Staple;
 
 public class SlideScreenStaples extends Activity {
 
-	protected static final int THRESHOLD = 15;
 	private static Context context;
 	private LinearLayout linearLayoutinScrollView;
 	private Button[] buttonsStaple = new Button[200];
 	private int stapleSize;
 	private HorizontalScrollView scrollView;
 	private Dialog dialog;
-	private int divTimes = 1;
 	private Controller controller = Controller.getInstance();
 	private List<Staple> staples = controller.getStapleOfStaples().getStaples();
 	private Intent intentSettings;
+	private Timer t;
+	int timeInterval = 160;
+	private int delay = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,20 @@ public class SlideScreenStaples extends Activity {
 				Settings.class);
 		scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
 		scrollView.addView(getLinLayout());
+		t = new Timer();
+
+		scrollView.getViewTreeObserver().addOnScrollChangedListener(
+				new OnScrollChangedListener() {
+
+					@Override
+					public void onScrollChanged() {
+						if (delay == 10) {
+							setupTimer();
+							delay = 0;
+						}
+						delay++;
+					}
+				});
 	}
 
 	public static Context getAppContext() {
@@ -98,8 +116,7 @@ public class SlideScreenStaples extends Activity {
 			}
 
 			buttonsStaple[i].setLayoutParams(new LinearLayout.LayoutParams(
-					getScreenWidth() / divTimes,
-					(int) LayoutParams.MATCH_PARENT));
+					getStapleWidth(), (int) LayoutParams.MATCH_PARENT));
 			linearLayoutinScrollView.addView(buttonsStaple[i]);
 		}
 		return linearLayoutinScrollView;
@@ -112,8 +129,7 @@ public class SlideScreenStaples extends Activity {
 	};
 	View.OnClickListener onClickNewStaple = new View.OnClickListener() {
 		public void onClick(View v) {
-			DialogDelete DIaDel = new DialogDelete(0, 0,
-					SlideScreenStaples.context);
+			Dialogs DIaDel = new Dialogs(0, 0, SlideScreenStaples.context);
 			DIaDel.getNameStaple();
 		}
 	};
@@ -126,7 +142,37 @@ public class SlideScreenStaples extends Activity {
 		}
 	};
 
-	private int getScreenWidth() {
+	private void setupTimer() {
+		t.cancel();
+		t = new Timer();
+		t.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						centre();
+					}
+				});
+			}
+		}, timeInterval);
+	}
+
+	private void centre() {
+
+		int scroll = scrollView.getScrollX() % getStapleWidth();
+		if (scroll <= getStapleWidth() / 2) {
+			scrollView.smoothScrollTo(scrollView.getScrollX() - scroll, 0);
+		} else {
+			scrollView.smoothScrollTo(scrollView.getScrollX()
+					+ (getStapleWidth() - scroll), 0);
+
+		}
+	}
+
+	private int getStapleWidth() {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90
@@ -150,8 +196,7 @@ public class SlideScreenStaples extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				DialogDelete DIaDel = new DialogDelete(id, 0,
-						SlideScreenStaples.context);
+				Dialogs DIaDel = new Dialogs(id, 0, SlideScreenStaples.context);
 				DIaDel.getDeletDialog();
 			}
 		});
@@ -161,8 +206,7 @@ public class SlideScreenStaples extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				DialogDelete DIaDel = new DialogDelete(id, 0,
-						SlideScreenStaples.context);
+				Dialogs DIaDel = new Dialogs(id, 0, SlideScreenStaples.context);
 				DIaDel.getRenameDialog();
 
 			}

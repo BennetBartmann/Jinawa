@@ -1,6 +1,8 @@
 package de.bb42.jinawa.view;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -12,6 +14,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -23,7 +26,7 @@ import de.bb42.jinawa.controller.datatypes.Staple;
 public class SlideScreenPapers extends Activity {
 	private static Context context;
 	LinearLayout linearLayoutinScrollView;
-	HorizontalScrollView sv;
+	HorizontalScrollView scrollView;
 	Button[] b = new Button[200];
 	private int positionStaples;
 	private int paperTitleLenght = 20;
@@ -32,6 +35,10 @@ public class SlideScreenPapers extends Activity {
 	private List<Page> pages;
 	private Bundle bundle;
 	private Dialog dialog;
+	private Timer t;
+	private int delay = 0;
+	private int timeInterval = 160;
+
 	private Intent intentWriter;
 
 	@Override
@@ -40,6 +47,7 @@ public class SlideScreenPapers extends Activity {
 		setContentView(R.layout.activity_screen_slide);
 		ViewDataHolder.getInstance().setSlideScreenPapers(this);
 		SlideScreenPapers.context = this;
+		t = new Timer();
 		intentWriter = new Intent(SlideScreenPapers.getContext(), Writer.class);
 		Intent IntentStaples = getIntent();
 		bundle = IntentStaples.getExtras();
@@ -49,9 +57,21 @@ public class SlideScreenPapers extends Activity {
 					.get(positionStaples).getPages();
 			pageSize = pages.size() + 1;
 		}
-		sv = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
+		scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
+		scrollView.addView(getLinLayout());
+		scrollView.getViewTreeObserver().addOnScrollChangedListener(
+				new OnScrollChangedListener() {
 
-		sv.addView(getLinLayout());
+					@Override
+					public void onScrollChanged() {
+						if (delay == 10) {
+							setupTimer();
+							delay = 0;
+						}
+						delay++;
+					}
+				});
+
 	}
 
 	public static Context getAppContext() {
@@ -63,12 +83,12 @@ public class SlideScreenPapers extends Activity {
 	}
 
 	public void update() {
-		sv.removeAllViews();
-		sv.addView(getLinLayout());
+		scrollView.removeAllViews();
+		scrollView.addView(getLinLayout());
 
 	}
 
-	private int getScreenWidth() {
+	private int getStapleWidth() {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90
@@ -118,7 +138,7 @@ public class SlideScreenPapers extends Activity {
 
 			}
 			b[i].setLayoutParams(new LinearLayout.LayoutParams(
-					getScreenWidth(), (int) LayoutParams.MATCH_PARENT));
+					getStapleWidth(), (int) LayoutParams.MATCH_PARENT));
 			linearLayoutinScrollView.addView(b[i]);
 		}
 		return linearLayoutinScrollView;
@@ -155,6 +175,36 @@ public class SlideScreenPapers extends Activity {
 		}
 	};
 
+	private void setupTimer() {
+		t.cancel();
+		t = new Timer();
+		t.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						centre();
+					}
+				});
+			}
+		}, timeInterval);
+	}
+
+	private void centre() {
+
+		int scroll = scrollView.getScrollX() % getStapleWidth();
+		if (scroll <= getStapleWidth() / 2) {
+			scrollView.smoothScrollTo(scrollView.getScrollX() - scroll, 0);
+		} else {
+			scrollView.smoothScrollTo(scrollView.getScrollX()
+					+ (getStapleWidth() - scroll), 0);
+
+		}
+	}
+
 	private void onLongClickDialog(final int positionPaper) {
 		dialog = new Dialog(SlideScreenPapers.getContext());
 		dialog.setContentView(R.layout.longclickdialogpaper);
@@ -166,9 +216,9 @@ public class SlideScreenPapers extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				DialogDelete DIaDel = new DialogDelete(positionStaples,
-						positionPaper, SlideScreenPapers.context);
-				DIaDel.getDeletDialog2();
+				Dialogs DIaDel = new Dialogs(positionStaples, positionPaper,
+						SlideScreenPapers.context);
+				DIaDel.getDeleteDialogStaple();
 			}
 		});
 

@@ -11,7 +11,7 @@ import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
 
-public class DialogDelete extends Activity {
+public class Dialogs extends Activity {
 	private int positionPaper;
 	private int positionStaple;
 
@@ -21,7 +21,7 @@ public class DialogDelete extends Activity {
 	private StapleOfStaples staple = Controller.getInstance()
 			.getStapleOfStaples();
 
-	public DialogDelete(int positionStaple, int positionPaper, Context context) {
+	public Dialogs(int positionStaple, int positionPaper, Context context) {
 		this.positionPaper = positionPaper;
 		this.positionStaple = positionStaple;
 
@@ -119,20 +119,20 @@ public class DialogDelete extends Activity {
 						}).show();
 	}
 
-	public void getDeletDialog2() {
+	public void getDeleteDialogStaple() {
 
 		// Use the Builder class for convenient dialog construction
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle(R.string.deleteStaple);
 		builder.setMessage(R.string.deleteStapleText);
-		builder.setPositiveButton(R.string.Ok, new DeleteButtonListener2());
+		builder.setPositiveButton(R.string.Ok, new DeleteButtonListenerStaple());
 		builder.setNegativeButton(R.string.Cancel, new DoNothingListener());
 		// Create the AlertDialog object and return it
 		Dialog dia = builder.create();
 		dia.show();
 	}
 
-	public class DeleteButtonListener2 implements
+	public class DeleteButtonListenerStaple implements
 			DialogInterface.OnClickListener {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
@@ -141,5 +141,13 @@ public class DialogDelete extends Activity {
 					.get(positionStaple).deletePaper(positionPaper);
 			ViewDataHolder.getInstance().getSlideScreenPapers().update();
 		}
+	}
+
+	public class DoNothingListener implements DialogInterface.OnClickListener {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			// Does literally nothing.
+		}
+
 	}
 }
