@@ -1,11 +1,16 @@
 package de.bb42.jinawa.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Page;
@@ -21,7 +26,9 @@ public class Writer extends Activity {
 	private int positionPaper;
 	private int positionStaples;
 	private String noinput = "";
-
+	List<String> info = new ArrayList<String>();
+	TextView textView;
+	private int count = 0;
 	private Page page;
 
 	/**
@@ -29,7 +36,7 @@ public class Writer extends Activity {
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_paper);
+		setContentView(R.layout.writer);
 		Intent IntentStaples = getIntent();
 		Bundle b = IntentStaples.getExtras();
 		if (b != null) {
@@ -37,14 +44,37 @@ public class Writer extends Activity {
 			positionStaples = (Integer) b.get("positionStaples");
 			page = controller.getStapleOfStaples().getStaples()
 					.get(positionStaples).getPages().get(positionPaper);
-			final EditText editText = (EditText) findViewById(R.id.editText);
-			String text = page.getContent().toString();
-			editText.setText(text);
-			editText.addTextChangedListener(new ContentChangedListener(editText));
+
+		} else {
+			// error
 		}
+		final EditText editText = (EditText) findViewById(R.id.editText);
+		String text = page.getContent().toString();
+		editText.setText(text);
+		editText.addTextChangedListener(new ContentChangedListener(editText));
+		textView = (TextView) findViewById(R.id.infoBar);
+		updateInfo();
 	}
 
-	@Override
+	public void toggleInfo(View v) {
+		count++;
+		if (count == info.size()) {
+			count = 0;
+		}
+
+		textView.setText(info.get(count));
+
+	}
+
+	public void updateInfo() {
+		info.clear();
+		info.add(R.string.countChar + "" + page.countCharacters());
+		info.add(R.string.countCharWithoutWhitespaces + ""
+				+ page.countCharactersWithOutWhitespace());
+		textView.setText(info.get(count));
+
+	}
+
 	public void onBackPressed() {
 		if (page.getContent().toString().trim().equals(noinput)) {
 			Controller.getInstance().getStapleOfStaples().getStaples()
@@ -71,6 +101,8 @@ public class Writer extends Activity {
 		public void afterTextChanged(Editable s) {
 
 			page.save(new StringBuffer(editText.getText()));
+			updateInfo();
+
 		}
 
 		@Override

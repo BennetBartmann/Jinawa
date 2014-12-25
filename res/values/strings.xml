@@ -21,6 +21,8 @@
     <string name="optionsPaper">Options Paper</string>
     <string name="Settings">Information</string>
     <string name="emptyPaper">Emtpy Paper</string>
+    <string name="countChar">Charakter count: </string>
+    <string name="countCharWithoutWhitespaces">Charakter count without Whitespaces: </string>
     <string name="about">        &quot;Jinawa's target is to be a simple and clean writing app for Android. 
         It strongly focuses on the act of writing text, thus filesystem access or manual selection of the saving position is not necessary. Jinawa uses the widly known office concept of slides and notebooks. 
         Each notebook can contain as many pages as you want.&quot;</string>

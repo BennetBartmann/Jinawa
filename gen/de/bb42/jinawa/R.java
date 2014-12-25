@@ -27,20 +27,21 @@ public final class R {
         public static final int staple=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f080006;
-        public static final int deletePaperButton=0x7f080002;
-        public static final int deleteStapleButton=0x7f080003;
-        public static final int editText=0x7f080000;
-        public static final int horizontalScrollView1=0x7f080001;
-        public static final int renameStapleButton=0x7f080004;
-        public static final int settingsAbout=0x7f080005;
+        public static final int action_settings=0x7f080007;
+        public static final int deletePaperButton=0x7f080001;
+        public static final int deleteStapleButton=0x7f080002;
+        public static final int editText=0x7f080006;
+        public static final int horizontalScrollView1=0x7f080000;
+        public static final int infoBar=0x7f080005;
+        public static final int renameStapleButton=0x7f080003;
+        public static final int settingsAbout=0x7f080004;
     }
     public static final class layout {
-        public static final int activity_paper=0x7f030000;
-        public static final int activity_screen_slide=0x7f030001;
-        public static final int longclickdialogpaper=0x7f030002;
-        public static final int longclickdialogstaple=0x7f030003;
-        public static final int settings=0x7f030004;
+        public static final int activity_screen_slide=0x7f030000;
+        public static final int longclickdialogpaper=0x7f030001;
+        public static final int longclickdialogstaple=0x7f030002;
+        public static final int settings=0x7f030003;
+        public static final int writer=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f070000;
@@ -53,9 +54,11 @@ public final class R {
         public static final int Settings=0x7f050012;
         public static final int Staples=0x7f050004;
         public static final int Writer=0x7f050002;
-        public static final int about=0x7f050014;
+        public static final int about=0x7f050016;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
+        public static final int countChar=0x7f050014;
+        public static final int countCharWithoutWhitespaces=0x7f050015;
         public static final int deletePaper=0x7f05000c;
         public static final int deletePaperText=0x7f05000d;
         public static final int deleteStaple=0x7f05000a;

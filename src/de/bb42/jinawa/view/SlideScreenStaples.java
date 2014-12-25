@@ -8,8 +8,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,9 +36,10 @@ public class SlideScreenStaples extends Activity {
 	private Controller controller = Controller.getInstance();
 	private List<Staple> staples = controller.getStapleOfStaples().getStaples();
 	private Intent intentSettings;
-	private Timer t;
-	int timeInterval = 160;
+	private Timer timer = new Timer();;
+	private int timeInterval = 160;
 	private int delay = 0;
+	private int orientation;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,14 +51,13 @@ public class SlideScreenStaples extends Activity {
 				Settings.class);
 		scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
 		scrollView.addView(getLinLayout());
-		t = new Timer();
-
 		scrollView.getViewTreeObserver().addOnScrollChangedListener(
 				new OnScrollChangedListener() {
 
 					@Override
 					public void onScrollChanged() {
-						if (delay == 10) {
+						// only set every 5 pixel a new Timer for Performance
+						if (delay == 5) {
 							setupTimer();
 							delay = 0;
 						}
@@ -71,6 +74,7 @@ public class SlideScreenStaples extends Activity {
 		return context;
 	}
 
+	// OnClick goto PaperView
 	View.OnClickListener onClickGoToStaple = new View.OnClickListener() {
 		public void onClick(View v) {
 			Intent intentPaper = new Intent(SlideScreenStaples.context,
@@ -81,6 +85,7 @@ public class SlideScreenStaples extends Activity {
 		}
 	};
 
+	// return Staple Size
 	private int getStapleSize() {
 		if (staples != null) {
 			return controller.getStapleOfStaples().getStaples().size() + 2;
@@ -89,15 +94,18 @@ public class SlideScreenStaples extends Activity {
 		}
 	}
 
+	// Updates View
 	public void update() {
 		scrollView.removeAllViews();
 		scrollView.addView(getLinLayout());
 
 	}
 
+	// Creates the LinView to put into Scrollview
 	private LinearLayout getLinLayout() {
 		stapleSize = getStapleSize();
 		linearLayoutinScrollView = new LinearLayout(SlideScreenStaples.this);
+
 		for (int i = 0; i < stapleSize; i++) {
 			buttonsStaple[i] = new Button(this);
 			buttonsStaple[i].setId(i);
@@ -108,31 +116,43 @@ public class SlideScreenStaples extends Activity {
 			} else if (i == stapleSize - 1) {
 				buttonsStaple[i].setText(R.string.Settings);
 				buttonsStaple[i].setOnClickListener(onClickSettings);
-
 			} else {
 				buttonsStaple[i].setText(staples.get(i).getTitel());
+				buttonsStaple[i].setGravity(Gravity.CENTER_HORIZONTAL);
 				buttonsStaple[i].setOnClickListener(onClickGoToStaple);
 				buttonsStaple[i].setOnLongClickListener(onLongClickStaple);
+
 			}
+			// Trying to set the Titel in die Titlebar
+			int navBarHeight = getNavigationBarHeight(this, orientation);
+			int screenHeight = getMetrics().heightPixels;
+			int hightOnScreenInPixel = (int) ((screenHeight - navBarHeight) / 3);
+			buttonsStaple[i].setPadding(0, hightOnScreenInPixel, 0, 0);
 
 			buttonsStaple[i].setLayoutParams(new LinearLayout.LayoutParams(
 					getStapleWidth(), (int) LayoutParams.MATCH_PARENT));
 			linearLayoutinScrollView.addView(buttonsStaple[i]);
+
 		}
 		return linearLayoutinScrollView;
 	}
 
+	// OnClickAction Intent for Settings /goto SettingsView
 	View.OnClickListener onClickSettings = new View.OnClickListener() {
 		public void onClick(View v) {
 			startActivity(intentSettings);
 		}
 	};
+	// OnClickAction Intent for NewStaple /goto NewStapleView
+
 	View.OnClickListener onClickNewStaple = new View.OnClickListener() {
 		public void onClick(View v) {
 			Dialogs DIaDel = new Dialogs(0, 0, SlideScreenStaples.context);
 			DIaDel.getNameStaple();
 		}
 	};
+	// OnLONGClickAction Intent for Staples /ShowDialog
+
 	View.OnLongClickListener onLongClickStaple = new View.OnLongClickListener() {
 		public boolean onLongClick(View v) {
 			int id = ((Button) v).getId();
@@ -142,10 +162,11 @@ public class SlideScreenStaples extends Activity {
 		}
 	};
 
+	// Cancels the old timer and set a new timer with action on run out of time
 	private void setupTimer() {
-		t.cancel();
-		t = new Timer();
-		t.schedule(new TimerTask() {
+		timer.cancel();
+		timer = new Timer();
+		timer.schedule(new TimerTask() {
 
 			@Override
 			public void run() {
@@ -160,6 +181,7 @@ public class SlideScreenStaples extends Activity {
 		}, timeInterval);
 	}
 
+	// Snaps in on edges of the Staples
 	private void centre() {
 
 		int scroll = scrollView.getScrollX() % getStapleWidth();
@@ -172,19 +194,31 @@ public class SlideScreenStaples extends Activity {
 		}
 	}
 
+	// returns the width of one Staple (complete Screen for Portrait 1/3 Screen
+	// for Landscape)
 	private int getStapleWidth() {
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90
-				|| getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270) {
+		DisplayMetrics metrics = getMetrics();
+		int rotation = getWindowManager().getDefaultDisplay().getRotation();
+		if (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270) {
+			orientation = Configuration.ORIENTATION_LANDSCAPE;
+
 			return metrics.widthPixels / 3;
 
 		} else {
+			orientation = Configuration.ORIENTATION_PORTRAIT;
 
 			return metrics.widthPixels;
 		}
 	}
 
+	// retruns Metrics
+	private DisplayMetrics getMetrics() {
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		return metrics;
+	}
+
+	// Creates Options Dialog for delete and rename
 	private void onLongClickDialog(final int id) {
 		dialog = new Dialog(SlideScreenStaples.getContext());
 		dialog.setContentView(R.layout.longclickdialogstaple);
@@ -215,8 +249,23 @@ public class SlideScreenStaples extends Activity {
 
 	}
 
+	// Intent to start Paper
 	public void startPaper(Intent intentPaper) {
 		startActivity(intentPaper);
 	}
 
+	// returns NavBar Height
+	private int getNavigationBarHeight(Context context, int orientation) {
+		Resources resources = context.getResources();
+
+		int id = resources
+				.getIdentifier(
+						orientation == Configuration.ORIENTATION_PORTRAIT ? "navigation_bar_height"
+								: "navigation_bar_height_landscape", "dimen",
+						"android");
+		if (id > 0) {
+			return resources.getDimensionPixelSize(id);
+		}
+		return 0;
+	}
 }
