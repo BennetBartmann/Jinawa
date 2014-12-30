@@ -37,7 +37,7 @@ public class SlideScreenPapers extends Activity {
 	private Dialog dialog;
 	private Timer t;
 	private int delay = 0;
-	private int timeInterval = 160;
+	private int timeInterval = 85;
 
 	private Intent intentWriter;
 

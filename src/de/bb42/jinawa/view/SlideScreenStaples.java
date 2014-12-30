@@ -37,7 +37,7 @@ public class SlideScreenStaples extends Activity {
 	private List<Staple> staples = controller.getStapleOfStaples().getStaples();
 	private Intent intentSettings;
 	private Timer timer = new Timer();;
-	private int timeInterval = 160;
+	private int timeInterval = 85;
 	private int delay = 0;
 	private int orientation;
 
