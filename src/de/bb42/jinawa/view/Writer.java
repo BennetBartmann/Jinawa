@@ -68,8 +68,8 @@ public class Writer extends Activity {
 
 	public void updateInfo() {
 		info.clear();
-		info.add(R.string.countChar + "" + page.countCharacters());
-		info.add(R.string.countCharWithoutWhitespaces + ""
+		info.add(getString(R.string.countChar) + "" + page.countCharacters());
+		info.add(getString(R.string.countCharWithoutWhitespaces) + ""
 				+ page.countCharactersWithOutWhitespace());
 		textView.setText(info.get(count));
 
