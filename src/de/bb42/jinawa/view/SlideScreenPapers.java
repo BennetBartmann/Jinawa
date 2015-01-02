@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Surface;
@@ -18,6 +19,7 @@ import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Page;
@@ -38,6 +40,7 @@ public class SlideScreenPapers extends Activity {
 	private Timer t;
 	private int delay = 0;
 	private int timeInterval = 85;
+	private TextView actPageNumberTextField;
 
 	private Intent intentWriter;
 
@@ -71,7 +74,9 @@ public class SlideScreenPapers extends Activity {
 						delay++;
 					}
 				});
-
+		actPageNumberTextField = (TextView) findViewById(R.id.textView1);
+		actPageNumberTextField.setText(scrollView.getScrollX()
+				/ getStapleWidth() + 1 + "/" + pageSize);
 	}
 
 	public static Context getAppContext() {
@@ -118,7 +123,12 @@ public class SlideScreenPapers extends Activity {
 		for (int i = 0; i < pageSize; i++) {
 			b[i] = new Button(this);
 			b[i].setId(i);
+			Drawable d = getResources().getDrawable(R.drawable.paper);
+
+			d.setBounds(20, 20, 20, 20);
+
 			b[i].setBackgroundResource(R.drawable.paper);
+
 			if (i == pageSize - 1) {
 				b[i].setText(R.string.newPaper);
 				b[i].setOnClickListener(onClickNewPaper);
@@ -191,6 +201,8 @@ public class SlideScreenPapers extends Activity {
 				});
 			}
 		}, timeInterval);
+		actPageNumberTextField.setText(scrollView.getScrollX()
+				/ getStapleWidth() + 1 + "/" + pageSize);
 	}
 
 	private void centre() {

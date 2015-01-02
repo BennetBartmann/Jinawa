@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string name="app_name">Jinawa</string>
     <string name="action_settings">Settings</string>
@@ -26,5 +26,8 @@
     <string name="about">        &quot;Jinawa's target is to be a simple and clean writing app for Android. 
         It strongly focuses on the act of writing text, thus filesystem access or manual selection of the saving position is not necessary. Jinawa uses the widly known office concept of slides and notebooks. 
         Each notebook can contain as many pages as you want.&quot;</string>
+
+    <color android:id="@+id/black" name="White" android:layout_width="wrap_content" android:layout_height="wrap_content">#FFFFFF</color>
+    <color android:id="@+id/black" name="Black" android:layout_width="wrap_content" android:layout_height="wrap_content">#000000</color>
 
 </resources>

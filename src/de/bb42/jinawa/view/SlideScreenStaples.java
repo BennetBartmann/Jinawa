@@ -21,6 +21,7 @@ import android.view.ViewTreeObserver.OnScrollChangedListener;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import de.bb42.jinawa.R;
 import de.bb42.jinawa.controller.Controller;
 import de.bb42.jinawa.controller.datatypes.Staple;
@@ -40,6 +41,7 @@ public class SlideScreenStaples extends Activity {
 	private int timeInterval = 85;
 	private int delay = 0;
 	private int orientation;
+	private TextView actPageNumberTextField;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,9 @@ public class SlideScreenStaples extends Activity {
 						delay++;
 					}
 				});
+		actPageNumberTextField = (TextView) findViewById(R.id.textView1);
+		actPageNumberTextField.setText(scrollView.getScrollX()
+				/ getStapleWidth() + 1 + "/" + stapleSize);
 	}
 
 	public static Context getAppContext() {
@@ -179,6 +184,8 @@ public class SlideScreenStaples extends Activity {
 				});
 			}
 		}, timeInterval);
+		actPageNumberTextField.setText(scrollView.getScrollX()
+				/ getStapleWidth() + 1 + "/" + stapleSize);
 	}
 
 	// Snaps in on edges of the Staples
