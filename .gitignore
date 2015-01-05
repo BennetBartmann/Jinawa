@@ -46,3 +46,4 @@ bin/classes/de/bb42/jinawa/modell/Modell.class
 *.ap_
 *.class
 *.dex
+bin/*
