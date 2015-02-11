@@ -11,4 +11,20 @@
         android:text="@string/deleteStaple"
         android:textSize="25sp" />
 
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:text="@string/share"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/shareTextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:text="@string/shareText"
+        android:textSize="25sp" />
+
 </LinearLayout>

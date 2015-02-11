@@ -3,12 +3,33 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/infoBar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="toggleInfo"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_height="35dp" >
+
+        <Button
+            android:id="@+id/save"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="78dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+            
+            android:layout_alignParentTop="true"
+            android:onClick="save"
+            android:text="@string/save" />
+
+        <TextView
+            android:id="@+id/infoBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:onClick="toggleInfo"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/editText"
@@ -23,7 +44,6 @@
         android:scrollHorizontally="false"
         android:scrollbars="vertical"
         android:textIsSelectable="true" >
-
     </EditText>
 
 </LinearLayout>

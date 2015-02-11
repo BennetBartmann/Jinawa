@@ -21,6 +21,10 @@
     <string name="optionsPaper">Options Paper</string>
     <string name="Settings">Information</string>
     <string name="emptyPaper">Emtpy Paper</string>
+       <string name="share">Share File</string>
+        <string name="shareText">Share Text</string>
+               <string name="save">save</string>
+        
     <string name="countChar">Charakter count: </string>
     <string name="countCharWithoutWhitespaces">Charakter count without Whitespaces: </string>
     <string name="about">        &quot;Jinawa's target is to be a simple and clean writing app for Android. 

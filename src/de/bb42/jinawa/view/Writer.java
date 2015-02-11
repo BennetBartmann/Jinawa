@@ -82,12 +82,17 @@ public class Writer extends Activity {
 			ViewDataHolder.getInstance().getSlideScreenPapers().update();
 
 		} else {
-			page.getContent().toString().trim();
-			page.save();
+			save(null);
 			ViewDataHolder.getInstance().getSlideScreenPapers().update();
 		}
 
 		super.onBackPressed();
+	}
+
+	public void save(View v) {
+		page.getContent().toString().trim();
+		page.save();
+		Output.sendToast(this, "Saved");
 	}
 
 	private class ContentChangedListener implements TextWatcher {

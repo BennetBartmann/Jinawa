@@ -1,5 +1,6 @@
 package de.bb42.jinawa.view;
 
+import java.io.File;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -9,6 +10,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Surface;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver.OnScrollChangedListener;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -233,8 +236,55 @@ public class SlideScreenPapers extends Activity {
 				DIaDel.getDeleteDialogStaple();
 			}
 		});
+		Button shareButton = (Button) dialog.findViewById(R.id.shareButton);
+		shareButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				dialog.dismiss();
+				shareFile();
+			}
+
+		});
+		Button shareTextButton = (Button) dialog
+				.findViewById(R.id.shareTextButton);
+		shareTextButton.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View arg0) {
+				dialog.dismiss();
+				shareText(positionPaper);
+			}
+
+		});
 
 		dialog.show();
+
+	}
+
+	private void shareFile() {
+		File f = new File("/pfad/zu/meiner/bilddatei.png");
+		Uri u = Uri.fromFile(f);
+		String ext = MimeTypeMap.getFileExtensionFromUrl(u.toString());
+		String mime = null;
+		if (ext != null) {
+			mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(ext);
+		}
+		Intent i = new Intent();
+		i.setAction(Intent.ACTION_SEND);
+		i.putExtra(Intent.EXTRA_STREAM, u);
+		i.setType(mime != null ? mime : "application/octet-stream");
+		startActivity(Intent.createChooser(i, "Share image"));
+
+	}
+
+	private void shareText(int positionPaper) {
+
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, controller.getStapleOfStaples()
+				.getStaples().get(positionStaples).getPages()
+				.get(positionPaper).getContent().toString());
+		sendIntent.setType("text/plain");
+		startActivity(sendIntent);
 
 	}
 }

@@ -31,14 +31,17 @@ public final class R {
         public static final int staple=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f090008;
+        public static final int action_settings=0x7f09000b;
         public static final int deletePaperButton=0x7f090002;
-        public static final int deleteStapleButton=0x7f090003;
-        public static final int editText=0x7f090007;
+        public static final int deleteStapleButton=0x7f090005;
+        public static final int editText=0x7f09000a;
         public static final int horizontalScrollView1=0x7f090000;
-        public static final int infoBar=0x7f090006;
-        public static final int renameStapleButton=0x7f090004;
-        public static final int settingsAbout=0x7f090005;
+        public static final int infoBar=0x7f090009;
+        public static final int renameStapleButton=0x7f090006;
+        public static final int save=0x7f090008;
+        public static final int settingsAbout=0x7f090007;
+        public static final int shareButton=0x7f090003;
+        public static final int shareTextButton=0x7f090004;
         public static final int textView1=0x7f090001;
     }
     public static final class layout {
@@ -59,11 +62,11 @@ public final class R {
         public static final int Settings=0x7f050012;
         public static final int Staples=0x7f050004;
         public static final int Writer=0x7f050002;
-        public static final int about=0x7f050016;
+        public static final int about=0x7f050019;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int countChar=0x7f050014;
-        public static final int countCharWithoutWhitespaces=0x7f050015;
+        public static final int countChar=0x7f050017;
+        public static final int countCharWithoutWhitespaces=0x7f050018;
         public static final int deletePaper=0x7f05000c;
         public static final int deletePaperText=0x7f05000d;
         public static final int deleteStaple=0x7f05000a;
@@ -76,6 +79,9 @@ public final class R {
         public static final int optionsStaple=0x7f050010;
         public static final int renameStaple=0x7f05000e;
         public static final int renameStapleText=0x7f05000f;
+        public static final int save=0x7f050016;
+        public static final int share=0x7f050014;
+        public static final int shareText=0x7f050015;
     }
     public static final class style {
         /** 
