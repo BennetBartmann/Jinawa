@@ -87,4 +87,8 @@ public class PageFile {
 	public void delete() {
 		file.delete();
 	}
+	
+	public String getFileAdress(){
+		return file.getAbsolutePath();
+	}
 }

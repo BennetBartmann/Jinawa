@@ -80,4 +80,8 @@ public class Page {
 	public int countCharactersWithOutWhitespace(){
 		return content.toString().replaceAll(" ", "").length();
 	}
+	
+	public String getFileAdress(){
+		return pageFile.getFileAdress();
+	}
 }
