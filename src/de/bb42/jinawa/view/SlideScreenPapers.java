@@ -241,7 +241,7 @@ public class SlideScreenPapers extends Activity {
 
 			public void onClick(View arg0) {
 				dialog.dismiss();
-				shareFile();
+				shareFile(positionPaper);
 			}
 
 		});
@@ -260,8 +260,10 @@ public class SlideScreenPapers extends Activity {
 
 	}
 
-	private void shareFile() {
-		File f = new File("/pfad/zu/meiner/bilddatei.png");
+	private void shareFile(int positionPaper) {
+		File f = new File(controller.getStapleOfStaples().getStaples()
+				.get(positionStaples).getPages().get(positionPaper)
+				.getFileAdress());
 		Uri u = Uri.fromFile(f);
 		String ext = MimeTypeMap.getFileExtensionFromUrl(u.toString());
 		String mime = null;
@@ -271,8 +273,8 @@ public class SlideScreenPapers extends Activity {
 		Intent i = new Intent();
 		i.setAction(Intent.ACTION_SEND);
 		i.putExtra(Intent.EXTRA_STREAM, u);
-		i.setType(mime != null ? mime : "application/octet-stream");
-		startActivity(Intent.createChooser(i, "Share image"));
+		i.setType(mime != null ? mime : "text/plain");
+		startActivity(Intent.createChooser(i, "Share Text"));
 
 	}
 
