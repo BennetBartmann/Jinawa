@@ -1,6 +1,6 @@
-package de.bb42.jinawa.controller.datatypes;
+package de.bb42.jinawapremium.controller.datatypes;
 
-import de.bb42.jinawa.modell.PageFile;
+import de.bb42.jinawapremium.modell.PageFile;
 
 /**
  * 

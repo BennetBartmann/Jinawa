@@ -1,4 +1,4 @@
-package de.bb42.jinawa.view;
+package de.bb42.jinawapremium.view;
 
 import java.util.List;
 import java.util.Timer;
@@ -22,9 +22,9 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import de.bb42.jinawa.R;
-import de.bb42.jinawa.controller.Controller;
-import de.bb42.jinawa.controller.datatypes.Staple;
+import de.bb42.jinawapremium.R;
+import de.bb42.jinawapremium.controller.Controller;
+import de.bb42.jinawapremium.controller.datatypes.Staple;
 
 public class SlideScreenStaples extends Activity {
 

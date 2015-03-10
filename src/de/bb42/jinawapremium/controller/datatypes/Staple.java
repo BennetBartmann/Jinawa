@@ -1,14 +1,14 @@
 /**
  * 
  */
-package de.bb42.jinawa.controller.datatypes;
+package de.bb42.jinawapremium.controller.datatypes;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import de.bb42.jinawa.modell.PageFile;
-import de.bb42.jinawa.modell.PaperExisted;
-import de.bb42.jinawa.modell.StapleFile;
+import de.bb42.jinawapremium.modell.PageFile;
+import de.bb42.jinawapremium.modell.PaperExisted;
+import de.bb42.jinawapremium.modell.StapleFile;
 
 /**
  * @author Bennet Bartmann

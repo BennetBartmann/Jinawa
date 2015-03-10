@@ -1,4 +1,4 @@
-package de.bb42.jinawa.view;
+package de.bb42.jinawapremium.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import de.bb42.jinawa.R;
-import de.bb42.jinawa.controller.Controller;
-import de.bb42.jinawa.controller.datatypes.Page;
+import de.bb42.jinawapremium.R;
+import de.bb42.jinawapremium.controller.Controller;
+import de.bb42.jinawapremium.controller.datatypes.Page;
 
 /**
  * Writer Activity

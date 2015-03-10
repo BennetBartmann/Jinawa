@@ -1,4 +1,4 @@
-package de.bb42.jinawa.view;
+package de.bb42.jinawapremium.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,9 +7,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.EditText;
-import de.bb42.jinawa.R;
-import de.bb42.jinawa.controller.Controller;
-import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
+import de.bb42.jinawapremium.R;
+import de.bb42.jinawapremium.controller.Controller;
+import de.bb42.jinawapremium.controller.datatypes.StapleOfStaples;
 
 public class Dialogs extends Activity {
 	private int positionPaper;

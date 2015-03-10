@@ -1,11 +1,11 @@
-package de.bb42.jinawa.view;
+package de.bb42.jinawapremium.view;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
-import de.bb42.jinawa.R;
+import de.bb42.jinawapremium.R;
 
 public class Settings extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {

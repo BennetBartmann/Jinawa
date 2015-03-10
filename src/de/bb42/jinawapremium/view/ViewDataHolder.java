@@ -1,4 +1,4 @@
-package de.bb42.jinawa.view;
+package de.bb42.jinawapremium.view;
 
 /**
  *Singleton for View Data

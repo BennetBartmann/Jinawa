@@ -1,4 +1,4 @@
-package de.bb42.jinawa.view;
+package de.bb42.jinawapremium.view;
 
 import android.content.Context;
 import android.util.Log;

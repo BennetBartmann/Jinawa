@@ -1,4 +1,4 @@
-package de.bb42.jinawa.modell;
+package de.bb42.jinawapremium.modell;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.bb42.jinawa.controller.datatypes.Page;
+import de.bb42.jinawapremium.controller.datatypes.Page;
 
 public class StapleFile {
 	private File stapleFolder;

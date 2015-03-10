@@ -1,4 +1,4 @@
-package de.bb42.jinawa.modell;
+package de.bb42.jinawapremium.modell;
 
 public class PaperExisted extends Exception {
 

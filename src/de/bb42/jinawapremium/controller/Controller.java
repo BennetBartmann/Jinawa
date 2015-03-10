@@ -1,10 +1,10 @@
 /**
  * 
  */
-package de.bb42.jinawa.controller;
+package de.bb42.jinawapremium.controller;
 
-import de.bb42.jinawa.controller.datatypes.StapleOfStaples;
-import de.bb42.jinawa.modell.Modell;
+import de.bb42.jinawapremium.controller.datatypes.StapleOfStaples;
+import de.bb42.jinawapremium.modell.Modell;
 
 /**
  * @author Bennet Bartmann

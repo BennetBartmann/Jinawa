@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="de.bb42.jinawa.MainActivity" >
+    tools:context="de.bb42.jinawapremium.MainActivity" >
 
     <item
         android:id="@+id/action_settings"
