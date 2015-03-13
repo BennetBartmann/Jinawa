@@ -4,29 +4,29 @@
     <string name="app_name">Jinawa</string>
     <string name="action_settings">Settings</string>
     <string name="Writer">Writer</string>
-    <string name="Papers">Papers</string>
-    <string name="Staples">Stapels</string>
+    <string name="Papers">Sheets</string>
+    <string name="Staples">Notebooks</string>
     <string name="Ok">OK</string>
     <string name="Cancel">Cancel</string>
     <string name="inputText">Please enter a title:</string>
-    <string name="newStaple">New Staple</string>
-    <string name="newPaper">New Paper</string>
-    <string name="deleteStaple">Delete Staple</string>
-    <string name="deleteStapleText">Do you really want to delete this Staple?</string>
+    <string name="newStaple">New notebook</string>
+    <string name="newPaper">New sheet</string>
+    <string name="deleteStaple">Delete notebook</string>
+    <string name="deleteStapleText">Do you really want to delete this notebook?</string>
     <string name="deletePaper">Delete Paper</string>
-    <string name="deletePaperText">Do you really want to delete this Paper?</string>
-    <string name="renameStaple">Rename Staple</string>
-    <string name="renameStapleText">Do you really want to rename this Staple?</string>
-    <string name="optionsStaple">Options Staple</string>
-    <string name="optionsPaper">Options Paper</string>
+    <string name="deletePaperText">Do you really want to delete this sheet?</string>
+    <string name="renameStaple">Rename notebook</string>
+    <string name="renameStapleText">Do you really want to rename this notebook?</string>
+    <string name="optionsStaple">Options notebook</string>
+    <string name="optionsPaper">Options sheet</string>
     <string name="Settings">Information</string>
-    <string name="emptyPaper">Emtpy Paper</string>
+    <string name="emptyPaper">Emtpy sheet</string>
        <string name="share">Share File</string>
         <string name="shareText">Share Text</string>
                <string name="save">save</string>
         
-    <string name="countChar">Charakter count: </string>
-    <string name="countCharWithoutWhitespaces">Charakter count without Whitespaces: </string>
+    <string name="countChar">Character count: </string>
+    <string name="countCharWithoutWhitespaces">Character count without Whitespaces: </string>
     <string name="about">        &quot;Jinawa's target is to be a simple and clean writing app for Android. 
         It strongly focuses on the act of writing text, thus filesystem access or manual selection of the saving position is not necessary. Jinawa uses the widly known office concept of slides and notebooks. 
         Each notebook can contain as many pages as you want.&quot;</string>
