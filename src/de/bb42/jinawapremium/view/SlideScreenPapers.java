@@ -9,12 +9,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Surface;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver.OnScrollChangedListener;
@@ -44,6 +46,7 @@ public class SlideScreenPapers extends Activity {
 	private int delay = 0;
 	private int timeInterval = 85;
 	private TextView actPageNumberTextField;
+	private int orientation;
 
 	private Intent intentWriter;
 
@@ -96,17 +99,46 @@ public class SlideScreenPapers extends Activity {
 
 	}
 
+	// returns the width of one Staple (complete Screen for Portrait 1/3 Screen
+	// for Landscape)
 	private int getStapleWidth() {
+		DisplayMetrics metrics = getMetrics();
+		int defaultOrientation = getDeviceDefaultOrientation();
+		int rotation = getWindowManager().getDefaultDisplay().getRotation();
+		if (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270) {
+			orientation = (defaultOrientation == Configuration.ORIENTATION_LANDSCAPE?Configuration.ORIENTATION_PORTRAIT:Configuration.ORIENTATION_LANDSCAPE );
+		} else {
+			orientation = defaultOrientation;
+		}
+		if (orientation == Configuration.ORIENTATION_LANDSCAPE ){
+			return metrics.widthPixels / 3;
+		}
+		return metrics.widthPixels;
+	}
+
+	public int getDeviceDefaultOrientation() {
+
+	    WindowManager windowManager =  (WindowManager) getSystemService(WINDOW_SERVICE);
+
+	    Configuration config = getResources().getConfiguration();
+
+	    int rotation = windowManager.getDefaultDisplay().getRotation();
+
+	    if ( ((rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) &&
+	            config.orientation == Configuration.ORIENTATION_LANDSCAPE)
+	        || ((rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270) &&    
+	            config.orientation == Configuration.ORIENTATION_PORTRAIT)) {
+	      return Configuration.ORIENTATION_LANDSCAPE;
+	    } else { 
+	      return Configuration.ORIENTATION_PORTRAIT;
+	    }
+	}
+	
+	// retruns Metrics
+	private DisplayMetrics getMetrics() {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		if (getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_90
-				|| getWindowManager().getDefaultDisplay().getRotation() == Surface.ROTATION_270) {
-			return metrics.widthPixels / 3;
-
-		} else {
-
-			return metrics.widthPixels;
-		}
+		return metrics;
 	}
 
 	private int getStapleSize() {
