@@ -7,7 +7,8 @@
     <string name="Papers">Sheets</string>
     <string name="Staples">Notebooks</string>
     <string name="Ok">OK</string>
-    <string name="Cancel">Cancel</string>
+    <string name="saved">Saved</string>
+    <string name="close">Close</string>
     <string name="inputText">Please enter a title:</string>
     <string name="newStaple">New notebook</string>
     <string name="newPaper">New sheet</string>
@@ -21,10 +22,9 @@
     <string name="optionsPaper">Options sheet</string>
     <string name="Settings">Information</string>
     <string name="emptyPaper">Emtpy sheet</string>
-       <string name="share">Share File</string>
-        <string name="shareText">Share Text</string>
-               <string name="save">save</string>
-        
+    <string name="share">Share File</string>
+    <string name="shareText">Share Text</string>
+    <string name="save">save</string>
     <string name="countChar">Character count: </string>
     <string name="countCharWithoutWhitespaces">Character count without Whitespaces: </string>
     <string name="about">        &quot;Jinawa's target is to be a simple and clean writing app for Android. 

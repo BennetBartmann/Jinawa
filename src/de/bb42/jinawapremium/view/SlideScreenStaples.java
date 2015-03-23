@@ -209,11 +209,12 @@ public class SlideScreenStaples extends Activity {
 		int defaultOrientation = getDeviceDefaultOrientation();
 		int rotation = getWindowManager().getDefaultDisplay().getRotation();
 		if (rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270) {
-			orientation = (defaultOrientation == Configuration.ORIENTATION_LANDSCAPE?Configuration.ORIENTATION_PORTRAIT:Configuration.ORIENTATION_LANDSCAPE );
+			orientation = (defaultOrientation == Configuration.ORIENTATION_LANDSCAPE ? Configuration.ORIENTATION_PORTRAIT
+					: Configuration.ORIENTATION_LANDSCAPE);
 		} else {
 			orientation = defaultOrientation;
 		}
-		if (orientation == Configuration.ORIENTATION_LANDSCAPE ){
+		if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			return metrics.widthPixels / 3;
 		}
 		return metrics.widthPixels;
@@ -221,22 +222,20 @@ public class SlideScreenStaples extends Activity {
 
 	public int getDeviceDefaultOrientation() {
 
-	    WindowManager windowManager =  (WindowManager) getSystemService(WINDOW_SERVICE);
+		WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
-	    Configuration config = getResources().getConfiguration();
+		Configuration config = getResources().getConfiguration();
 
-	    int rotation = windowManager.getDefaultDisplay().getRotation();
+		int rotation = windowManager.getDefaultDisplay().getRotation();
 
-	    if ( ((rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) &&
-	            config.orientation == Configuration.ORIENTATION_LANDSCAPE)
-	        || ((rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270) &&    
-	            config.orientation == Configuration.ORIENTATION_PORTRAIT)) {
-	      return Configuration.ORIENTATION_LANDSCAPE;
-	    } else { 
-	      return Configuration.ORIENTATION_PORTRAIT;
-	    }
+		if (((rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) && config.orientation == Configuration.ORIENTATION_LANDSCAPE)
+				|| ((rotation == Surface.ROTATION_90 || rotation == Surface.ROTATION_270) && config.orientation == Configuration.ORIENTATION_PORTRAIT)) {
+			return Configuration.ORIENTATION_LANDSCAPE;
+		} else {
+			return Configuration.ORIENTATION_PORTRAIT;
+		}
 	}
-	
+
 	// retruns Metrics
 	private DisplayMetrics getMetrics() {
 		DisplayMetrics metrics = new DisplayMetrics();

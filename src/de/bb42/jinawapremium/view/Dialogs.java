@@ -132,6 +132,19 @@ public class Dialogs extends Activity {
 		dia.show();
 	}
 
+	public void getDeleteDialogPaper() {
+
+		// Use the Builder class for convenient dialog construction
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle(R.string.deletePaper);
+		builder.setMessage(R.string.deletePaperText);
+		builder.setPositiveButton(R.string.Ok, new DeleteButtonListenerStaple());
+		builder.setNegativeButton(R.string.Cancel, new DoNothingListener());
+		// Create the AlertDialog object and return it
+		Dialog dia = builder.create();
+		dia.show();
+	}
+
 	public class DeleteButtonListenerStaple implements
 			DialogInterface.OnClickListener {
 		@Override

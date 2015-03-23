@@ -79,20 +79,15 @@ public class Writer extends Activity {
 		if (page.getContent().toString().trim().equals(noinput)) {
 			Controller.getInstance().getStapleOfStaples().getStaples()
 					.get(positionStaples).deletePaper(positionPaper);
-			ViewDataHolder.getInstance().getSlideScreenPapers().update();
-
-		} else {
-			save(null);
-			ViewDataHolder.getInstance().getSlideScreenPapers().update();
 		}
+		ViewDataHolder.getInstance().getSlideScreenPapers().update();
+		Output.sendToast(this, getString(R.string.saved));
 
 		super.onBackPressed();
 	}
 
-	public void save(View v) {
-		page.getContent().toString().trim();
-		page.save();
-		Output.sendToast(this, "Saved");
+	public void saveAndClose(View v) {
+		onBackPressed();
 	}
 
 	private class ContentChangedListener implements TextWatcher {

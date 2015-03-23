@@ -32,13 +32,13 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f09000b;
+        public static final int close=0x7f090008;
         public static final int deletePaperButton=0x7f090002;
         public static final int deleteStapleButton=0x7f090005;
         public static final int editText=0x7f09000a;
         public static final int horizontalScrollView1=0x7f090000;
         public static final int infoBar=0x7f090009;
         public static final int renameStapleButton=0x7f090006;
-        public static final int save=0x7f090008;
         public static final int settingsAbout=0x7f090007;
         public static final int shareButton=0x7f090003;
         public static final int shareTextButton=0x7f090004;
@@ -56,32 +56,34 @@ public final class R {
         public static final int paper=0x7f080001;
     }
     public static final class string {
-        public static final int Cancel=0x7f050006;
+        public static final int Cancel=0x7f05001b;
         public static final int Ok=0x7f050005;
         public static final int Papers=0x7f050003;
-        public static final int Settings=0x7f050012;
+        public static final int Settings=0x7f050013;
         public static final int Staples=0x7f050004;
         public static final int Writer=0x7f050002;
-        public static final int about=0x7f050019;
+        public static final int about=0x7f05001a;
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
-        public static final int countChar=0x7f050017;
-        public static final int countCharWithoutWhitespaces=0x7f050018;
-        public static final int deletePaper=0x7f05000c;
-        public static final int deletePaperText=0x7f05000d;
-        public static final int deleteStaple=0x7f05000a;
-        public static final int deleteStapleText=0x7f05000b;
-        public static final int emptyPaper=0x7f050013;
-        public static final int inputText=0x7f050007;
-        public static final int newPaper=0x7f050009;
-        public static final int newStaple=0x7f050008;
-        public static final int optionsPaper=0x7f050011;
-        public static final int optionsStaple=0x7f050010;
-        public static final int renameStaple=0x7f05000e;
-        public static final int renameStapleText=0x7f05000f;
-        public static final int save=0x7f050016;
-        public static final int share=0x7f050014;
-        public static final int shareText=0x7f050015;
+        public static final int close=0x7f050007;
+        public static final int countChar=0x7f050018;
+        public static final int countCharWithoutWhitespaces=0x7f050019;
+        public static final int deletePaper=0x7f05000d;
+        public static final int deletePaperText=0x7f05000e;
+        public static final int deleteStaple=0x7f05000b;
+        public static final int deleteStapleText=0x7f05000c;
+        public static final int emptyPaper=0x7f050014;
+        public static final int inputText=0x7f050008;
+        public static final int newPaper=0x7f05000a;
+        public static final int newStaple=0x7f050009;
+        public static final int optionsPaper=0x7f050012;
+        public static final int optionsStaple=0x7f050011;
+        public static final int renameStaple=0x7f05000f;
+        public static final int renameStapleText=0x7f050010;
+        public static final int save=0x7f050017;
+        public static final int saved=0x7f050006;
+        public static final int share=0x7f050015;
+        public static final int shareText=0x7f050016;
     }
     public static final class style {
         /** 

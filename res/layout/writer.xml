@@ -8,16 +8,15 @@
         android:layout_height="35dp" >
 
         <Button
-            android:id="@+id/save"
+            android:id="@+id/close"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="78dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-            
             android:layout_alignParentTop="true"
-            android:onClick="save"
-            android:text="@string/save" />
+            android:onClick="saveAndClose"
+            android:text="@string/close" />
 
         <TextView
             android:id="@+id/infoBar"
@@ -28,7 +27,6 @@
             android:layout_alignParentTop="true"
             android:onClick="toggleInfo"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
     </RelativeLayout>
 
     <EditText
