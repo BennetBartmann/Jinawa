@@ -34,7 +34,7 @@
         <activity
             android:name=".view.Writer"
             android:label="@string/Writer"
-            android:screenOrientation="portrait" >
+           >
         </activity>
         <activity
             android:name=".view.Settings"
