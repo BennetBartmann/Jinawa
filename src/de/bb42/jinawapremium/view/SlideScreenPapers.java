@@ -56,6 +56,7 @@ public class SlideScreenPapers extends Activity {
 		setContentView(R.layout.activity_screen_slide);
 		ViewDataHolder.getInstance().setSlideScreenPapers(this);
 		SlideScreenPapers.context = this;
+		actPageNumberTextField = (TextView) findViewById(R.id.textView1);
 		t = new Timer();
 		intentWriter = new Intent(SlideScreenPapers.getContext(), Writer.class);
 		Intent IntentStaples = getIntent();
@@ -68,6 +69,8 @@ public class SlideScreenPapers extends Activity {
 		}
 		scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
 		scrollView.addView(getLinLayout());
+		actPagenumber();
+
 		scrollView.getViewTreeObserver().addOnScrollChangedListener(
 				new OnScrollChangedListener() {
 
@@ -80,7 +83,10 @@ public class SlideScreenPapers extends Activity {
 						delay++;
 					}
 				});
-		actPageNumberTextField = (TextView) findViewById(R.id.textView1);
+
+	}
+
+	public void actPagenumber() {
 		actPageNumberTextField.setText(scrollView.getScrollX()
 				/ getStapleWidth() + 1 + "/" + pageSize);
 	}
@@ -248,6 +254,8 @@ public class SlideScreenPapers extends Activity {
 					+ (getStapleWidth() - scroll), 0);
 
 		}
+		actPagenumber();
+
 	}
 
 	private void onLongClickDialog(final int positionPaper) {

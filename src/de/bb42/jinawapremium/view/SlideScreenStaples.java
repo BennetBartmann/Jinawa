@@ -49,11 +49,15 @@ public class SlideScreenStaples extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_screen_slide);
 		ViewDataHolder.getInstance().setSlideScreenStaples(this);
+		actPageNumberTextField = (TextView) findViewById(R.id.textView1);
+	
+
 		SlideScreenStaples.context = this;
 		intentSettings = new Intent(SlideScreenStaples.getContext(),
 				Settings.class);
 		scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScrollView1);
 		scrollView.addView(getLinLayout());
+		actPagenumber();
 		scrollView.getViewTreeObserver().addOnScrollChangedListener(
 				new OnScrollChangedListener() {
 
@@ -67,7 +71,9 @@ public class SlideScreenStaples extends Activity {
 						delay++;
 					}
 				});
-		actPageNumberTextField = (TextView) findViewById(R.id.textView1);
+	}
+
+	public void actPagenumber() {
 		actPageNumberTextField.setText(scrollView.getScrollX()
 				/ getStapleWidth() + 1 + "/" + stapleSize);
 	}
@@ -200,6 +206,8 @@ public class SlideScreenStaples extends Activity {
 					+ (getStapleWidth() - scroll), 0);
 
 		}
+		actPagenumber();
+
 	}
 
 	// returns the width of one Staple (complete Screen for Portrait 1/3 Screen
